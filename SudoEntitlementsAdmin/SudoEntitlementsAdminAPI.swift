@@ -86,32 +86,6 @@ public enum AccountStates: RawRepresentable, Equatable, JSONDecodable, JSONEncod
   }
 }
 
-public struct PagingInput: GraphQLMapConvertible {
-  public var graphQLMap: GraphQLMap
-
-  public init(limit: Optional<Int?> = nil, nextToken: Optional<String?> = nil) {
-    graphQLMap = ["limit": limit, "nextToken": nextToken]
-  }
-
-  public var limit: Optional<Int?> {
-    get {
-      return graphQLMap["limit"] as! Optional<Int?>
-    }
-    set {
-      graphQLMap.updateValue(newValue, forKey: "limit")
-    }
-  }
-
-  public var nextToken: Optional<String?> {
-    get {
-      return graphQLMap["nextToken"] as! Optional<String?>
-    }
-    set {
-      graphQLMap.updateValue(newValue, forKey: "nextToken")
-    }
-  }
-}
-
 public struct AddEntitlementsSetInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
@@ -430,6 +404,23 @@ public struct ApplyEntitlementsToUserInput: GraphQLMapConvertible {
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "entitlements")
+    }
+  }
+}
+
+public struct RemoveEntitledUserInput: GraphQLMapConvertible {
+  public var graphQLMap: GraphQLMap
+
+  public init(externalId: String) {
+    graphQLMap = ["externalId": externalId]
+  }
+
+  public var externalId: String {
+    get {
+      return graphQLMap["externalId"] as! String
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "externalId")
     }
   }
 }
@@ -3427,6 +3418,85 @@ public final class ApplyEntitlementsToUserMutation: GraphQLMutation {
           set {
             snapshot.updateValue(newValue, forKey: "value")
           }
+        }
+      }
+    }
+  }
+}
+
+public final class RemoveEntitledUserMutation: GraphQLMutation {
+  public static let operationString =
+    "mutation RemoveEntitledUser($input: RemoveEntitledUserInput!) {\n  removeEntitledUser(input: $input) {\n    __typename\n    externalId\n  }\n}"
+
+  public var input: RemoveEntitledUserInput
+
+  public init(input: RemoveEntitledUserInput) {
+    self.input = input
+  }
+
+  public var variables: GraphQLMap? {
+    return ["input": input]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Mutation"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("removeEntitledUser", arguments: ["input": GraphQLVariable("input")], type: .object(RemoveEntitledUser.selections)),
+    ]
+
+    public var snapshot: Snapshot
+
+    public init(snapshot: Snapshot) {
+      self.snapshot = snapshot
+    }
+
+    public init(removeEntitledUser: RemoveEntitledUser? = nil) {
+      self.init(snapshot: ["__typename": "Mutation", "removeEntitledUser": removeEntitledUser.flatMap { $0.snapshot }])
+    }
+
+    public var removeEntitledUser: RemoveEntitledUser? {
+      get {
+        return (snapshot["removeEntitledUser"] as? Snapshot).flatMap { RemoveEntitledUser(snapshot: $0) }
+      }
+      set {
+        snapshot.updateValue(newValue?.snapshot, forKey: "removeEntitledUser")
+      }
+    }
+
+    public struct RemoveEntitledUser: GraphQLSelectionSet {
+      public static let possibleTypes = ["EntitledUser"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("externalId", type: .nonNull(.scalar(String.self))),
+      ]
+
+      public var snapshot: Snapshot
+
+      public init(snapshot: Snapshot) {
+        self.snapshot = snapshot
+      }
+
+      public init(externalId: String) {
+        self.init(snapshot: ["__typename": "EntitledUser", "externalId": externalId])
+      }
+
+      public var __typename: String {
+        get {
+          return snapshot["__typename"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var externalId: String {
+        get {
+          return snapshot["externalId"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "externalId")
         }
       }
     }

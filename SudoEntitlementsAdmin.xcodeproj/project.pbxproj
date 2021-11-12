@@ -29,6 +29,7 @@
 		D9971C7922FD40DC0077076C /* SudoEntitlementsAdminClientConfigProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9971C7822FD40DC0077076C /* SudoEntitlementsAdminClientConfigProvider.swift */; };
 		D9971C7E22FD46650077076C /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9971C7D22FD46650077076C /* Logger.swift */; };
 		D9B5B2B62371666100392596 /* SudoEntitlementsAdminAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B5B2B52371666100392596 /* SudoEntitlementsAdminAPI.swift */; };
+		D9DB5E8A273DDB91009047B8 /* EntitledUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DB5E89273DDB91009047B8 /* EntitledUser.swift */; };
 		D9F16E6E22FD498E0055513F /* SudoEntitlementsAdminIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F16E6D22FD498E0055513F /* SudoEntitlementsAdminIntegrationTests.swift */; };
 		D9F16E7022FD498E0055513F /* SudoEntitlementsAdmin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9971C5822FD299A0077076C /* SudoEntitlementsAdmin.framework */; };
 		D9F2801A271FF0BF0058D17F /* UserEntitlements.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F28019271FF0BF0058D17F /* UserEntitlements.swift */; };
@@ -95,6 +96,7 @@
 		D9971C7822FD40DC0077076C /* SudoEntitlementsAdminClientConfigProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudoEntitlementsAdminClientConfigProvider.swift; sourceTree = "<group>"; };
 		D9971C7D22FD46650077076C /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		D9B5B2B52371666100392596 /* SudoEntitlementsAdminAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SudoEntitlementsAdminAPI.swift; sourceTree = "<group>"; };
+		D9DB5E89273DDB91009047B8 /* EntitledUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntitledUser.swift; sourceTree = "<group>"; };
 		D9F16E6B22FD498E0055513F /* SudoEntitlementsAdminIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SudoEntitlementsAdminIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9F16E6D22FD498E0055513F /* SudoEntitlementsAdminIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudoEntitlementsAdminIntegrationTests.swift; sourceTree = "<group>"; };
 		D9F16E6F22FD498E0055513F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				D974FC6C271FE98200BBF638 /* EntitlementsSet.swift */,
+				D9DB5E89273DDB91009047B8 /* EntitledUser.swift */,
 				D974FC6E271FE99600BBF638 /* EntitlementsSequence.swift */,
 				D974FC70271FEA3F00BBF638 /* Entitlement.swift */,
 				D974FC72271FEC0700BBF638 /* EntitlementConsumption.swift */,
@@ -638,6 +641,7 @@
 				D974FC6D271FE98200BBF638 /* EntitlementsSet.swift in Sources */,
 				D946445F23580EF100F4BCF8 /* Date+EpochMs.swift in Sources */,
 				D9971C7922FD40DC0077076C /* SudoEntitlementsAdminClientConfigProvider.swift in Sources */,
+				D9DB5E8A273DDB91009047B8 /* EntitledUser.swift in Sources */,
 				D91CAE4F2451484300DA1152 /* AWSEndpoint+RegionType.swift in Sources */,
 				D9971C7722FD31690077076C /* SudoEntitlementsAdminClient.swift in Sources */,
 			);

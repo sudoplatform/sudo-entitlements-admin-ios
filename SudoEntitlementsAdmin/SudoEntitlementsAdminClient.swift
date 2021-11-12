@@ -161,7 +161,7 @@ public protocol SudoEntitlementsAdminClient: AnyObject {
     ///   - completion: completion handler to return the named entitlements set or undefined if no entitlements set
     ///         of the specified name has been defined or error.
     func getEntitlementsSetWithName(
-        name: String,
+        _ name: String,
         completion: @escaping (Swift.Result<EntitlementsSet?, Error>) -> Void
     )
 
@@ -170,7 +170,7 @@ public protocol SudoEntitlementsAdminClient: AnyObject {
     ///   - nextToken: optional token from which to continue listing.
     ///   - completion: completion handler to return the paginated list of entitlements sets or error.
     func listEntitlementsSetsWithNextToken(
-        nextToken: String?,
+        _ nextToken: String?,
         completion: @escaping (Swift.Result<ListOutput<EntitlementsSet>, Error>) -> Void
     )
 
@@ -179,7 +179,7 @@ public protocol SudoEntitlementsAdminClient: AnyObject {
     ///   - externalId: external IDP user ID of user to retrieve entitlements for.
     ///   - completion: completion handler to return entitlements consumption for the user or error.
     func getEntitlementsForUserWithExternalId(
-        externalId: String,
+        _ externalId: String,
         completion: @escaping (Swift.Result<UserEntitlementsConsumption?, Error>) -> Void
     )
 
@@ -190,7 +190,7 @@ public protocol SudoEntitlementsAdminClient: AnyObject {
     ///   - entitlements: list of entitlements associated with the new entitlements set.
     ///   - completion: completion handler to return the newly created entitlements set or error.
     func addEntitlementsSetWithName(
-        name: String,
+        _ name: String,
         description: String?,
         entitlements: [Entitlement],
         completion: @escaping (Swift.Result<EntitlementsSet, Error>) -> Void
@@ -203,7 +203,7 @@ public protocol SudoEntitlementsAdminClient: AnyObject {
     ///   - entitlements: list of entitlements to update.
     ///   - completion: completion handler to return the updated entitlements set or error.
     func setEntitlementsSetWithName(
-        name: String,
+        _ name: String,
         description: String?,
         entitlements: [Entitlement],
         completion: @escaping (Swift.Result<EntitlementsSet, Error>) -> Void
@@ -214,7 +214,7 @@ public protocol SudoEntitlementsAdminClient: AnyObject {
     ///   - name: name of the entitlements set to remove.
     ///   - completion: completion handler to return the removed entitlements set or error.
     func removeEntitlementsSetWithName(
-        name: String,
+        _ name: String,
         completion: @escaping (Swift.Result<EntitlementsSet?, Error>) -> Void
     )
 
@@ -224,7 +224,7 @@ public protocol SudoEntitlementsAdminClient: AnyObject {
     ///   - completion: completion handler to return the named entitlements sequence or undefined if no entitlements sequence
     ///         of the specified name has been defined or error.
     func getEntitlementsSequenceWithName(
-        name: String,
+        _ name: String,
         completion: @escaping (Swift.Result<EntitlementsSequence?, Error>) -> Void
     )
 
@@ -233,7 +233,7 @@ public protocol SudoEntitlementsAdminClient: AnyObject {
     ///   - nextToken: optional token from which to continue listing.
     ///   - completion: completion handler to return the paginated list of entitlements sequences or error.
     func listEntitlementsSequencesWithNextToken(
-        nextToken: String?,
+        _ nextToken: String?,
         completion: @escaping (Swift.Result<ListOutput<EntitlementsSequence>, Error>) -> Void
     )
 
@@ -244,7 +244,7 @@ public protocol SudoEntitlementsAdminClient: AnyObject {
     ///   - transitions: list of entitlements sequence transitions associated with the new entitlements sequence.
     ///   - completion: completion handler to return the newly created entitlements sequence or error.
     func addEntitlementsSequenceWithName(
-        name: String,
+        _ name: String,
         description: String,
         transitions: [EntitlementsSequenceTransition],
         completion: @escaping (Swift.Result<EntitlementsSequence, Error>) -> Void
@@ -257,7 +257,7 @@ public protocol SudoEntitlementsAdminClient: AnyObject {
     ///   - transitions: list of entitlements sequence transitions to update.
     ///   - completion: completion handler to return the updated entitlements sequence or error.
     func setEntitlementsSequenceWithName(
-        name: String,
+        _ name: String,
         description: String,
         transitions: [EntitlementsSequenceTransition],
         completion: @escaping (Swift.Result<EntitlementsSequence, Error>) -> Void
@@ -268,7 +268,7 @@ public protocol SudoEntitlementsAdminClient: AnyObject {
     ///   - name: name of the entitlements set to sequence.
     ///   - completion: completion handler to return the removed entitlements sequence or error.
     func removeEntitlementsSequenceWithName(
-        name: String,
+        _ name: String,
         completion: @escaping (Swift.Result<EntitlementsSequence?, Error>) -> Void
     )
 
@@ -279,7 +279,7 @@ public protocol SudoEntitlementsAdminClient: AnyObject {
     ///   - entitlementsSequenceName: name of the entitlements sequence to apply to the user.
     ///   - completion: completion handler to return the resulting user entitlements or error.
     func applyEntitlementsSequenceToUserWithExternalId(
-        externalId: String,
+        _ externalId: String,
         entitlementsSequenceName: String,
         completion: @escaping (Swift.Result<UserEntitlements, Error>) -> Void
     )
@@ -291,7 +291,7 @@ public protocol SudoEntitlementsAdminClient: AnyObject {
     ///   - entitlementsSetName: name of the entitlements set to apply to the user.
     ///   - completion: completion handler to return the resulting user entitlements or error.
     func applyEntitlementsSetToUserWithExternalId(
-        externalId: String,
+        _ externalId: String,
         entitlementsSetName: String,
         completion: @escaping (Swift.Result<UserEntitlements, Error>) -> Void
     )
@@ -303,9 +303,18 @@ public protocol SudoEntitlementsAdminClient: AnyObject {
     ///   - entitlements: list of the entitlements to apply to the user.
     ///   - completion: completion handler to return the resulting user entitlements or error.
     func applyEntitlementsToUserWithExternalId(
-        externalId: String,
+        _ externalId: String,
         entitlements: [Entitlement],
         completion: @escaping (Swift.Result<UserEntitlements, Error>) -> Void
+    )
+
+    /// Removes entitlements and consumption records of the specified user.
+    /// - Parameters:
+    ///   - externalId: external IDP user ID of user to remove.
+    ///   - completion: completion handler to return the removed user information or error.
+    func removeEntitledUserWithExternalId(
+        _ externalId: String,
+        completion: @escaping (Swift.Result<EntitledUser?, Error>) -> Void
     )
 
 }
@@ -396,7 +405,7 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
     }
 
     public func getEntitlementsSetWithName(
-        name: String,
+        _ name: String,
         completion: @escaping (Swift.Result<EntitlementsSet?, Error>) -> Void
     ) {
         let operation = GetEntitlementsSetQuery(input: GetEntitlementsSetInput(name: name))
@@ -449,7 +458,7 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
     }
 
     public func listEntitlementsSetsWithNextToken(
-        nextToken: String?,
+        _ nextToken: String?,
         completion: @escaping (Swift.Result<ListOutput<EntitlementsSet>, Error>) -> Void
     ) {
         self.graphQLClient.fetch(
@@ -500,7 +509,7 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
     }
 
     public func getEntitlementsForUserWithExternalId(
-        externalId: String,
+        _ externalId: String,
         completion: @escaping (Swift.Result<UserEntitlementsConsumption?, Error>) -> Void
     ) {
         self.graphQLClient.fetch(
@@ -563,7 +572,7 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
     }
 
     public func addEntitlementsSetWithName(
-        name: String,
+        _ name: String,
         description: String?,
         entitlements: [Entitlement],
         completion: @escaping (Swift.Result<EntitlementsSet, Error>) -> Void
@@ -626,7 +635,7 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
     }
 
     public func setEntitlementsSetWithName(
-        name: String,
+        _ name: String,
         description: String?,
         entitlements: [Entitlement],
         completion: @escaping (Swift.Result<EntitlementsSet, Error>) -> Void
@@ -689,7 +698,7 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
     }
 
     public func removeEntitlementsSetWithName(
-        name: String,
+        _ name: String,
         completion: @escaping (Swift.Result<EntitlementsSet?, Error>) -> Void
     ) {
         self.graphQLClient.perform(
@@ -734,7 +743,7 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
     }
 
     public func getEntitlementsSequenceWithName(
-        name: String,
+        _ name: String,
         completion: @escaping (Swift.Result<EntitlementsSequence?, Error>) -> Void
     ) {
         self.graphQLClient.fetch(
@@ -783,7 +792,7 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
     }
 
     public func listEntitlementsSequencesWithNextToken(
-        nextToken: String?,
+        _ nextToken: String?,
         completion: @escaping (Swift.Result<ListOutput<EntitlementsSequence>, Error>) -> Void
     ) {
         self.graphQLClient.fetch(
@@ -833,7 +842,7 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
     }
 
     public func addEntitlementsSequenceWithName(
-        name: String,
+        _ name: String,
         description: String,
         transitions: [EntitlementsSequenceTransition],
         completion: @escaping (Swift.Result<EntitlementsSequence, Error>) -> Void
@@ -899,7 +908,7 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
     }
 
     public func setEntitlementsSequenceWithName(
-        name: String,
+        _ name: String,
         description: String,
         transitions: [EntitlementsSequenceTransition],
         completion: @escaping (Swift.Result<EntitlementsSequence, Error>) -> Void
@@ -965,7 +974,7 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
     }
 
     public func removeEntitlementsSequenceWithName(
-        name: String,
+        _ name: String,
         completion: @escaping (Swift.Result<EntitlementsSequence?, Error>) -> Void
     ) {
         self.graphQLClient.perform(
@@ -1013,7 +1022,7 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
     }
 
     public func applyEntitlementsSequenceToUserWithExternalId(
-        externalId: String,
+        _ externalId: String,
         entitlementsSequenceName: String,
         completion: @escaping (Swift.Result<UserEntitlements, Error>) -> Void
     ) {
@@ -1080,7 +1089,7 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
     }
 
     public func applyEntitlementsSetToUserWithExternalId(
-        externalId: String,
+        _ externalId: String,
         entitlementsSetName: String,
         completion: @escaping (Swift.Result<UserEntitlements, Error>) -> Void
     ) {
@@ -1147,7 +1156,7 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
     }
 
     public func applyEntitlementsToUserWithExternalId(
-        externalId: String,
+        _ externalId: String,
         entitlements: [Entitlement],
         completion: @escaping (Swift.Result<UserEntitlements, Error>) -> Void
     ) {
@@ -1209,6 +1218,42 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                             transitionsRelativeTo: item.transitionsRelativeToEpochMs.map { Date(millisecondsSinceEpoch: $0 ) } ?? nil,
                             accountState: item.accountState.map { $0 == .active ? AccountState.active : AccountState.locked } ?? nil
                         )
+                    )
+                )
+            }
+        )
+    }
+
+    public func removeEntitledUserWithExternalId(
+        _ externalId: String,
+        completion: @escaping (Swift.Result<EntitledUser?, Error>) -> Void
+    ) {
+        self.graphQLClient.perform(
+            mutation: RemoveEntitledUserMutation(input: RemoveEntitledUserInput(externalId: externalId)),
+            resultHandler: { (result, error) in
+                if let error = error {
+                    return completion(.failure(SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error)))
+                }
+
+                guard let result = result else {
+                    return completion(
+                        .failure(
+                            SudoEntitlementsAdminClientError.fatalError(
+                                description: "Mutation completed successfully but result is missing."
+                            )
+                        )
+                    )
+                }
+
+                if let error = result.errors?.first {
+                    return completion(.failure(SudoEntitlementsAdminClientError.fromGraphQLError(error: error)))
+                }
+
+                completion(
+                    .success(
+                        result.data?.removeEntitledUser.map {
+                            EntitledUser(externalId: $0.externalId)
+                        } ?? nil
                     )
                 )
             }

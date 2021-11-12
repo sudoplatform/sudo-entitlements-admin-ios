@@ -1,6 +1,13 @@
 {
   "warnings": [
     {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/EntitledUser.swift",
+      "line": 14,
+      "symbol": "EntitledUser.init(externalId:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/Entitlement.swift",
       "line": 20,
       "symbol": "Entitlement.init(name:description:value:)",
@@ -66,182 +73,189 @@
     {
       "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
       "line": 89,
-      "symbol": "PagingInput",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
-      "line": 115,
       "symbol": "AddEntitlementsSetInput",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     },
     {
       "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
-      "line": 150,
+      "line": 124,
       "symbol": "EntitlementInput",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     },
     {
       "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
-      "line": 185,
+      "line": 159,
       "symbol": "SetEntitlementsSetInput",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     },
     {
       "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
-      "line": 220,
+      "line": 194,
       "symbol": "RemoveEntitlementsSetInput",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     },
     {
       "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
-      "line": 237,
+      "line": 211,
       "symbol": "AddEntitlementsSequenceInput",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     },
     {
       "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
-      "line": 272,
+      "line": 246,
       "symbol": "EntitlementsSequenceTransitionInput",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     },
     {
       "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
-      "line": 298,
+      "line": 272,
       "symbol": "SetEntitlementsSequenceInput",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     },
     {
       "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
-      "line": 333,
+      "line": 307,
       "symbol": "RemoveEntitlementsSequenceInput",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     },
     {
       "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
-      "line": 350,
+      "line": 324,
       "symbol": "ApplyEntitlementsSetToUserInput",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     },
     {
       "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
-      "line": 376,
+      "line": 350,
       "symbol": "ApplyEntitlementsSequenceToUserInput",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     },
     {
       "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
-      "line": 411,
+      "line": 385,
       "symbol": "ApplyEntitlementsToUserInput",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     },
     {
       "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
-      "line": 437,
+      "line": 411,
+      "symbol": "RemoveEntitledUserInput",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 428,
       "symbol": "GetEntitlementsSetQuery",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
-      "line": 623,
+      "line": 614,
       "symbol": "ListEntitlementsSetsQuery",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
-      "line": 856,
+      "line": 847,
       "symbol": "GetEntitlementsSequenceQuery",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
-      "line": 1032,
+      "line": 1023,
       "symbol": "ListEntitlementsSequencesQuery",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
-      "line": 1255,
+      "line": 1246,
       "symbol": "GetEntitlementsForUserQuery",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
-      "line": 1672,
+      "line": 1663,
       "symbol": "AddEntitlementsSetMutation",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
-      "line": 1858,
+      "line": 1849,
       "symbol": "SetEntitlementsSetMutation",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
-      "line": 2044,
+      "line": 2035,
       "symbol": "RemoveEntitlementsSetMutation",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
-      "line": 2230,
+      "line": 2221,
       "symbol": "AddEntitlementsSequenceMutation",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
-      "line": 2406,
+      "line": 2397,
       "symbol": "SetEntitlementsSequenceMutation",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
-      "line": 2582,
+      "line": 2573,
       "symbol": "RemoveEntitlementsSequenceMutation",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
-      "line": 2758,
+      "line": 2749,
       "symbol": "ApplyEntitlementsSetToUserMutation",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
-      "line": 2984,
+      "line": 2975,
       "symbol": "ApplyEntitlementsSequenceToUserMutation",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
-      "line": 3210,
+      "line": 3201,
       "symbol": "ApplyEntitlementsToUserMutation",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 3427,
+      "symbol": "RemoveEntitledUserMutation",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
@@ -254,7 +268,7 @@
     },
     {
       "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminClient.swift",
-      "line": 316,
+      "line": 325,
       "symbol": "DefaultSudoEntitlementsAdminClient.Config",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
