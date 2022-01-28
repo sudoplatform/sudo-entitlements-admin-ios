@@ -158,164 +158,147 @@ public protocol SudoEntitlementsAdminClient: AnyObject {
     /// Get an entitlements set.
     /// - Parameters:
     ///   - name: name of the entitlements set to return.
-    ///   - completion: completion handler to return the named entitlements set or undefined if no entitlements set
-    ///         of the specified name has been defined or error.
+    /// - Returns: The named entitlements set or nil if no entitlements set of the specified name was not found.
     func getEntitlementsSetWithName(
-        _ name: String,
-        completion: @escaping (Swift.Result<EntitlementsSet?, Error>) -> Void
-    )
+        _ name: String
+    ) async throws -> EntitlementsSet?
 
     /// List entitlements sets.
     /// - Parameters:
     ///   - nextToken: optional token from which to continue listing.
-    ///   - completion: completion handler to return the paginated list of entitlements sets or error.
+    /// - Returns: The paginated list of entitlements sets.
     func listEntitlementsSetsWithNextToken(
-        _ nextToken: String?,
-        completion: @escaping (Swift.Result<ListOutput<EntitlementsSet>, Error>) -> Void
-    )
+        _ nextToken: String?
+    ) async throws -> ListOutput<EntitlementsSet>
 
     /// Get entitlements for a user.
     /// - Parameters:
     ///   - externalId: external IDP user ID of user to retrieve entitlements for.
-    ///   - completion: completion handler to return entitlements consumption for the user or error.
+    /// - Returns: The entitlements consumption for the user.
     func getEntitlementsForUserWithExternalId(
-        _ externalId: String,
-        completion: @escaping (Swift.Result<UserEntitlementsConsumption?, Error>) -> Void
-    )
+        _ externalId: String
+    ) async throws -> UserEntitlementsConsumption?
 
     /// Add a new entitlements set.
     /// - Parameters:
     ///   - name: name of the new entitlements set.
     ///   - description: description of the new entitlements set.
     ///   - entitlements: list of entitlements associated with the new entitlements set.
-    ///   - completion: completion handler to return the newly created entitlements set or error.
+    /// - Returns: The newly created entitlements set.
     func addEntitlementsSetWithName(
         _ name: String,
         description: String?,
-        entitlements: [Entitlement],
-        completion: @escaping (Swift.Result<EntitlementsSet, Error>) -> Void
-    )
+        entitlements: [Entitlement]
+    ) async throws -> EntitlementsSet
 
     /// Update an entitlements set.
     /// - Parameters:
     ///   - name: name of the entitlements set to update.
     ///   - description: description of the new entitlements set to update.
     ///   - entitlements: list of entitlements to update.
-    ///   - completion: completion handler to return the updated entitlements set or error.
+    /// - Returns: The updated entitlements set.
     func setEntitlementsSetWithName(
         _ name: String,
         description: String?,
-        entitlements: [Entitlement],
-        completion: @escaping (Swift.Result<EntitlementsSet, Error>) -> Void
-    )
+        entitlements: [Entitlement]
+    ) async throws -> EntitlementsSet
 
     /// Remove an entitlements set.
     /// - Parameters:
     ///   - name: name of the entitlements set to remove.
-    ///   - completion: completion handler to return the removed entitlements set or error.
+    /// - Returns: The removed entitlements set.
     func removeEntitlementsSetWithName(
-        _ name: String,
-        completion: @escaping (Swift.Result<EntitlementsSet?, Error>) -> Void
-    )
+        _ name: String
+    ) async throws -> EntitlementsSet?
 
     /// Get an entitlements sequence.
     /// - Parameters:
     ///   - name: name of the entitlements sequence to return.
-    ///   - completion: completion handler to return the named entitlements sequence or undefined if no entitlements sequence
-    ///         of the specified name has been defined or error.
+    /// - Returns: The named entitlements sequence or nil if no entitlements sequence of the specified name was not found.
     func getEntitlementsSequenceWithName(
-        _ name: String,
-        completion: @escaping (Swift.Result<EntitlementsSequence?, Error>) -> Void
-    )
+        _ name: String
+    ) async throws -> EntitlementsSequence?
 
     /// List entitlements sequences.
     /// - Parameters:
     ///   - nextToken: optional token from which to continue listing.
-    ///   - completion: completion handler to return the paginated list of entitlements sequences or error.
+    /// - Returns: The paginated list of entitlements sequences.
     func listEntitlementsSequencesWithNextToken(
-        _ nextToken: String?,
-        completion: @escaping (Swift.Result<ListOutput<EntitlementsSequence>, Error>) -> Void
-    )
+        _ nextToken: String?
+    ) async throws -> ListOutput<EntitlementsSequence>
 
     /// Add a new entitlements sequence.
     /// - Parameters:
     ///   - name: name of the new entitlements sequence.
     ///   - description: description of the new entitlements sequence.
     ///   - transitions: list of entitlements sequence transitions associated with the new entitlements sequence.
-    ///   - completion: completion handler to return the newly created entitlements sequence or error.
+    /// - Returns: The newly created entitlements sequence.
     func addEntitlementsSequenceWithName(
         _ name: String,
         description: String,
-        transitions: [EntitlementsSequenceTransition],
-        completion: @escaping (Swift.Result<EntitlementsSequence, Error>) -> Void
-    )
+        transitions: [EntitlementsSequenceTransition]
+    ) async throws -> EntitlementsSequence
 
     /// Update a new entitlements sequence.
     /// - Parameters:
     ///   - name: name of the entitlements sequence to update.
     ///   - description: description of the entitlements sequence to update.
     ///   - transitions: list of entitlements sequence transitions to update.
-    ///   - completion: completion handler to return the updated entitlements sequence or error.
+    /// - Returns: The updated entitlements sequence.
     func setEntitlementsSequenceWithName(
         _ name: String,
         description: String,
-        transitions: [EntitlementsSequenceTransition],
-        completion: @escaping (Swift.Result<EntitlementsSequence, Error>) -> Void
-    )
+        transitions: [EntitlementsSequenceTransition]
+    ) async throws -> EntitlementsSequence
 
     /// Remove an entitlements sequence.
     /// - Parameters:
     ///   - name: name of the entitlements set to sequence.
-    ///   - completion: completion handler to return the removed entitlements sequence or error.
+    /// - Returns: The removed entitlements sequence.
     func removeEntitlementsSequenceWithName(
-        _ name: String,
-        completion: @escaping (Swift.Result<EntitlementsSequence?, Error>) -> Void
-    )
+        _ name: String
+    ) async throws -> EntitlementsSequence?
 
     /// Apply entitlements sequence directly to a user. If a record for that user's entitlements sequence
     /// does not yet exist it will be created.
     /// - Parameters:
     ///   - externalId: external IDP user ID of user to apply entitlements sequence to.
     ///   - entitlementsSequenceName: name of the entitlements sequence to apply to the user.
-    ///   - completion: completion handler to return the resulting user entitlements or error.
+    /// - Returns: The resulting user entitlements.
     func applyEntitlementsSequenceToUserWithExternalId(
         _ externalId: String,
-        entitlementsSequenceName: String,
-        completion: @escaping (Swift.Result<UserEntitlements, Error>) -> Void
-    )
+        entitlementsSequenceName: String
+    ) async throws -> UserEntitlements
 
     /// Apply entitlements set  directly to a user. If a record for that user's entitlements set does not
     /// yet exist it will be created.
     /// - Parameters:
     ///   - externalId: external IDP user ID of user to apply entitlements set to.
     ///   - entitlementsSetName: name of the entitlements set to apply to the user.
-    ///   - completion: completion handler to return the resulting user entitlements or error.
+    /// - Returns: The resulting user entitlements.
     func applyEntitlementsSetToUserWithExternalId(
         _ externalId: String,
-        entitlementsSetName: String,
-        completion: @escaping (Swift.Result<UserEntitlements, Error>) -> Void
-    )
+        entitlementsSetName: String
+    ) async throws -> UserEntitlements
 
     /// Apply entitlements  directly to a user. If a record for that user's entitlements does not yet
     /// exist it will be created.
     /// - Parameters:
     ///   - externalId: external IDP user ID of user to apply entitlements to.
     ///   - entitlements: list of the entitlements to apply to the user.
-    ///   - completion: completion handler to return the resulting user entitlements or error.
+    /// - Returns: The resulting user entitlements.
     func applyEntitlementsToUserWithExternalId(
         _ externalId: String,
-        entitlements: [Entitlement],
-        completion: @escaping (Swift.Result<UserEntitlements, Error>) -> Void
-    )
+        entitlements: [Entitlement]
+    ) async throws -> UserEntitlements
 
     /// Removes entitlements and consumption records of the specified user.
     /// - Parameters:
     ///   - externalId: external IDP user ID of user to remove.
-    ///   - completion: completion handler to return the removed user information or error.
+    /// - Returns: The removed user information.
     func removeEntitledUserWithExternalId(
-        _ externalId: String,
-        completion: @escaping (Swift.Result<EntitledUser?, Error>) -> Void
-    )
+        _ externalId: String
+    ) async throws -> EntitledUser?
 
 }
 
@@ -405,39 +388,37 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
     }
 
     public func getEntitlementsSetWithName(
-        _ name: String,
-        completion: @escaping (Swift.Result<EntitlementsSet?, Error>) -> Void
-    ) {
+        _ name: String
+    ) async throws -> EntitlementsSet? {
         let operation = GetEntitlementsSetQuery(input: GetEntitlementsSetInput(name: name))
-        self.graphQLClient.fetch(
-            query: operation,
-            cachePolicy: .fetchIgnoringCacheData,
-            resultHandler: { (result, error) in
-                if let error = error {
-                    return completion(.failure(SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error)))
-                }
 
-                guard let result = result else {
-                    return completion(
-                        .failure(
-                            SudoEntitlementsAdminClientError.fatalError(
+        return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<EntitlementsSet?, Error>) in
+            self.graphQLClient.fetch(
+                query: operation,
+                cachePolicy: .fetchIgnoringCacheData,
+                resultHandler: { (result, error) in
+                    if let error = error {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error))
+                    }
+
+                    guard let result = result else {
+                        return continuation.resume(
+                            throwing: SudoEntitlementsAdminClientError.fatalError(
                                 description: "Query completed successfully but result is missing."
                             )
                         )
-                    )
-                }
+                    }
 
-                if let error = result.errors?.first {
-                    return completion(.failure(SudoEntitlementsAdminClientError.fromGraphQLError(error: error)))
-                }
+                    if let error = result.errors?.first {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromGraphQLError(error: error))
+                    }
 
-                guard let item = result.data?.getEntitlementsSet else {
-                    return completion(.success(nil))
-                }
+                    guard let item = result.data?.getEntitlementsSet else {
+                        return continuation.resume(returning: nil)
+                    }
 
-                completion(
-                    .success(
-                        EntitlementsSet(
+                    continuation.resume(
+                        returning: EntitlementsSet(
                             createdAt: Date(millisecondsSinceEpoch: item.createdAtEpochMs),
                             updatedAt: Date(millisecondsSinceEpoch: item.updatedAtEpochMs),
                             version: item.version,
@@ -452,173 +433,166 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                             }
                         )
                     )
-                )
-            }
-        )
+                }
+            )
+        })
     }
 
     public func listEntitlementsSetsWithNextToken(
-        _ nextToken: String?,
-        completion: @escaping (Swift.Result<ListOutput<EntitlementsSet>, Error>) -> Void
-    ) {
-        self.graphQLClient.fetch(
-            query: ListEntitlementsSetsQuery(nextToken: nextToken),
-            cachePolicy: .fetchIgnoringCacheData,
-            resultHandler: { (result, error) in
-                if let error = error {
-                    return completion(.failure(SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error)))
-                }
+        _ nextToken: String?
+    ) async throws -> ListOutput<EntitlementsSet> {
+        return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<ListOutput<EntitlementsSet>, Error>) in
+            self.graphQLClient.fetch(
+                query: ListEntitlementsSetsQuery(nextToken: nextToken),
+                cachePolicy: .fetchIgnoringCacheData,
+                resultHandler: { (result, error) in
+                    if let error = error {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error))
+                    }
 
-                guard let result = result else {
-                    return completion(
-                        .failure(
-                            SudoEntitlementsAdminClientError.fatalError(
+                    guard let result = result else {
+                        return continuation.resume(
+                            throwing: SudoEntitlementsAdminClientError.fatalError(
                                 description: "Query completed successfully but result is missing."
                             )
                         )
-                    )
-                }
+                    }
 
-                if let error = result.errors?.first {
-                    return completion(.failure(SudoEntitlementsAdminClientError.fromGraphQLError(error: error)))
-                }
+                    if let error = result.errors?.first {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromGraphQLError(error: error))
+                    }
 
-                if let output = result.data?.listEntitlementsSets {
-                    let items = output.items.map {
-                        EntitlementsSet(
-                            createdAt: Date(millisecondsSinceEpoch: $0.createdAtEpochMs),
-                            updatedAt: Date(millisecondsSinceEpoch: $0.updatedAtEpochMs),
-                            version: $0.version,
-                            name: $0.name,
-                            description: $0.description,
-                            entitlements: $0.entitlements.map {
+                    if let output = result.data?.listEntitlementsSets {
+                        let items = output.items.map {
+                            EntitlementsSet(
+                                createdAt: Date(millisecondsSinceEpoch: $0.createdAtEpochMs),
+                                updatedAt: Date(millisecondsSinceEpoch: $0.updatedAtEpochMs),
+                                version: $0.version,
+                                name: $0.name,
+                                description: $0.description,
+                                entitlements: $0.entitlements.map {
+                                    Entitlement(
+                                        name: $0.name,
+                                        description: $0.description,
+                                        value: $0.value
+                                    )
+                                }
+                            )
+                        }
+                        continuation.resume(returning: ListOutput<EntitlementsSet>(items: items, nextToken: output.nextToken))
+                    } else {
+                        continuation.resume(returning: ListOutput<EntitlementsSet>.empty)
+                    }
+                }
+            )
+        })
+    }
+
+    public func getEntitlementsForUserWithExternalId(
+        _ externalId: String
+    ) async throws -> UserEntitlementsConsumption? {
+        return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<UserEntitlementsConsumption?, Error>) in
+            self.graphQLClient.fetch(
+                query: GetEntitlementsForUserQuery(input: GetEntitlementsForUserInput(externalId: externalId)),
+                cachePolicy: .fetchIgnoringCacheData,
+                resultHandler: { (result, error) in
+                    if let error = error {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error))
+                    }
+
+                    guard let result = result else {
+                        return continuation.resume(
+                            throwing: SudoEntitlementsAdminClientError.fatalError(
+                                description: "Query completed successfully but result is missing."
+                            )
+                        )
+                    }
+
+                    if let error = result.errors?.first {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromGraphQLError(error: error))
+                    }
+
+                    var userEntitlementsConsumption: UserEntitlementsConsumption?
+                    if let item = result.data?.getEntitlementsForUser {
+                        let entitlements = UserEntitlements(
+                            createdAt: Date(millisecondsSinceEpoch: item.entitlements.createdAtEpochMs),
+                            updatedAt: Date(millisecondsSinceEpoch: item.entitlements.updatedAtEpochMs),
+                            version: item.entitlements.version,
+                            externalId: item.entitlements.externalId,
+                            owner: item.entitlements.owner,
+                            entitlementsSetName: item.entitlements.entitlementsSetName,
+                            entitlementsSequenceName: item.entitlements.entitlementsSequenceName,
+                            entitlements: item.entitlements.entitlements.map {
                                 Entitlement(
                                     name: $0.name,
                                     description: $0.description,
                                     value: $0.value
                                 )
-                            }
+                            },
+                            transitionsRelativeTo: item.entitlements.transitionsRelativeToEpochMs.map { Date(millisecondsSinceEpoch: $0 ) } ?? nil,
+                            accountState: item.entitlements.accountState.map { $0 == .active ? AccountState.active : AccountState.locked } ?? nil
                         )
-                    }
-                    completion(.success(ListOutput<EntitlementsSet>(items: items, nextToken: output.nextToken)))
-                } else {
-                    completion(.success(ListOutput<EntitlementsSet>.empty))
-                }
-            }
-        )
-    }
-
-    public func getEntitlementsForUserWithExternalId(
-        _ externalId: String,
-        completion: @escaping (Swift.Result<UserEntitlementsConsumption?, Error>) -> Void
-    ) {
-        self.graphQLClient.fetch(
-            query: GetEntitlementsForUserQuery(input: GetEntitlementsForUserInput(externalId: externalId)),
-            cachePolicy: .fetchIgnoringCacheData,
-            resultHandler: { (result, error) in
-                if let error = error {
-                    return completion(.failure(SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error)))
-                }
-
-                guard let result = result else {
-                    return completion(
-                        .failure(
-                            SudoEntitlementsAdminClientError.fatalError(
-                                description: "Query completed successfully but result is missing."
-                            )
-                        )
-                    )
-                }
-
-                if let error = result.errors?.first {
-                    return completion(.failure(SudoEntitlementsAdminClientError.fromGraphQLError(error: error)))
-                }
-
-                var userEntitlementsConsumption: UserEntitlementsConsumption?
-                if let item = result.data?.getEntitlementsForUser {
-                    let entitlements = UserEntitlements(
-                        createdAt: Date(millisecondsSinceEpoch: item.entitlements.createdAtEpochMs),
-                        updatedAt: Date(millisecondsSinceEpoch: item.entitlements.updatedAtEpochMs),
-                        version: item.entitlements.version,
-                        externalId: item.entitlements.externalId,
-                        owner: item.entitlements.owner,
-                        entitlementsSetName: item.entitlements.entitlementsSetName,
-                        entitlementsSequenceName: item.entitlements.entitlementsSequenceName,
-                        entitlements: item.entitlements.entitlements.map {
-                            Entitlement(
+                        let consumption = item.consumption.map {
+                            EntitlementConsumption(
                                 name: $0.name,
-                                description: $0.description,
-                                value: $0.value
+                                value: $0.value,
+                                available: $0.available,
+                                consumed: $0.consumed,
+                                firstConsumedAt: $0.firstConsumedAtEpochMs.map { Date(millisecondsSinceEpoch: $0) } ?? nil,
+                                lastConsumedAt: $0.lastConsumedAtEpochMs.map { Date(millisecondsSinceEpoch: $0) } ?? nil
                             )
-                        },
-                        transitionsRelativeTo: item.entitlements.transitionsRelativeToEpochMs.map { Date(millisecondsSinceEpoch: $0 ) } ?? nil,
-                        accountState: item.entitlements.accountState.map { $0 == .active ? AccountState.active : AccountState.locked } ?? nil
-                    )
-                    let consumption = item.consumption.map {
-                        EntitlementConsumption(
-                            name: $0.name,
-                            value: $0.value,
-                            available: $0.available,
-                            consumed: $0.consumed,
-                            firstConsumedAt: $0.firstConsumedAtEpochMs.map { Date(millisecondsSinceEpoch: $0) } ?? nil,
-                            lastConsumedAt: $0.lastConsumedAtEpochMs.map { Date(millisecondsSinceEpoch: $0) } ?? nil
-                        )
+                        }
+                        userEntitlementsConsumption = UserEntitlementsConsumption(entitlements: entitlements, consumption: consumption)
                     }
-                    userEntitlementsConsumption = UserEntitlementsConsumption(entitlements: entitlements, consumption: consumption)
+                    continuation.resume(returning: userEntitlementsConsumption)
                 }
-                completion(.success(userEntitlementsConsumption))
-            }
-        )
+            )
+        })
     }
 
     public func addEntitlementsSetWithName(
         _ name: String,
         description: String?,
-        entitlements: [Entitlement],
-        completion: @escaping (Swift.Result<EntitlementsSet, Error>) -> Void
-    ) {
-        self.graphQLClient.perform(
-            mutation: AddEntitlementsSetMutation(
-                input: AddEntitlementsSetInput(
-                    name: name,
-                    description: description,
-                    entitlements: entitlements.map {
-                        EntitlementInput(name: $0.name, description: $0.description, value: $0.value)
+        entitlements: [Entitlement]
+    ) async throws -> EntitlementsSet {
+        return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<EntitlementsSet, Error>) in
+            self.graphQLClient.perform(
+                mutation: AddEntitlementsSetMutation(
+                    input: AddEntitlementsSetInput(
+                        name: name,
+                        description: description,
+                        entitlements: entitlements.map {
+                            EntitlementInput(name: $0.name, description: $0.description, value: $0.value)
+                        }
+                    )
+                ),
+                resultHandler: { (result, error) in
+                    if let error = error {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error))
                     }
-                )
-            ),
-            resultHandler: { (result, error) in
-                if let error = error {
-                    return completion(.failure(SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error)))
-                }
 
-                guard let result = result else {
-                    return completion(
-                        .failure(
-                            SudoEntitlementsAdminClientError.fatalError(
+                    guard let result = result else {
+                        return continuation.resume(
+                            throwing: SudoEntitlementsAdminClientError.fatalError(
                                 description: "Mutation completed successfully but result is missing."
                             )
                         )
-                    )
-                }
+                    }
 
-                if let error = result.errors?.first {
-                    return completion(.failure(SudoEntitlementsAdminClientError.fromGraphQLError(error: error)))
-                }
+                    if let error = result.errors?.first {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromGraphQLError(error: error))
+                    }
 
-                guard let item = result.data?.addEntitlementsSet else {
-                    return completion(
-                        .failure(
-                            SudoEntitlementsAdminClientError.fatalError(
+                    guard let item = result.data?.addEntitlementsSet else {
+                        return continuation.resume(
+                            throwing: SudoEntitlementsAdminClientError.fatalError(
                                 description: "Mutation completed successfully but data is missing."
                             )
                         )
-                    )
-                }
+                    }
 
-                completion(
-                    .success(
-                        EntitlementsSet(
+                    continuation.resume(
+                        returning: EntitlementsSet(
                             createdAt: Date(millisecondsSinceEpoch: item.createdAtEpochMs),
                             updatedAt: Date(millisecondsSinceEpoch: item.updatedAtEpochMs),
                             version: item.version,
@@ -629,59 +603,54 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                             }
                         )
                     )
-                )
-            }
-        )
+                }
+            )
+        })
     }
 
     public func setEntitlementsSetWithName(
         _ name: String,
         description: String?,
-        entitlements: [Entitlement],
-        completion: @escaping (Swift.Result<EntitlementsSet, Error>) -> Void
-    ) {
-        self.graphQLClient.perform(
-            mutation: SetEntitlementsSetMutation(
-                input: SetEntitlementsSetInput(
-                    name: name,
-                    description: description,
-                    entitlements: entitlements.map {
-                        EntitlementInput(name: $0.name, description: $0.description, value: $0.value)
+        entitlements: [Entitlement]
+    ) async throws -> EntitlementsSet {
+        return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<EntitlementsSet, Error>) in
+            self.graphQLClient.perform(
+                mutation: SetEntitlementsSetMutation(
+                    input: SetEntitlementsSetInput(
+                        name: name,
+                        description: description,
+                        entitlements: entitlements.map {
+                            EntitlementInput(name: $0.name, description: $0.description, value: $0.value)
+                        }
+                    )
+                ),
+                resultHandler: { (result, error) in
+                    if let error = error {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error))
                     }
-                )
-            ),
-            resultHandler: { (result, error) in
-                if let error = error {
-                    return completion(.failure(SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error)))
-                }
 
-                guard let result = result else {
-                    return completion(
-                        .failure(
-                            SudoEntitlementsAdminClientError.fatalError(
+                    guard let result = result else {
+                        return continuation.resume(
+                            throwing: SudoEntitlementsAdminClientError.fatalError(
                                 description: "Mutation completed successfully but result is missing."
                             )
                         )
-                    )
-                }
+                    }
 
-                if let error = result.errors?.first {
-                    return completion(.failure(SudoEntitlementsAdminClientError.fromGraphQLError(error: error)))
-                }
+                    if let error = result.errors?.first {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromGraphQLError(error: error))
+                    }
 
-                guard let item = result.data?.setEntitlementsSet else {
-                    return completion(
-                        .failure(
-                            SudoEntitlementsAdminClientError.fatalError(
+                    guard let item = result.data?.setEntitlementsSet else {
+                        return continuation.resume(
+                            throwing: SudoEntitlementsAdminClientError.fatalError(
                                 description: "Mutation completed successfully but data is missing."
                             )
                         )
-                    )
-                }
+                    }
 
-                completion(
-                    .success(
-                        EntitlementsSet(
+                    continuation.resume(
+                        returning: EntitlementsSet(
                             createdAt: Date(millisecondsSinceEpoch: item.createdAtEpochMs),
                             updatedAt: Date(millisecondsSinceEpoch: item.updatedAtEpochMs),
                             version: item.version,
@@ -692,39 +661,36 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                             }
                         )
                     )
-                )
-            }
-        )
+                }
+            )
+        })
     }
 
     public func removeEntitlementsSetWithName(
-        _ name: String,
-        completion: @escaping (Swift.Result<EntitlementsSet?, Error>) -> Void
-    ) {
-        self.graphQLClient.perform(
-            mutation: RemoveEntitlementsSetMutation(input: RemoveEntitlementsSetInput(name: name)),
-            resultHandler: { (result, error) in
-                if let error = error {
-                    return completion(.failure(SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error)))
-                }
+        _ name: String
+    ) async throws -> EntitlementsSet? {
+        return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<EntitlementsSet?, Error>) in
+            self.graphQLClient.perform(
+                mutation: RemoveEntitlementsSetMutation(input: RemoveEntitlementsSetInput(name: name)),
+                resultHandler: { (result, error) in
+                    if let error = error {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error))
+                    }
 
-                guard let result = result else {
-                    return completion(
-                        .failure(
-                            SudoEntitlementsAdminClientError.fatalError(
+                    guard let result = result else {
+                        return continuation.resume(
+                            throwing: SudoEntitlementsAdminClientError.fatalError(
                                 description: "Mutation completed successfully but result is missing."
                             )
                         )
-                    )
-                }
+                    }
 
-                if let error = result.errors?.first {
-                    return completion(.failure(SudoEntitlementsAdminClientError.fromGraphQLError(error: error)))
-                }
+                    if let error = result.errors?.first {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromGraphQLError(error: error))
+                    }
 
-                completion(
-                    .success(
-                        result.data?.removeEntitlementsSet.map {
+                    continuation.resume(
+                        returning: result.data?.removeEntitlementsSet.map {
                             EntitlementsSet(
                                 createdAt: Date(millisecondsSinceEpoch: $0.createdAtEpochMs),
                                 updatedAt: Date(millisecondsSinceEpoch: $0.updatedAtEpochMs),
@@ -737,40 +703,37 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                             )
                         } ?? nil
                     )
-                )
-            }
-        )
+                }
+            )
+        })
     }
 
     public func getEntitlementsSequenceWithName(
-        _ name: String,
-        completion: @escaping (Swift.Result<EntitlementsSequence?, Error>) -> Void
-    ) {
-        self.graphQLClient.fetch(
-            query: GetEntitlementsSequenceQuery(input: GetEntitlementsSequenceInput(name: name)),
-            cachePolicy: .fetchIgnoringCacheData,
-            resultHandler: { (result, error) in
-                if let error = error {
-                    return completion(.failure(SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error)))
-                }
+        _ name: String
+    ) async throws -> EntitlementsSequence? {
+        return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<EntitlementsSequence?, Error>) in
+            self.graphQLClient.fetch(
+                query: GetEntitlementsSequenceQuery(input: GetEntitlementsSequenceInput(name: name)),
+                cachePolicy: .fetchIgnoringCacheData,
+                resultHandler: { (result, error) in
+                    if let error = error {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error))
+                    }
 
-                guard let result = result else {
-                    return completion(
-                        .failure(
-                            SudoEntitlementsAdminClientError.fatalError(
+                    guard let result = result else {
+                        return continuation.resume(
+                            throwing: SudoEntitlementsAdminClientError.fatalError(
                                 description: "Query completed successfully but result is missing."
                             )
                         )
-                    )
-                }
+                    }
 
-                if let error = result.errors?.first {
-                    return completion(.failure(SudoEntitlementsAdminClientError.fromGraphQLError(error: error)))
-                }
+                    if let error = result.errors?.first {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromGraphQLError(error: error))
+                    }
 
-                completion(
-                    .success(
-                        result.data?.getEntitlementsSequence.map {
+                    continuation.resume(
+                        returning: result.data?.getEntitlementsSequence.map {
                             EntitlementsSequence(
                                 createdAt: Date(millisecondsSinceEpoch: $0.createdAtEpochMs),
                                 updatedAt: Date(millisecondsSinceEpoch: $0.updatedAtEpochMs),
@@ -786,109 +749,103 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                             )
                         } ?? nil
                     )
-                )
-            }
-        )
+                }
+            )
+        })
     }
 
     public func listEntitlementsSequencesWithNextToken(
-        _ nextToken: String?,
-        completion: @escaping (Swift.Result<ListOutput<EntitlementsSequence>, Error>) -> Void
-    ) {
-        self.graphQLClient.fetch(
-            query: ListEntitlementsSequencesQuery(nextToken: nextToken),
-            cachePolicy: .fetchIgnoringCacheData,
-            resultHandler: { (result, error) in
-                if let error = error {
-                    return completion(.failure(SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error)))
-                }
+        _ nextToken: String?
+    ) async throws -> ListOutput<EntitlementsSequence> {
+        return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<ListOutput<EntitlementsSequence>, Error>) in
+            self.graphQLClient.fetch(
+                query: ListEntitlementsSequencesQuery(nextToken: nextToken),
+                cachePolicy: .fetchIgnoringCacheData,
+                resultHandler: { (result, error) in
+                    if let error = error {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error))
+                    }
 
-                guard let result = result else {
-                    return completion(
-                        .failure(
-                            SudoEntitlementsAdminClientError.fatalError(
+                    guard let result = result else {
+                        return continuation.resume(
+                            throwing: SudoEntitlementsAdminClientError.fatalError(
                                 description: "Query completed successfully but result is missing."
                             )
                         )
-                    )
-                }
-
-                if let error = result.errors?.first {
-                    return completion(.failure(SudoEntitlementsAdminClientError.fromGraphQLError(error: error)))
-                }
-
-                if let output = result.data?.listEntitlementsSequences {
-                    let items = output.items.map {
-                        EntitlementsSequence(
-                            createdAt: Date(millisecondsSinceEpoch: $0.createdAtEpochMs),
-                            updatedAt: Date(millisecondsSinceEpoch: $0.updatedAtEpochMs),
-                            version: $0.version,
-                            name: $0.name,
-                            description: $0.description,
-                            transitions: $0.transitions.map {
-                                EntitlementsSequenceTransition(
-                                    entitlementsSetName: $0.entitlementsSetName,
-                                    duration: $0.duration
-                                )
-                            }
-                        )
                     }
-                    completion(.success(ListOutput<EntitlementsSequence>(items: items, nextToken: output.nextToken)))
-                } else {
-                    completion(.success(ListOutput<EntitlementsSequence>.empty))
+
+                    if let error = result.errors?.first {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromGraphQLError(error: error))
+                    }
+
+                    if let output = result.data?.listEntitlementsSequences {
+                        let items = output.items.map {
+                            EntitlementsSequence(
+                                createdAt: Date(millisecondsSinceEpoch: $0.createdAtEpochMs),
+                                updatedAt: Date(millisecondsSinceEpoch: $0.updatedAtEpochMs),
+                                version: $0.version,
+                                name: $0.name,
+                                description: $0.description,
+                                transitions: $0.transitions.map {
+                                    EntitlementsSequenceTransition(
+                                        entitlementsSetName: $0.entitlementsSetName,
+                                        duration: $0.duration
+                                    )
+                                }
+                            )
+                        }
+                        continuation.resume(returning: ListOutput<EntitlementsSequence>(items: items, nextToken: output.nextToken))
+                    } else {
+                        continuation.resume(returning: ListOutput<EntitlementsSequence>.empty)
+                    }
                 }
-            }
-        )
+            )
+        })
     }
 
     public func addEntitlementsSequenceWithName(
         _ name: String,
         description: String,
-        transitions: [EntitlementsSequenceTransition],
-        completion: @escaping (Swift.Result<EntitlementsSequence, Error>) -> Void
-    ) {
-        self.graphQLClient.perform(
-            mutation: AddEntitlementsSequenceMutation(
-                input: AddEntitlementsSequenceInput(
-                    name: name,
-                    description: description,
-                    transitions: transitions.map {
-                        EntitlementsSequenceTransitionInput(entitlementsSetName: $0.entitlementsSetName, duration: $0.duration)
+        transitions: [EntitlementsSequenceTransition]
+    ) async throws -> EntitlementsSequence {
+        return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<EntitlementsSequence, Error>) in
+            self.graphQLClient.perform(
+                mutation: AddEntitlementsSequenceMutation(
+                    input: AddEntitlementsSequenceInput(
+                        name: name,
+                        description: description,
+                        transitions: transitions.map {
+                            EntitlementsSequenceTransitionInput(entitlementsSetName: $0.entitlementsSetName, duration: $0.duration)
+                        }
+                    )
+                ),
+                resultHandler: { (result, error) in
+                    if let error = error {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error))
                     }
-                )
-            ),
-            resultHandler: { (result, error) in
-                if let error = error {
-                    return completion(.failure(SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error)))
-                }
 
-                guard let result = result else {
-                    return completion(
-                        .failure(
-                            SudoEntitlementsAdminClientError.fatalError(
+                    guard let result = result else {
+                        return continuation.resume(
+                            throwing: SudoEntitlementsAdminClientError.fatalError(
                                 description: "Mutation completed successfully but result is missing."
                             )
                         )
-                    )
-                }
+                    }
 
-                if let error = result.errors?.first {
-                    return completion(.failure(SudoEntitlementsAdminClientError.fromGraphQLError(error: error)))
-                }
+                    if let error = result.errors?.first {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromGraphQLError(error: error))
+                    }
 
-                guard let item = result.data?.addEntitlementsSequence else {
-                    return completion(
-                        .failure(
-                            SudoEntitlementsAdminClientError.fatalError(
+                    guard let item = result.data?.addEntitlementsSequence else {
+                        return continuation.resume(
+                            throwing: SudoEntitlementsAdminClientError.fatalError(
                                 description: "Mutation completed successfully but data is missing."
                             )
                         )
-                    )
-                }
+                    }
 
-                completion(
-                    .success(
-                        EntitlementsSequence(
+                    continuation.resume(
+                        returning: EntitlementsSequence(
                             createdAt: Date(millisecondsSinceEpoch: item.createdAtEpochMs),
                             updatedAt: Date(millisecondsSinceEpoch: item.updatedAtEpochMs),
                             version: item.version,
@@ -902,59 +859,54 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                             }
                         )
                     )
-                )
-            }
-        )
+                }
+            )
+        })
     }
 
     public func setEntitlementsSequenceWithName(
         _ name: String,
         description: String,
-        transitions: [EntitlementsSequenceTransition],
-        completion: @escaping (Swift.Result<EntitlementsSequence, Error>) -> Void
-    ) {
-        self.graphQLClient.perform(
-            mutation: SetEntitlementsSequenceMutation(
-                input: SetEntitlementsSequenceInput(
-                    name: name,
-                    description: description,
-                    transitions: transitions.map {
-                        EntitlementsSequenceTransitionInput(entitlementsSetName: $0.entitlementsSetName, duration: $0.duration)
+        transitions: [EntitlementsSequenceTransition]
+    ) async throws -> EntitlementsSequence {
+        return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<EntitlementsSequence, Error>) in
+            self.graphQLClient.perform(
+                mutation: SetEntitlementsSequenceMutation(
+                    input: SetEntitlementsSequenceInput(
+                        name: name,
+                        description: description,
+                        transitions: transitions.map {
+                            EntitlementsSequenceTransitionInput(entitlementsSetName: $0.entitlementsSetName, duration: $0.duration)
+                        }
+                    )
+                ),
+                resultHandler: { (result, error) in
+                    if let error = error {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error))
                     }
-                )
-            ),
-            resultHandler: { (result, error) in
-                if let error = error {
-                    return completion(.failure(SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error)))
-                }
 
-                guard let result = result else {
-                    return completion(
-                        .failure(
-                            SudoEntitlementsAdminClientError.fatalError(
+                    guard let result = result else {
+                        return continuation.resume(
+                            throwing: SudoEntitlementsAdminClientError.fatalError(
                                 description: "Mutation completed successfully but result is missing."
                             )
                         )
-                    )
-                }
+                    }
 
-                if let error = result.errors?.first {
-                    return completion(.failure(SudoEntitlementsAdminClientError.fromGraphQLError(error: error)))
-                }
+                    if let error = result.errors?.first {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromGraphQLError(error: error))
+                    }
 
-                guard let item = result.data?.setEntitlementsSequence else {
-                    return completion(
-                        .failure(
-                            SudoEntitlementsAdminClientError.fatalError(
+                    guard let item = result.data?.setEntitlementsSequence else {
+                        return continuation.resume(
+                            throwing: SudoEntitlementsAdminClientError.fatalError(
                                 description: "Mutation completed successfully but data is missing."
                             )
                         )
-                    )
-                }
+                    }
 
-                completion(
-                    .success(
-                        EntitlementsSequence(
+                    continuation.resume(
+                        returning: EntitlementsSequence(
                             createdAt: Date(millisecondsSinceEpoch: item.createdAtEpochMs),
                             updatedAt: Date(millisecondsSinceEpoch: item.updatedAtEpochMs),
                             version: item.version,
@@ -968,39 +920,36 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                             }
                         )
                     )
-                )
-            }
-        )
+                }
+            )
+        })
     }
 
     public func removeEntitlementsSequenceWithName(
-        _ name: String,
-        completion: @escaping (Swift.Result<EntitlementsSequence?, Error>) -> Void
-    ) {
-        self.graphQLClient.perform(
-            mutation: RemoveEntitlementsSequenceMutation(input: RemoveEntitlementsSequenceInput(name: name)),
-            resultHandler: { (result, error) in
-                if let error = error {
-                    return completion(.failure(SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error)))
-                }
+        _ name: String
+    ) async throws -> EntitlementsSequence? {
+        return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<EntitlementsSequence?, Error>) in
+            self.graphQLClient.perform(
+                mutation: RemoveEntitlementsSequenceMutation(input: RemoveEntitlementsSequenceInput(name: name)),
+                resultHandler: { (result, error) in
+                    if let error = error {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error))
+                    }
 
-                guard let result = result else {
-                    return completion(
-                        .failure(
-                            SudoEntitlementsAdminClientError.fatalError(
+                    guard let result = result else {
+                        return continuation.resume(
+                            throwing: SudoEntitlementsAdminClientError.fatalError(
                                 description: "Mutation completed successfully but result is missing."
                             )
                         )
-                    )
-                }
+                    }
 
-                if let error = result.errors?.first {
-                    return completion(.failure(SudoEntitlementsAdminClientError.fromGraphQLError(error: error)))
-                }
+                    if let error = result.errors?.first {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromGraphQLError(error: error))
+                    }
 
-                completion(
-                    .success(
-                        result.data?.removeEntitlementsSequence.map {
+                    continuation.resume(
+                        returning: result.data?.removeEntitlementsSequence.map {
                             EntitlementsSequence(
                                 createdAt: Date(millisecondsSinceEpoch: $0.createdAtEpochMs),
                                 updatedAt: Date(millisecondsSinceEpoch: $0.updatedAtEpochMs),
@@ -1016,55 +965,50 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                             )
                         } ?? nil
                     )
-                )
-            }
-        )
+                }
+            )
+        })
     }
 
     public func applyEntitlementsSequenceToUserWithExternalId(
         _ externalId: String,
-        entitlementsSequenceName: String,
-        completion: @escaping (Swift.Result<UserEntitlements, Error>) -> Void
-    ) {
-        self.graphQLClient.perform(
-            mutation: ApplyEntitlementsSequenceToUserMutation(
-                input: ApplyEntitlementsSequenceToUserInput(
-                    externalId: externalId,
-                    entitlementsSequenceName: entitlementsSequenceName
-                )
-            ),
-            resultHandler: { (result, error) in
-                if let error = error {
-                    return completion(.failure(SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error)))
-                }
+        entitlementsSequenceName: String
+    ) async throws -> UserEntitlements {
+        return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<UserEntitlements, Error>) in
+            self.graphQLClient.perform(
+                mutation: ApplyEntitlementsSequenceToUserMutation(
+                    input: ApplyEntitlementsSequenceToUserInput(
+                        externalId: externalId,
+                        entitlementsSequenceName: entitlementsSequenceName
+                    )
+                ),
+                resultHandler: { (result, error) in
+                    if let error = error {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error))
+                    }
 
-                guard let result = result else {
-                    return completion(
-                        .failure(
-                            SudoEntitlementsAdminClientError.fatalError(
+                    guard let result = result else {
+                        return continuation.resume(
+                            throwing: SudoEntitlementsAdminClientError.fatalError(
                                 description: "Mutation completed successfully but result is missing."
                             )
                         )
-                    )
-                }
+                    }
 
-                if let error = result.errors?.first {
-                    return completion(.failure(SudoEntitlementsAdminClientError.fromGraphQLError(error: error)))
-                }
+                    if let error = result.errors?.first {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromGraphQLError(error: error))
+                    }
 
-                guard let item = result.data?.applyEntitlementsSequenceToUser else {
-                    return completion(
-                        .failure(
-                            SudoEntitlementsAdminClientError.fatalError(
+                    guard let item = result.data?.applyEntitlementsSequenceToUser else {
+                        return continuation.resume(
+                            throwing: SudoEntitlementsAdminClientError.fatalError(
                                 description: "Mutation completed successfully but data is missing."
                             )
                         )
-                    )
-                }
+                    }
 
-                completion(
-                    .success(
-                        UserEntitlements(
+                    continuation.resume(
+                        returning: UserEntitlements(
                             createdAt: Date(millisecondsSinceEpoch: item.createdAtEpochMs),
                             updatedAt: Date(millisecondsSinceEpoch: item.updatedAtEpochMs),
                             version: item.version,
@@ -1083,55 +1027,50 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                             accountState: item.accountState.map { $0 == .active ? AccountState.active : AccountState.locked } ?? nil
                         )
                     )
-                )
-            }
-        )
+                }
+            )
+        })
     }
 
     public func applyEntitlementsSetToUserWithExternalId(
         _ externalId: String,
-        entitlementsSetName: String,
-        completion: @escaping (Swift.Result<UserEntitlements, Error>) -> Void
-    ) {
-        self.graphQLClient.perform(
-            mutation: ApplyEntitlementsSetToUserMutation(
-                input: ApplyEntitlementsSetToUserInput(
-                    externalId: externalId,
-                    entitlementsSetName: entitlementsSetName
-                )
-            ),
-            resultHandler: { (result, error) in
-                if let error = error {
-                    return completion(.failure(SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error)))
-                }
+        entitlementsSetName: String
+    ) async throws -> UserEntitlements {
+        return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<UserEntitlements, Error>) in
+            self.graphQLClient.perform(
+                mutation: ApplyEntitlementsSetToUserMutation(
+                    input: ApplyEntitlementsSetToUserInput(
+                        externalId: externalId,
+                        entitlementsSetName: entitlementsSetName
+                    )
+                ),
+                resultHandler: { (result, error) in
+                    if let error = error {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error))
+                    }
 
-                guard let result = result else {
-                    return completion(
-                        .failure(
-                            SudoEntitlementsAdminClientError.fatalError(
+                    guard let result = result else {
+                        return continuation.resume(
+                            throwing: SudoEntitlementsAdminClientError.fatalError(
                                 description: "Mutation completed successfully but result is missing."
                             )
                         )
-                    )
-                }
+                    }
 
-                if let error = result.errors?.first {
-                    return completion(.failure(SudoEntitlementsAdminClientError.fromGraphQLError(error: error)))
-                }
+                    if let error = result.errors?.first {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromGraphQLError(error: error))
+                    }
 
-                guard let item = result.data?.applyEntitlementsSetToUser else {
-                    return completion(
-                        .failure(
-                            SudoEntitlementsAdminClientError.fatalError(
+                    guard let item = result.data?.applyEntitlementsSetToUser else {
+                        return continuation.resume(
+                            throwing: SudoEntitlementsAdminClientError.fatalError(
                                 description: "Mutation completed successfully but data is missing."
                             )
                         )
-                    )
-                }
+                    }
 
-                completion(
-                    .success(
-                        UserEntitlements(
+                    continuation.resume(
+                        returning: UserEntitlements(
                             createdAt: Date(millisecondsSinceEpoch: item.createdAtEpochMs),
                             updatedAt: Date(millisecondsSinceEpoch: item.updatedAtEpochMs),
                             version: item.version,
@@ -1150,57 +1089,52 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                             accountState: item.accountState.map { $0 == .active ? AccountState.active : AccountState.locked } ?? nil
                         )
                     )
-                )
-            }
-        )
+                }
+            )
+        })
     }
 
     public func applyEntitlementsToUserWithExternalId(
         _ externalId: String,
-        entitlements: [Entitlement],
-        completion: @escaping (Swift.Result<UserEntitlements, Error>) -> Void
-    ) {
-        self.graphQLClient.perform(
-            mutation: ApplyEntitlementsToUserMutation(
-                input: ApplyEntitlementsToUserInput(
-                    externalId: externalId,
-                    entitlements: entitlements.map {
-                        EntitlementInput(name: $0.name, description: $0.description, value: $0.value)
+        entitlements: [Entitlement]
+    ) async throws -> UserEntitlements {
+        return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<UserEntitlements, Error>) in
+            self.graphQLClient.perform(
+                mutation: ApplyEntitlementsToUserMutation(
+                    input: ApplyEntitlementsToUserInput(
+                        externalId: externalId,
+                        entitlements: entitlements.map {
+                            EntitlementInput(name: $0.name, description: $0.description, value: $0.value)
+                        }
+                    )
+                ),
+                resultHandler: { (result, error) in
+                    if let error = error {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error))
                     }
-                )
-            ),
-            resultHandler: { (result, error) in
-                if let error = error {
-                    return completion(.failure(SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error)))
-                }
 
-                guard let result = result else {
-                    return completion(
-                        .failure(
-                            SudoEntitlementsAdminClientError.fatalError(
+                    guard let result = result else {
+                        return continuation.resume(
+                            throwing: SudoEntitlementsAdminClientError.fatalError(
                                 description: "Mutation completed successfully but result is missing."
                             )
                         )
-                    )
-                }
+                    }
 
-                if let error = result.errors?.first {
-                    return completion(.failure(SudoEntitlementsAdminClientError.fromGraphQLError(error: error)))
-                }
+                    if let error = result.errors?.first {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromGraphQLError(error: error))
+                    }
 
-                guard let item = result.data?.applyEntitlementsToUser else {
-                    return completion(
-                        .failure(
-                            SudoEntitlementsAdminClientError.fatalError(
+                    guard let item = result.data?.applyEntitlementsToUser else {
+                        return continuation.resume(
+                            throwing: SudoEntitlementsAdminClientError.fatalError(
                                 description: "Mutation completed successfully but data is missing."
                             )
                         )
-                    )
-                }
+                    }
 
-                completion(
-                    .success(
-                        UserEntitlements(
+                    continuation.resume(
+                        returning: UserEntitlements(
                             createdAt: Date(millisecondsSinceEpoch: item.createdAtEpochMs),
                             updatedAt: Date(millisecondsSinceEpoch: item.updatedAtEpochMs),
                             version: item.version,
@@ -1219,45 +1153,42 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                             accountState: item.accountState.map { $0 == .active ? AccountState.active : AccountState.locked } ?? nil
                         )
                     )
-                )
-            }
-        )
+                }
+            )
+        })
     }
 
     public func removeEntitledUserWithExternalId(
-        _ externalId: String,
-        completion: @escaping (Swift.Result<EntitledUser?, Error>) -> Void
-    ) {
-        self.graphQLClient.perform(
-            mutation: RemoveEntitledUserMutation(input: RemoveEntitledUserInput(externalId: externalId)),
-            resultHandler: { (result, error) in
-                if let error = error {
-                    return completion(.failure(SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error)))
-                }
+        _ externalId: String
+    ) async throws -> EntitledUser? {
+        return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<EntitledUser?, Error>) in
+            self.graphQLClient.perform(
+                mutation: RemoveEntitledUserMutation(input: RemoveEntitledUserInput(externalId: externalId)),
+                resultHandler: { (result, error) in
+                    if let error = error {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error))
+                    }
 
-                guard let result = result else {
-                    return completion(
-                        .failure(
-                            SudoEntitlementsAdminClientError.fatalError(
+                    guard let result = result else {
+                        return continuation.resume(
+                            throwing: SudoEntitlementsAdminClientError.fatalError(
                                 description: "Mutation completed successfully but result is missing."
                             )
                         )
-                    )
-                }
+                    }
 
-                if let error = result.errors?.first {
-                    return completion(.failure(SudoEntitlementsAdminClientError.fromGraphQLError(error: error)))
-                }
+                    if let error = result.errors?.first {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromGraphQLError(error: error))
+                    }
 
-                completion(
-                    .success(
-                        result.data?.removeEntitledUser.map {
+                    continuation.resume(
+                        returning: result.data?.removeEntitledUser.map {
                             EntitledUser(externalId: $0.externalId)
                         } ?? nil
                     )
-                )
-            }
-        )
+                }
+            )
+        })
     }
 
 }

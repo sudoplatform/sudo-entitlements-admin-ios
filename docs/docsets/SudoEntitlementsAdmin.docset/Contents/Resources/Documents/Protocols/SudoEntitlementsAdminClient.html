@@ -21,23 +21,23 @@
     <header class="header">
       <p class="header-col header-col--primary">
         <a class="header-link" href="../index.html">
-          SudoEntitlementsAdmin 1.1.0 Docs
+          SudoEntitlementsAdmin 2.0.0 Docs
         </a>
         
       </p>
     
-      <p class="header-col--secondary">
+      <div class="header-col--secondary">
         <form role="search" action="../search.json">
           <input type="text" placeholder="Search documentation" data-typeahead>
         </form>
-      </p>
+      </div>
     
     
     </header>
 
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">SudoEntitlementsAdmin Reference</a>
-      <img class="carat" src="../img/carat.png" />
+      <img class="carat" src="../img/carat.png" alt=""/>
       SudoEntitlementsAdminClient Protocol Reference
     </p>
 
@@ -104,6 +104,7 @@
             <h1>SudoEntitlementsAdminClient</h1>
               <div class="declaration">
                 <div class="language">
+                  
                   <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SudoEntitlementsAdminClient</span> <span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
 
                 </div>
@@ -120,10 +121,13 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP03getB11SetWithName_10completionySS_ys6ResultOyAA0bF0VSgs5Error_pGctF"></a>
-                    <a name="//apple_ref/swift/Method/getEntitlementsSetWithName(_:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP03getB11SetWithName_10completionySS_ys6ResultOyAA0bF0VSgs5Error_pGctF">getEntitlementsSetWithName(_:<wbr>completion:<wbr>)</a>
+                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP03getB11SetWithNameyAA0bF0VSgSSYaKF"></a>
+                    <a name="//apple_ref/swift/Method/getEntitlementsSetWithName(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP03getB11SetWithNameyAA0bF0VSgSSYaKF">getEntitlementsSetWithName(_:<wbr>)</a>
                     </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
                   </div>
                   <div class="height-container">
                     <div class="pointer-container"></div>
@@ -138,9 +142,8 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getEntitlementsSetWithName</span><span class="p">(</span>
-    <span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-    <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Swift</span><span class="o">.</span><span class="kt">Result</span><span class="o">&lt;</span><span class="kt"><a href="../Structs/EntitlementsSet.html">EntitlementsSet</a></span><span class="p">?,</span> <span class="kt">Error</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
-<span class="p">)</span></code></pre>
+    <span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">)</span> <span class="k">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/EntitlementsSet.html">EntitlementsSet</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -160,21 +163,12 @@
                                 </div>
                               </td>
                             </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>completion</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>completion handler to return the named entitlements set or undefined if no entitlements set
-of the specified name has been defined or error.</p>
-                                </div>
-                              </td>
-                            </tr>
                           </tbody>
                         </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The named entitlements set or nil if no entitlements set of the specified name was not found.</p>
                       </div>
                     </section>
                   </div>
@@ -182,10 +176,13 @@ of the specified name has been defined or error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP04listB17SetsWithNextToken_10completionySSSg_ys6ResultOyAA10ListOutputVyAA0B3SetVGs5Error_pGctF"></a>
-                    <a name="//apple_ref/swift/Method/listEntitlementsSetsWithNextToken(_:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP04listB17SetsWithNextToken_10completionySSSg_ys6ResultOyAA10ListOutputVyAA0B3SetVGs5Error_pGctF">listEntitlementsSetsWithNextToken(_:<wbr>completion:<wbr>)</a>
+                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP04listB17SetsWithNextTokenyAA10ListOutputVyAA0B3SetVGSSSgYaKF"></a>
+                    <a name="//apple_ref/swift/Method/listEntitlementsSetsWithNextToken(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP04listB17SetsWithNextTokenyAA10ListOutputVyAA0B3SetVGSSSgYaKF">listEntitlementsSetsWithNextToken(_:<wbr>)</a>
                     </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
                   </div>
                   <div class="height-container">
                     <div class="pointer-container"></div>
@@ -200,9 +197,8 @@ of the specified name has been defined or error.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">listEntitlementsSetsWithNextToken</span><span class="p">(</span>
-    <span class="n">_</span> <span class="nv">nextToken</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span>
-    <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Swift</span><span class="o">.</span><span class="kt">Result</span><span class="o">&lt;</span><span class="kt"><a href="../Structs/ListOutput.html">ListOutput</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs/EntitlementsSet.html">EntitlementsSet</a></span><span class="o">&gt;</span><span class="p">,</span> <span class="kt">Error</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
-<span class="p">)</span></code></pre>
+    <span class="n">_</span> <span class="nv">nextToken</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span>
+<span class="p">)</span> <span class="k">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/ListOutput.html">ListOutput</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs/EntitlementsSet.html">EntitlementsSet</a></span><span class="o">&gt;</span></code></pre>
 
                         </div>
                       </div>
@@ -222,20 +218,12 @@ of the specified name has been defined or error.</p>
                                 </div>
                               </td>
                             </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>completion</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>completion handler to return the paginated list of entitlements sets or error.</p>
-                                </div>
-                              </td>
-                            </tr>
                           </tbody>
                         </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The paginated list of entitlements sets.</p>
                       </div>
                     </section>
                   </div>
@@ -243,10 +231,13 @@ of the specified name has been defined or error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP03getB21ForUserWithExternalId_10completionySS_ys6ResultOyAA0gB11ConsumptionVSgs5Error_pGctF"></a>
-                    <a name="//apple_ref/swift/Method/getEntitlementsForUserWithExternalId(_:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP03getB21ForUserWithExternalId_10completionySS_ys6ResultOyAA0gB11ConsumptionVSgs5Error_pGctF">getEntitlementsForUserWithExternalId(_:<wbr>completion:<wbr>)</a>
+                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP03getB21ForUserWithExternalIdyAA0gB11ConsumptionVSgSSYaKF"></a>
+                    <a name="//apple_ref/swift/Method/getEntitlementsForUserWithExternalId(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP03getB21ForUserWithExternalIdyAA0gB11ConsumptionVSgSSYaKF">getEntitlementsForUserWithExternalId(_:<wbr>)</a>
                     </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
                   </div>
                   <div class="height-container">
                     <div class="pointer-container"></div>
@@ -261,9 +252,8 @@ of the specified name has been defined or error.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getEntitlementsForUserWithExternalId</span><span class="p">(</span>
-    <span class="n">_</span> <span class="nv">externalId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-    <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Swift</span><span class="o">.</span><span class="kt">Result</span><span class="o">&lt;</span><span class="kt"><a href="../Structs/UserEntitlementsConsumption.html">UserEntitlementsConsumption</a></span><span class="p">?,</span> <span class="kt">Error</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
-<span class="p">)</span></code></pre>
+    <span class="n">_</span> <span class="nv">externalId</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">)</span> <span class="k">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/UserEntitlementsConsumption.html">UserEntitlementsConsumption</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -283,20 +273,12 @@ of the specified name has been defined or error.</p>
                                 </div>
                               </td>
                             </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>completion</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>completion handler to return entitlements consumption for the user or error.</p>
-                                </div>
-                              </td>
-                            </tr>
                           </tbody>
                         </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The entitlements consumption for the user.</p>
                       </div>
                     </section>
                   </div>
@@ -304,10 +286,13 @@ of the specified name has been defined or error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP03addB11SetWithName_11description12entitlements10completionySS_SSSgSayAA11EntitlementVGys6ResultOyAA0bF0Vs5Error_pGctF"></a>
-                    <a name="//apple_ref/swift/Method/addEntitlementsSetWithName(_:description:entitlements:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP03addB11SetWithName_11description12entitlements10completionySS_SSSgSayAA11EntitlementVGys6ResultOyAA0bF0Vs5Error_pGctF">addEntitlementsSetWithName(_:<wbr>description:<wbr>entitlements:<wbr>completion:<wbr>)</a>
+                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP03addB11SetWithName_11description12entitlementsAA0bF0VSS_SSSgSayAA11EntitlementVGtYaKF"></a>
+                    <a name="//apple_ref/swift/Method/addEntitlementsSetWithName(_:description:entitlements:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP03addB11SetWithName_11description12entitlementsAA0bF0VSS_SSSgSayAA11EntitlementVGtYaKF">addEntitlementsSetWithName(_:<wbr>description:<wbr>entitlements:<wbr>)</a>
                     </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
                   </div>
                   <div class="height-container">
                     <div class="pointer-container"></div>
@@ -324,9 +309,8 @@ of the specified name has been defined or error.</p>
                           <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">addEntitlementsSetWithName</span><span class="p">(</span>
     <span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
     <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span>
-    <span class="nv">entitlements</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Entitlement.html">Entitlement</a></span><span class="p">],</span>
-    <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Swift</span><span class="o">.</span><span class="kt">Result</span><span class="o">&lt;</span><span class="kt"><a href="../Structs/EntitlementsSet.html">EntitlementsSet</a></span><span class="p">,</span> <span class="kt">Error</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
-<span class="p">)</span></code></pre>
+    <span class="nv">entitlements</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Entitlement.html">Entitlement</a></span><span class="p">]</span>
+<span class="p">)</span> <span class="k">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/EntitlementsSet.html">EntitlementsSet</a></span></code></pre>
 
                         </div>
                       </div>
@@ -370,20 +354,12 @@ of the specified name has been defined or error.</p>
                                 </div>
                               </td>
                             </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>completion</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>completion handler to return the newly created entitlements set or error.</p>
-                                </div>
-                              </td>
-                            </tr>
                           </tbody>
                         </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The newly created entitlements set.</p>
                       </div>
                     </section>
                   </div>
@@ -391,10 +367,13 @@ of the specified name has been defined or error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP03setB11SetWithName_11description12entitlements10completionySS_SSSgSayAA11EntitlementVGys6ResultOyAA0bF0Vs5Error_pGctF"></a>
-                    <a name="//apple_ref/swift/Method/setEntitlementsSetWithName(_:description:entitlements:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP03setB11SetWithName_11description12entitlements10completionySS_SSSgSayAA11EntitlementVGys6ResultOyAA0bF0Vs5Error_pGctF">setEntitlementsSetWithName(_:<wbr>description:<wbr>entitlements:<wbr>completion:<wbr>)</a>
+                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP03setB11SetWithName_11description12entitlementsAA0bF0VSS_SSSgSayAA11EntitlementVGtYaKF"></a>
+                    <a name="//apple_ref/swift/Method/setEntitlementsSetWithName(_:description:entitlements:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP03setB11SetWithName_11description12entitlementsAA0bF0VSS_SSSgSayAA11EntitlementVGtYaKF">setEntitlementsSetWithName(_:<wbr>description:<wbr>entitlements:<wbr>)</a>
                     </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
                   </div>
                   <div class="height-container">
                     <div class="pointer-container"></div>
@@ -411,9 +390,8 @@ of the specified name has been defined or error.</p>
                           <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setEntitlementsSetWithName</span><span class="p">(</span>
     <span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
     <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span>
-    <span class="nv">entitlements</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Entitlement.html">Entitlement</a></span><span class="p">],</span>
-    <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Swift</span><span class="o">.</span><span class="kt">Result</span><span class="o">&lt;</span><span class="kt"><a href="../Structs/EntitlementsSet.html">EntitlementsSet</a></span><span class="p">,</span> <span class="kt">Error</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
-<span class="p">)</span></code></pre>
+    <span class="nv">entitlements</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Entitlement.html">Entitlement</a></span><span class="p">]</span>
+<span class="p">)</span> <span class="k">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/EntitlementsSet.html">EntitlementsSet</a></span></code></pre>
 
                         </div>
                       </div>
@@ -457,20 +435,12 @@ of the specified name has been defined or error.</p>
                                 </div>
                               </td>
                             </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>completion</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>completion handler to return the updated entitlements set or error.</p>
-                                </div>
-                              </td>
-                            </tr>
                           </tbody>
                         </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The updated entitlements set.</p>
                       </div>
                     </section>
                   </div>
@@ -478,10 +448,13 @@ of the specified name has been defined or error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP06removeB11SetWithName_10completionySS_ys6ResultOyAA0bF0VSgs5Error_pGctF"></a>
-                    <a name="//apple_ref/swift/Method/removeEntitlementsSetWithName(_:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP06removeB11SetWithName_10completionySS_ys6ResultOyAA0bF0VSgs5Error_pGctF">removeEntitlementsSetWithName(_:<wbr>completion:<wbr>)</a>
+                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP06removeB11SetWithNameyAA0bF0VSgSSYaKF"></a>
+                    <a name="//apple_ref/swift/Method/removeEntitlementsSetWithName(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP06removeB11SetWithNameyAA0bF0VSgSSYaKF">removeEntitlementsSetWithName(_:<wbr>)</a>
                     </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
                   </div>
                   <div class="height-container">
                     <div class="pointer-container"></div>
@@ -496,9 +469,8 @@ of the specified name has been defined or error.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">removeEntitlementsSetWithName</span><span class="p">(</span>
-    <span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-    <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Swift</span><span class="o">.</span><span class="kt">Result</span><span class="o">&lt;</span><span class="kt"><a href="../Structs/EntitlementsSet.html">EntitlementsSet</a></span><span class="p">?,</span> <span class="kt">Error</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
-<span class="p">)</span></code></pre>
+    <span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">)</span> <span class="k">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/EntitlementsSet.html">EntitlementsSet</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -518,20 +490,12 @@ of the specified name has been defined or error.</p>
                                 </div>
                               </td>
                             </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>completion</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>completion handler to return the removed entitlements set or error.</p>
-                                </div>
-                              </td>
-                            </tr>
                           </tbody>
                         </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The removed entitlements set.</p>
                       </div>
                     </section>
                   </div>
@@ -539,10 +503,13 @@ of the specified name has been defined or error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP03getB16SequenceWithName_10completionySS_ys6ResultOyAA0bF0VSgs5Error_pGctF"></a>
-                    <a name="//apple_ref/swift/Method/getEntitlementsSequenceWithName(_:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP03getB16SequenceWithName_10completionySS_ys6ResultOyAA0bF0VSgs5Error_pGctF">getEntitlementsSequenceWithName(_:<wbr>completion:<wbr>)</a>
+                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP03getB16SequenceWithNameyAA0bF0VSgSSYaKF"></a>
+                    <a name="//apple_ref/swift/Method/getEntitlementsSequenceWithName(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP03getB16SequenceWithNameyAA0bF0VSgSSYaKF">getEntitlementsSequenceWithName(_:<wbr>)</a>
                     </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
                   </div>
                   <div class="height-container">
                     <div class="pointer-container"></div>
@@ -557,9 +524,8 @@ of the specified name has been defined or error.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getEntitlementsSequenceWithName</span><span class="p">(</span>
-    <span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-    <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Swift</span><span class="o">.</span><span class="kt">Result</span><span class="o">&lt;</span><span class="kt"><a href="../Structs/EntitlementsSequence.html">EntitlementsSequence</a></span><span class="p">?,</span> <span class="kt">Error</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
-<span class="p">)</span></code></pre>
+    <span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">)</span> <span class="k">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/EntitlementsSequence.html">EntitlementsSequence</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -579,21 +545,12 @@ of the specified name has been defined or error.</p>
                                 </div>
                               </td>
                             </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>completion</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>completion handler to return the named entitlements sequence or undefined if no entitlements sequence
-of the specified name has been defined or error.</p>
-                                </div>
-                              </td>
-                            </tr>
                           </tbody>
                         </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The named entitlements sequence or nil if no entitlements sequence of the specified name was not found.</p>
                       </div>
                     </section>
                   </div>
@@ -601,10 +558,13 @@ of the specified name has been defined or error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP04listB22SequencesWithNextToken_10completionySSSg_ys6ResultOyAA10ListOutputVyAA0B8SequenceVGs5Error_pGctF"></a>
-                    <a name="//apple_ref/swift/Method/listEntitlementsSequencesWithNextToken(_:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP04listB22SequencesWithNextToken_10completionySSSg_ys6ResultOyAA10ListOutputVyAA0B8SequenceVGs5Error_pGctF">listEntitlementsSequencesWithNextToken(_:<wbr>completion:<wbr>)</a>
+                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP04listB22SequencesWithNextTokenyAA10ListOutputVyAA0B8SequenceVGSSSgYaKF"></a>
+                    <a name="//apple_ref/swift/Method/listEntitlementsSequencesWithNextToken(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP04listB22SequencesWithNextTokenyAA10ListOutputVyAA0B8SequenceVGSSSgYaKF">listEntitlementsSequencesWithNextToken(_:<wbr>)</a>
                     </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
                   </div>
                   <div class="height-container">
                     <div class="pointer-container"></div>
@@ -619,9 +579,8 @@ of the specified name has been defined or error.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">listEntitlementsSequencesWithNextToken</span><span class="p">(</span>
-    <span class="n">_</span> <span class="nv">nextToken</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span>
-    <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Swift</span><span class="o">.</span><span class="kt">Result</span><span class="o">&lt;</span><span class="kt"><a href="../Structs/ListOutput.html">ListOutput</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs/EntitlementsSequence.html">EntitlementsSequence</a></span><span class="o">&gt;</span><span class="p">,</span> <span class="kt">Error</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
-<span class="p">)</span></code></pre>
+    <span class="n">_</span> <span class="nv">nextToken</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span>
+<span class="p">)</span> <span class="k">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/ListOutput.html">ListOutput</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs/EntitlementsSequence.html">EntitlementsSequence</a></span><span class="o">&gt;</span></code></pre>
 
                         </div>
                       </div>
@@ -641,20 +600,12 @@ of the specified name has been defined or error.</p>
                                 </div>
                               </td>
                             </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>completion</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>completion handler to return the paginated list of entitlements sequences or error.</p>
-                                </div>
-                              </td>
-                            </tr>
                           </tbody>
                         </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The paginated list of entitlements sequences.</p>
                       </div>
                     </section>
                   </div>
@@ -662,10 +613,13 @@ of the specified name has been defined or error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP03addB16SequenceWithName_11description11transitions10completionySS_SSSayAA0bF10TransitionVGys6ResultOyAA0bF0Vs5Error_pGctF"></a>
-                    <a name="//apple_ref/swift/Method/addEntitlementsSequenceWithName(_:description:transitions:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP03addB16SequenceWithName_11description11transitions10completionySS_SSSayAA0bF10TransitionVGys6ResultOyAA0bF0Vs5Error_pGctF">addEntitlementsSequenceWithName(_:<wbr>description:<wbr>transitions:<wbr>completion:<wbr>)</a>
+                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP03addB16SequenceWithName_11description11transitionsAA0bF0VSS_SSSayAA0bF10TransitionVGtYaKF"></a>
+                    <a name="//apple_ref/swift/Method/addEntitlementsSequenceWithName(_:description:transitions:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP03addB16SequenceWithName_11description11transitionsAA0bF0VSS_SSSayAA0bF10TransitionVGtYaKF">addEntitlementsSequenceWithName(_:<wbr>description:<wbr>transitions:<wbr>)</a>
                     </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
                   </div>
                   <div class="height-container">
                     <div class="pointer-container"></div>
@@ -682,9 +636,8 @@ of the specified name has been defined or error.</p>
                           <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">addEntitlementsSequenceWithName</span><span class="p">(</span>
     <span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
     <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-    <span class="nv">transitions</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/EntitlementsSequenceTransition.html">EntitlementsSequenceTransition</a></span><span class="p">],</span>
-    <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Swift</span><span class="o">.</span><span class="kt">Result</span><span class="o">&lt;</span><span class="kt"><a href="../Structs/EntitlementsSequence.html">EntitlementsSequence</a></span><span class="p">,</span> <span class="kt">Error</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
-<span class="p">)</span></code></pre>
+    <span class="nv">transitions</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/EntitlementsSequenceTransition.html">EntitlementsSequenceTransition</a></span><span class="p">]</span>
+<span class="p">)</span> <span class="k">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/EntitlementsSequence.html">EntitlementsSequence</a></span></code></pre>
 
                         </div>
                       </div>
@@ -728,20 +681,12 @@ of the specified name has been defined or error.</p>
                                 </div>
                               </td>
                             </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>completion</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>completion handler to return the newly created entitlements sequence or error.</p>
-                                </div>
-                              </td>
-                            </tr>
                           </tbody>
                         </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The newly created entitlements sequence.</p>
                       </div>
                     </section>
                   </div>
@@ -749,10 +694,13 @@ of the specified name has been defined or error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP03setB16SequenceWithName_11description11transitions10completionySS_SSSayAA0bF10TransitionVGys6ResultOyAA0bF0Vs5Error_pGctF"></a>
-                    <a name="//apple_ref/swift/Method/setEntitlementsSequenceWithName(_:description:transitions:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP03setB16SequenceWithName_11description11transitions10completionySS_SSSayAA0bF10TransitionVGys6ResultOyAA0bF0Vs5Error_pGctF">setEntitlementsSequenceWithName(_:<wbr>description:<wbr>transitions:<wbr>completion:<wbr>)</a>
+                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP03setB16SequenceWithName_11description11transitionsAA0bF0VSS_SSSayAA0bF10TransitionVGtYaKF"></a>
+                    <a name="//apple_ref/swift/Method/setEntitlementsSequenceWithName(_:description:transitions:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP03setB16SequenceWithName_11description11transitionsAA0bF0VSS_SSSayAA0bF10TransitionVGtYaKF">setEntitlementsSequenceWithName(_:<wbr>description:<wbr>transitions:<wbr>)</a>
                     </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
                   </div>
                   <div class="height-container">
                     <div class="pointer-container"></div>
@@ -769,9 +717,8 @@ of the specified name has been defined or error.</p>
                           <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setEntitlementsSequenceWithName</span><span class="p">(</span>
     <span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
     <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-    <span class="nv">transitions</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/EntitlementsSequenceTransition.html">EntitlementsSequenceTransition</a></span><span class="p">],</span>
-    <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Swift</span><span class="o">.</span><span class="kt">Result</span><span class="o">&lt;</span><span class="kt"><a href="../Structs/EntitlementsSequence.html">EntitlementsSequence</a></span><span class="p">,</span> <span class="kt">Error</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
-<span class="p">)</span></code></pre>
+    <span class="nv">transitions</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/EntitlementsSequenceTransition.html">EntitlementsSequenceTransition</a></span><span class="p">]</span>
+<span class="p">)</span> <span class="k">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/EntitlementsSequence.html">EntitlementsSequence</a></span></code></pre>
 
                         </div>
                       </div>
@@ -815,20 +762,12 @@ of the specified name has been defined or error.</p>
                                 </div>
                               </td>
                             </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>completion</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>completion handler to return the updated entitlements sequence or error.</p>
-                                </div>
-                              </td>
-                            </tr>
                           </tbody>
                         </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The updated entitlements sequence.</p>
                       </div>
                     </section>
                   </div>
@@ -836,10 +775,13 @@ of the specified name has been defined or error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP06removeB16SequenceWithName_10completionySS_ys6ResultOyAA0bF0VSgs5Error_pGctF"></a>
-                    <a name="//apple_ref/swift/Method/removeEntitlementsSequenceWithName(_:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP06removeB16SequenceWithName_10completionySS_ys6ResultOyAA0bF0VSgs5Error_pGctF">removeEntitlementsSequenceWithName(_:<wbr>completion:<wbr>)</a>
+                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP06removeB16SequenceWithNameyAA0bF0VSgSSYaKF"></a>
+                    <a name="//apple_ref/swift/Method/removeEntitlementsSequenceWithName(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP06removeB16SequenceWithNameyAA0bF0VSgSSYaKF">removeEntitlementsSequenceWithName(_:<wbr>)</a>
                     </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
                   </div>
                   <div class="height-container">
                     <div class="pointer-container"></div>
@@ -854,9 +796,8 @@ of the specified name has been defined or error.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">removeEntitlementsSequenceWithName</span><span class="p">(</span>
-    <span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-    <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Swift</span><span class="o">.</span><span class="kt">Result</span><span class="o">&lt;</span><span class="kt"><a href="../Structs/EntitlementsSequence.html">EntitlementsSequence</a></span><span class="p">?,</span> <span class="kt">Error</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
-<span class="p">)</span></code></pre>
+    <span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">)</span> <span class="k">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/EntitlementsSequence.html">EntitlementsSequence</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -876,20 +817,12 @@ of the specified name has been defined or error.</p>
                                 </div>
                               </td>
                             </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>completion</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>completion handler to return the removed entitlements sequence or error.</p>
-                                </div>
-                              </td>
-                            </tr>
                           </tbody>
                         </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The removed entitlements sequence.</p>
                       </div>
                     </section>
                   </div>
@@ -897,10 +830,13 @@ of the specified name has been defined or error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP05applyB28SequenceToUserWithExternalId_012entitlementsF4Name10completionySS_SSys6ResultOyAA0hB0Vs5Error_pGctF"></a>
-                    <a name="//apple_ref/swift/Method/applyEntitlementsSequenceToUserWithExternalId(_:entitlementsSequenceName:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP05applyB28SequenceToUserWithExternalId_012entitlementsF4Name10completionySS_SSys6ResultOyAA0hB0Vs5Error_pGctF">applyEntitlementsSequenceToUserWithExternalId(_:<wbr>entitlementsSequenceName:<wbr>completion:<wbr>)</a>
+                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP05applyB28SequenceToUserWithExternalId_012entitlementsF4NameAA0hB0VSS_SStYaKF"></a>
+                    <a name="//apple_ref/swift/Method/applyEntitlementsSequenceToUserWithExternalId(_:entitlementsSequenceName:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP05applyB28SequenceToUserWithExternalId_012entitlementsF4NameAA0hB0VSS_SStYaKF">applyEntitlementsSequenceToUserWithExternalId(_:<wbr>entitlementsSequenceName:<wbr>)</a>
                     </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
                   </div>
                   <div class="height-container">
                     <div class="pointer-container"></div>
@@ -917,9 +853,8 @@ does not yet exist it will be created.</p>
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">applyEntitlementsSequenceToUserWithExternalId</span><span class="p">(</span>
     <span class="n">_</span> <span class="nv">externalId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-    <span class="nv">entitlementsSequenceName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-    <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Swift</span><span class="o">.</span><span class="kt">Result</span><span class="o">&lt;</span><span class="kt"><a href="../Structs/UserEntitlements.html">UserEntitlements</a></span><span class="p">,</span> <span class="kt">Error</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
-<span class="p">)</span></code></pre>
+    <span class="nv">entitlementsSequenceName</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">)</span> <span class="k">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/UserEntitlements.html">UserEntitlements</a></span></code></pre>
 
                         </div>
                       </div>
@@ -951,20 +886,12 @@ does not yet exist it will be created.</p>
                                 </div>
                               </td>
                             </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>completion</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>completion handler to return the resulting user entitlements or error.</p>
-                                </div>
-                              </td>
-                            </tr>
                           </tbody>
                         </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The resulting user entitlements.</p>
                       </div>
                     </section>
                   </div>
@@ -972,10 +899,13 @@ does not yet exist it will be created.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP05applyB23SetToUserWithExternalId_012entitlementsF4Name10completionySS_SSys6ResultOyAA0hB0Vs5Error_pGctF"></a>
-                    <a name="//apple_ref/swift/Method/applyEntitlementsSetToUserWithExternalId(_:entitlementsSetName:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP05applyB23SetToUserWithExternalId_012entitlementsF4Name10completionySS_SSys6ResultOyAA0hB0Vs5Error_pGctF">applyEntitlementsSetToUserWithExternalId(_:<wbr>entitlementsSetName:<wbr>completion:<wbr>)</a>
+                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP05applyB23SetToUserWithExternalId_012entitlementsF4NameAA0hB0VSS_SStYaKF"></a>
+                    <a name="//apple_ref/swift/Method/applyEntitlementsSetToUserWithExternalId(_:entitlementsSetName:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP05applyB23SetToUserWithExternalId_012entitlementsF4NameAA0hB0VSS_SStYaKF">applyEntitlementsSetToUserWithExternalId(_:<wbr>entitlementsSetName:<wbr>)</a>
                     </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
                   </div>
                   <div class="height-container">
                     <div class="pointer-container"></div>
@@ -992,9 +922,8 @@ yet exist it will be created.</p>
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">applyEntitlementsSetToUserWithExternalId</span><span class="p">(</span>
     <span class="n">_</span> <span class="nv">externalId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-    <span class="nv">entitlementsSetName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-    <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Swift</span><span class="o">.</span><span class="kt">Result</span><span class="o">&lt;</span><span class="kt"><a href="../Structs/UserEntitlements.html">UserEntitlements</a></span><span class="p">,</span> <span class="kt">Error</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
-<span class="p">)</span></code></pre>
+    <span class="nv">entitlementsSetName</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">)</span> <span class="k">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/UserEntitlements.html">UserEntitlements</a></span></code></pre>
 
                         </div>
                       </div>
@@ -1026,20 +955,12 @@ yet exist it will be created.</p>
                                 </div>
                               </td>
                             </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>completion</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>completion handler to return the resulting user entitlements or error.</p>
-                                </div>
-                              </td>
-                            </tr>
                           </tbody>
                         </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The resulting user entitlements.</p>
                       </div>
                     </section>
                   </div>
@@ -1047,10 +968,13 @@ yet exist it will be created.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP05applyB20ToUserWithExternalId_12entitlements10completionySS_SayAA11EntitlementVGys6ResultOyAA0gB0Vs5Error_pGctF"></a>
-                    <a name="//apple_ref/swift/Method/applyEntitlementsToUserWithExternalId(_:entitlements:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP05applyB20ToUserWithExternalId_12entitlements10completionySS_SayAA11EntitlementVGys6ResultOyAA0gB0Vs5Error_pGctF">applyEntitlementsToUserWithExternalId(_:<wbr>entitlements:<wbr>completion:<wbr>)</a>
+                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP05applyB20ToUserWithExternalId_12entitlementsAA0gB0VSS_SayAA11EntitlementVGtYaKF"></a>
+                    <a name="//apple_ref/swift/Method/applyEntitlementsToUserWithExternalId(_:entitlements:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP05applyB20ToUserWithExternalId_12entitlementsAA0gB0VSS_SayAA11EntitlementVGtYaKF">applyEntitlementsToUserWithExternalId(_:<wbr>entitlements:<wbr>)</a>
                     </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
                   </div>
                   <div class="height-container">
                     <div class="pointer-container"></div>
@@ -1067,9 +991,8 @@ exist it will be created.</p>
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">applyEntitlementsToUserWithExternalId</span><span class="p">(</span>
     <span class="n">_</span> <span class="nv">externalId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-    <span class="nv">entitlements</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Entitlement.html">Entitlement</a></span><span class="p">],</span>
-    <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Swift</span><span class="o">.</span><span class="kt">Result</span><span class="o">&lt;</span><span class="kt"><a href="../Structs/UserEntitlements.html">UserEntitlements</a></span><span class="p">,</span> <span class="kt">Error</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
-<span class="p">)</span></code></pre>
+    <span class="nv">entitlements</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Entitlement.html">Entitlement</a></span><span class="p">]</span>
+<span class="p">)</span> <span class="k">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/UserEntitlements.html">UserEntitlements</a></span></code></pre>
 
                         </div>
                       </div>
@@ -1101,20 +1024,12 @@ exist it will be created.</p>
                                 </div>
                               </td>
                             </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>completion</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>completion handler to return the resulting user entitlements or error.</p>
-                                </div>
-                              </td>
-                            </tr>
                           </tbody>
                         </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The resulting user entitlements.</p>
                       </div>
                     </section>
                   </div>
@@ -1122,10 +1037,13 @@ exist it will be created.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP32removeEntitledUserWithExternalId_10completionySS_ys6ResultOyAA0fG0VSgs5Error_pGctF"></a>
-                    <a name="//apple_ref/swift/Method/removeEntitledUserWithExternalId(_:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP32removeEntitledUserWithExternalId_10completionySS_ys6ResultOyAA0fG0VSgs5Error_pGctF">removeEntitledUserWithExternalId(_:<wbr>completion:<wbr>)</a>
+                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP32removeEntitledUserWithExternalIdyAA0fG0VSgSSYaKF"></a>
+                    <a name="//apple_ref/swift/Method/removeEntitledUserWithExternalId(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP32removeEntitledUserWithExternalIdyAA0fG0VSgSSYaKF">removeEntitledUserWithExternalId(_:<wbr>)</a>
                     </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
                   </div>
                   <div class="height-container">
                     <div class="pointer-container"></div>
@@ -1140,9 +1058,8 @@ exist it will be created.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">removeEntitledUserWithExternalId</span><span class="p">(</span>
-    <span class="n">_</span> <span class="nv">externalId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-    <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Swift</span><span class="o">.</span><span class="kt">Result</span><span class="o">&lt;</span><span class="kt"><a href="../Structs/EntitledUser.html">EntitledUser</a></span><span class="p">?,</span> <span class="kt">Error</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
-<span class="p">)</span></code></pre>
+    <span class="n">_</span> <span class="nv">externalId</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">)</span> <span class="k">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/EntitledUser.html">EntitledUser</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -1162,20 +1079,12 @@ exist it will be created.</p>
                                 </div>
                               </td>
                             </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>completion</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>completion handler to return the removed user information or error.</p>
-                                </div>
-                              </td>
-                            </tr>
                           </tbody>
                         </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The removed user information.</p>
                       </div>
                     </section>
                   </div>
@@ -1188,9 +1097,8 @@ exist it will be created.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2021 <a class="link" href="https://sudoplatform.com/" target="_blank" rel="external">Sudo Platform Engineering</a>. All rights reserved. (Last updated: 2021-11-12)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2022 <a class="link" href="https://sudoplatform.com/" target="_blank" rel="external noopener">Sudo Platform Engineering</a>. All rights reserved. (Last updated: 2022-01-28)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>
-</div>
 </html>

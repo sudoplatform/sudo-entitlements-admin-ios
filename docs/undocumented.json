@@ -268,7 +268,7 @@
     },
     {
       "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminClient.swift",
-      "line": 325,
+      "line": 308,
       "symbol": "DefaultSudoEntitlementsAdminClient.Config",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
