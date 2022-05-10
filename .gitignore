@@ -17,3 +17,4 @@ DerivedData
 Carthage/Build/
 config
 build/
+node_modules

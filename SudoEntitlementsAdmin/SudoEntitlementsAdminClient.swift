@@ -32,8 +32,7 @@ public struct ListOutput<T> {
 
 }
 
-public enum SudoEntitlementsAdminClientError: Error {
-
+public enum SudoEntitlementsAdminClientError: Error, Equatable {
     /// Indicates the ownership proof provided for the new vau
     /// Indicates that the configuration dictionary passed to initialize the client was not valid.
     case invalidConfig
@@ -49,35 +48,6 @@ public enum SudoEntitlementsAdminClientError: Error {
     /// token being invalid or other security controls that prevent the user from accessing the API.
     case notAuthorized
 
-    /// Indicates that the input entitlements name was not recognized.
-    case invalidEntitlementsError
-
-    /// Indicates that an attempt has been made to delete an entitlements set that is currently in use by one or
-    /// more entitlements sequences.
-    case entitlementsSetInUse
-
-    /// Indicates that the input entitlements set name does not exists when applying an entitlements set to a user.
-    case entitlementsSetNotFoundError
-
-    /// Indicates that the attempt to add a new entitlement set failed because an entitlements set with the same
-    /// name already exists
-    case entitlementsSetAlreadyExistsError
-
-    /// Indicates that the attempt to add a new entitlement sequence failed because an entitlements sequence
-    /// with the same name already exists
-    case entitlementsSequenceAlreadyExistsError
-
-    /// Indicates that the input entitlements sequence name does not exists when applying an entitlements sequence
-    /// to a user.
-    case entitlementsSequenceNotFoundError
-
-    /// Indicates that an attempt was made to modify or delete an immutable entitlements set was made (e.g. _unentitled_).
-    case entitlementsSetImmutableError
-
-    /// Indicates that an internal server error caused the operation to fail. The error is possibly transient and
-    /// retrying at a later time may cause the operation to complete successfully
-    case serviceError
-
     /// Indicates that the request failed due to connectivity, availability or access error.
     case requestFailed(response: HTTPURLResponse?, cause: Error?)
 
@@ -91,18 +61,94 @@ public enum SudoEntitlementsAdminClientError: Error {
     /// conditions that is beyond control of `SudoEntitlementsAdminClient` implementation.
     case fatalError(description: String)
 
+    /// Returned if an attempt to update a user's entitlements is made after the
+    /// user's entitlements have already been updated to a later version
+    case alreadyUpdatedError
+
+    /// A bulk operations has specified multiple operations for the same user
+    case bulkOperationDuplicateUsersError
+
+    /// Indicates that the attempt to add a new entitlement sequence failed because an entitlements sequence
+    /// with the same name already exists
+    case entitlementsSequenceAlreadyExistsError
+
+    /// Indicates that the input entitlements sequence name does not exists when applying an entitlements sequence
+    /// to a user.
+    case entitlementsSequenceNotFoundError
+
+    /// Returned if an entitlements sequence update is already in progress
+    /// when setEntitlementsSequence or removeEntitlementsSequence is attempted.
+    case entitlementsSequenceUpdateInProgressError
+
+    /// Indicates that the attempt to add a new entitlement set failed because an entitlements set with the same
+    /// name already exists
+    case entitlementsSetAlreadyExistsError
+
+    /// Indicates that an attempt was made to modify or delete an immutable entitlements set was made (e.g. _unentitled_).
+    case entitlementsSetImmutableError
+
+    /// Indicates that an attempt has been made to delete an entitlements set that is currently in use by one or
+    /// more entitlements sequences.
+    case entitlementsSetInUseError
+
+    /// Indicates that the input entitlements set name does not exists when applying an entitlements set to a user.
+    case entitlementsSetNotFoundError
+
+    /// Indicates that an input entitlements name was not recognized.
+    case invalidEntitlementsError
+
+    /// The request would exceed an API limit
+    case limitExceededError
+
+    /// Indicates that an internal server error caused the operation to fail. The error is possibly transient and
+    /// retrying at a later time may cause the operation to complete successfully
+    case serviceError
+
+    public static func == (lhs: SudoEntitlementsAdminClientError, rhs: SudoEntitlementsAdminClientError) -> Bool {
+        switch(lhs, rhs) {
+        case (.invalidConfig, .invalidConfig): return true
+        case (.adminServiceConfigNotFound, .adminServiceConfigNotFound): return true
+        case (.invalidInput, .invalidInput): return true
+        case (.notAuthorized, .notAuthorized): return true
+        case
+            (.requestFailed, .requestFailed),
+            (.graphQLError, .graphQLError),
+            (.appSyncClientError, appSyncClientError),
+            (.fatalError, fatalError):
+            // We return false for these since we can't compare the error properties of this error. We list these here for completeness.
+            return false
+        case (.alreadyUpdatedError, .alreadyUpdatedError): return true
+        case (.bulkOperationDuplicateUsersError, .bulkOperationDuplicateUsersError): return true
+        case (.entitlementsSequenceAlreadyExistsError, .entitlementsSequenceAlreadyExistsError): return true
+        case (.entitlementsSequenceNotFoundError, .entitlementsSequenceNotFoundError): return true
+        case (.entitlementsSequenceUpdateInProgressError, .entitlementsSequenceUpdateInProgressError): return true
+        case (.entitlementsSetAlreadyExistsError, .entitlementsSetAlreadyExistsError): return true
+        case (.entitlementsSetImmutableError, .entitlementsSetImmutableError): return true
+        case (.entitlementsSetInUseError, .entitlementsSetInUseError): return true
+        case (.entitlementsSetNotFoundError, .entitlementsSetNotFoundError): return true
+        case (.invalidEntitlementsError, .invalidEntitlementsError): return true
+        case (.limitExceededError, .limitExceededError): return true
+        case (.serviceError, .serviceError): return true
+        default: return false
+        }
+    }
+
     private struct SudoPlatformServiceError {
         static let type = "errorType"
         static let decodingError = "sudoplatform.DecodingError"
-        static let invalidArgumentError = "sudoplatform.InvalidArgumentError"
-        static let serviceError = "sudoplatform.ServiceError"
-        static let invalidEntitlementsError = "sudoplatform.entitlements.InvalidEntitlementsError"
-        static let entitlementsSetInUse = "sudoplatform.entitlements.EntitlementsSetInUse"
-        static let entitlementsSetNotFoundError = "sudoplatform.entitlements.EntitlementsSetNotFoundError"
-        static let entitlementsSetAlreadyExistsError = "sudoplatform.entitlements.EntitlementsSetAlreadyExistsError"
+        static let alreadyUpdatedError = "sudoplatform.entitlements.AlreadyUpdatedError"
+        static let bulkOperationDuplicateUsersError = "sudoplatform.entitlements.BulkOperationDuplicateUsersError"
         static let entitlementsSequenceAlreadyExistsError = "sudoplatform.entitlements.EntitlementsSequenceAlreadyExistsError"
         static let entitlementsSequenceNotFoundError = "sudoplatform.entitlements.EntitlementsSequenceNotFoundError"
+        static let entitlementsSequenceUpdateInProgressError = "sudoplatform.entitlements.EntitlementsSequenceUpdateInProgressError"
+        static let entitlementsSetAlreadyExistsError = "sudoplatform.entitlements.EntitlementsSetAlreadyExistsError"
         static let entitlementsSetImmutableError = "sudoplatform.entitlements.EntitlementsSetImmutableError"
+        static let entitlementsSetInUseError = "sudoplatform.entitlements.EntitlementsSetInUseError"
+        static let entitlementsSetNotFoundError = "sudoplatform.entitlements.EntitlementsSetNotFoundError"
+        static let invalidArgumentError = "sudoplatform.InvalidArgumentError"
+        static let invalidEntitlementsError = "sudoplatform.entitlements.InvalidEntitlementsError"
+        static let limitExceededError = "sudoplatform.LimitExceededError"
+        static let serviceError = "sudoplatform.ServiceError"
     }
 
     static func fromAppSyncClientError(error: Error) -> SudoEntitlementsAdminClientError {
@@ -126,27 +172,42 @@ public enum SudoEntitlementsAdminClientError: Error {
             return .fatalError(description: "GraphQL operation failed but error type was not found in the response. \(error)")
         }
 
+        guard let result = fromGraphQLErrorType(errorType) else {
+            return .graphQLError(cause: error)
+        }
+        return result
+    }
+
+    static func fromGraphQLErrorType(_ errorType: String) -> SudoEntitlementsAdminClientError? {
         switch errorType {
         case SudoPlatformServiceError.invalidArgumentError, SudoPlatformServiceError.decodingError:
             return .invalidInput
-        case SudoPlatformServiceError.invalidEntitlementsError:
-            return .invalidEntitlementsError
-        case SudoPlatformServiceError.entitlementsSetInUse:
-            return .entitlementsSetInUse
-        case SudoPlatformServiceError.entitlementsSetImmutableError:
-            return .entitlementsSetImmutableError
-        case SudoPlatformServiceError.entitlementsSetNotFoundError:
-            return .entitlementsSetNotFoundError
-        case SudoPlatformServiceError.entitlementsSequenceNotFoundError:
-            return .entitlementsSequenceNotFoundError
-        case SudoPlatformServiceError.entitlementsSetAlreadyExistsError:
-            return .entitlementsSetAlreadyExistsError
+        case SudoPlatformServiceError.alreadyUpdatedError:
+            return .alreadyUpdatedError
+        case SudoPlatformServiceError.bulkOperationDuplicateUsersError:
+            return .bulkOperationDuplicateUsersError
         case SudoPlatformServiceError.entitlementsSequenceAlreadyExistsError:
             return .entitlementsSequenceAlreadyExistsError
+        case SudoPlatformServiceError.entitlementsSequenceNotFoundError:
+            return .entitlementsSequenceNotFoundError
+        case SudoPlatformServiceError.entitlementsSequenceUpdateInProgressError:
+            return .entitlementsSequenceUpdateInProgressError
+        case SudoPlatformServiceError.entitlementsSetAlreadyExistsError:
+            return .entitlementsSetAlreadyExistsError
+        case SudoPlatformServiceError.entitlementsSetImmutableError:
+            return .entitlementsSetImmutableError
+        case SudoPlatformServiceError.entitlementsSetInUseError:
+            return .entitlementsSetInUseError
+        case SudoPlatformServiceError.entitlementsSetNotFoundError:
+            return .entitlementsSetNotFoundError
+        case SudoPlatformServiceError.limitExceededError:
+            return .limitExceededError
+        case SudoPlatformServiceError.invalidEntitlementsError:
+            return .invalidEntitlementsError
         case SudoPlatformServiceError.serviceError:
             return .serviceError
         default:
-            return .graphQLError(cause: error)
+            return nil
         }
     }
 
@@ -270,6 +331,16 @@ public protocol SudoEntitlementsAdminClient: AnyObject {
         entitlementsSequenceName: String
     ) async throws -> UserEntitlements
 
+    /// Apply entitlements sequence to users. If a record for that user's entitlements sequence
+    /// does not yet exist it will be created. Equivalent to calling applyEntitlementsSequenceToUserWithExternalId
+    /// multiple times.
+    /// - Parameters:
+    ///   - items: Array of entitlements sequence application items
+    /// - Returns: The resulting user entitlements.
+    func applyEntitlementsSequenceToUsers(
+        items: [ApplyEntitlementsSequenceItem]
+    ) async throws -> [UserEntitlementsResult]
+
     /// Apply entitlements set  directly to a user. If a record for that user's entitlements set does not
     /// yet exist it will be created.
     /// - Parameters:
@@ -281,6 +352,16 @@ public protocol SudoEntitlementsAdminClient: AnyObject {
         entitlementsSetName: String
     ) async throws -> UserEntitlements
 
+    /// Apply entitlements set to users. If a record for that user's entitlements set
+    /// does not yet exist it will be created. Equivalent to calling applyEntitlementsSetToUserWithExternalId
+    /// multiple times.
+    /// - Parameters:
+    ///   - items: Array of entitlements set application items
+    /// - Returns: The resulting user entitlements.
+    func applyEntitlementsSetToUsers(
+        items: [ApplyEntitlementsSetItem]
+    ) async throws -> [UserEntitlementsResult]
+
     /// Apply entitlements  directly to a user. If a record for that user's entitlements does not yet
     /// exist it will be created.
     /// - Parameters:
@@ -291,6 +372,16 @@ public protocol SudoEntitlementsAdminClient: AnyObject {
         _ externalId: String,
         entitlements: [Entitlement]
     ) async throws -> UserEntitlements
+
+    /// Apply entitlements to users. If a record for that user's entitlements
+    /// does not yet exist it will be created. Equivalent to calling applyEntitlementsToUserWithExternalId
+    /// multiple times.
+    /// - Parameters:
+    ///   - items: Array of entitlements application items
+    /// - Returns: The resulting user entitlements.
+    func applyEntitlementsToUsers(
+        items: [ApplyEntitlementsItem]
+    ) async throws -> [UserEntitlementsResult]
 
     /// Removes entitlements and consumption records of the specified user.
     /// - Parameters:
@@ -390,7 +481,7 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
     public func getEntitlementsSetWithName(
         _ name: String
     ) async throws -> EntitlementsSet? {
-        let operation = GetEntitlementsSetQuery(input: GetEntitlementsSetInput(name: name))
+        let operation = GraphQL.GetEntitlementsSetQuery(input: GraphQL.GetEntitlementsSetInput(name: name))
 
         return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<EntitlementsSet?, Error>) in
             self.graphQLClient.fetch(
@@ -443,7 +534,7 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
     ) async throws -> ListOutput<EntitlementsSet> {
         return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<ListOutput<EntitlementsSet>, Error>) in
             self.graphQLClient.fetch(
-                query: ListEntitlementsSetsQuery(nextToken: nextToken),
+                query: GraphQL.ListEntitlementsSetsQuery(nextToken: nextToken),
                 cachePolicy: .fetchIgnoringCacheData,
                 resultHandler: { (result, error) in
                     if let error = error {
@@ -493,7 +584,7 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
     ) async throws -> UserEntitlementsConsumption? {
         return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<UserEntitlementsConsumption?, Error>) in
             self.graphQLClient.fetch(
-                query: GetEntitlementsForUserQuery(input: GetEntitlementsForUserInput(externalId: externalId)),
+                query: GraphQL.GetEntitlementsForUserQuery(input: GraphQL.GetEntitlementsForUserInput(externalId: externalId)),
                 cachePolicy: .fetchIgnoringCacheData,
                 resultHandler: { (result, error) in
                     if let error = error {
@@ -557,13 +648,13 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
     ) async throws -> EntitlementsSet {
         return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<EntitlementsSet, Error>) in
             self.graphQLClient.perform(
-                mutation: AddEntitlementsSetMutation(
-                    input: AddEntitlementsSetInput(
-                        name: name,
+                mutation: GraphQL.AddEntitlementsSetMutation(
+                    input: GraphQL.AddEntitlementsSetInput(
                         description: description,
                         entitlements: entitlements.map {
-                            EntitlementInput(name: $0.name, description: $0.description, value: $0.value)
-                        }
+                            GraphQL.EntitlementInput(description: $0.description, name: $0.name, value: $0.value)
+                        },
+                        name: name
                     )
                 ),
                 resultHandler: { (result, error) in
@@ -615,13 +706,13 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
     ) async throws -> EntitlementsSet {
         return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<EntitlementsSet, Error>) in
             self.graphQLClient.perform(
-                mutation: SetEntitlementsSetMutation(
-                    input: SetEntitlementsSetInput(
-                        name: name,
+                mutation: GraphQL.SetEntitlementsSetMutation(
+                    input: GraphQL.SetEntitlementsSetInput(
                         description: description,
                         entitlements: entitlements.map {
-                            EntitlementInput(name: $0.name, description: $0.description, value: $0.value)
-                        }
+                            GraphQL.EntitlementInput(description: $0.description, name: $0.name, value: $0.value)
+                        },
+                        name: name
                     )
                 ),
                 resultHandler: { (result, error) in
@@ -671,7 +762,7 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
     ) async throws -> EntitlementsSet? {
         return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<EntitlementsSet?, Error>) in
             self.graphQLClient.perform(
-                mutation: RemoveEntitlementsSetMutation(input: RemoveEntitlementsSetInput(name: name)),
+                mutation: GraphQL.RemoveEntitlementsSetMutation(input: GraphQL.RemoveEntitlementsSetInput(name: name)),
                 resultHandler: { (result, error) in
                     if let error = error {
                         return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error))
@@ -713,7 +804,7 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
     ) async throws -> EntitlementsSequence? {
         return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<EntitlementsSequence?, Error>) in
             self.graphQLClient.fetch(
-                query: GetEntitlementsSequenceQuery(input: GetEntitlementsSequenceInput(name: name)),
+                query: GraphQL.GetEntitlementsSequenceQuery(input: GraphQL.GetEntitlementsSequenceInput(name: name)),
                 cachePolicy: .fetchIgnoringCacheData,
                 resultHandler: { (result, error) in
                     if let error = error {
@@ -759,7 +850,7 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
     ) async throws -> ListOutput<EntitlementsSequence> {
         return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<ListOutput<EntitlementsSequence>, Error>) in
             self.graphQLClient.fetch(
-                query: ListEntitlementsSequencesQuery(nextToken: nextToken),
+                query: GraphQL.ListEntitlementsSequencesQuery(nextToken: nextToken),
                 cachePolicy: .fetchIgnoringCacheData,
                 resultHandler: { (result, error) in
                     if let error = error {
@@ -810,12 +901,12 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
     ) async throws -> EntitlementsSequence {
         return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<EntitlementsSequence, Error>) in
             self.graphQLClient.perform(
-                mutation: AddEntitlementsSequenceMutation(
-                    input: AddEntitlementsSequenceInput(
-                        name: name,
+                mutation: GraphQL.AddEntitlementsSequenceMutation(
+                    input: GraphQL.AddEntitlementsSequenceInput(
                         description: description,
+                        name: name,
                         transitions: transitions.map {
-                            EntitlementsSequenceTransitionInput(entitlementsSetName: $0.entitlementsSetName, duration: $0.duration)
+                            GraphQL.EntitlementsSequenceTransitionInput(duration: $0.duration, entitlementsSetName: $0.entitlementsSetName)
                         }
                     )
                 ),
@@ -871,12 +962,12 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
     ) async throws -> EntitlementsSequence {
         return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<EntitlementsSequence, Error>) in
             self.graphQLClient.perform(
-                mutation: SetEntitlementsSequenceMutation(
-                    input: SetEntitlementsSequenceInput(
-                        name: name,
+                mutation: GraphQL.SetEntitlementsSequenceMutation(
+                    input: GraphQL.SetEntitlementsSequenceInput(
                         description: description,
+                        name: name,
                         transitions: transitions.map {
-                            EntitlementsSequenceTransitionInput(entitlementsSetName: $0.entitlementsSetName, duration: $0.duration)
+                            GraphQL.EntitlementsSequenceTransitionInput(duration: $0.duration, entitlementsSetName: $0.entitlementsSetName)
                         }
                     )
                 ),
@@ -930,7 +1021,7 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
     ) async throws -> EntitlementsSequence? {
         return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<EntitlementsSequence?, Error>) in
             self.graphQLClient.perform(
-                mutation: RemoveEntitlementsSequenceMutation(input: RemoveEntitlementsSequenceInput(name: name)),
+                mutation: GraphQL.RemoveEntitlementsSequenceMutation(input: GraphQL.RemoveEntitlementsSequenceInput(name: name)),
                 resultHandler: { (result, error) in
                     if let error = error {
                         return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error))
@@ -976,10 +1067,9 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
     ) async throws -> UserEntitlements {
         return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<UserEntitlements, Error>) in
             self.graphQLClient.perform(
-                mutation: ApplyEntitlementsSequenceToUserMutation(
-                    input: ApplyEntitlementsSequenceToUserInput(
-                        externalId: externalId,
-                        entitlementsSequenceName: entitlementsSequenceName
+                mutation: GraphQL.ApplyEntitlementsSequenceToUserMutation(
+                    input: GraphQL.ApplyEntitlementsSequenceToUserInput(
+                        entitlementsSequenceName: entitlementsSequenceName, externalId: externalId
                     )
                 ),
                 resultHandler: { (result, error) in
@@ -1032,16 +1122,94 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
         })
     }
 
+    public func applyEntitlementsSequenceToUsers(
+        items: [ApplyEntitlementsSequenceItem]
+    ) async throws -> [UserEntitlementsResult] {
+        return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<[UserEntitlementsResult], Error>) in
+            self.graphQLClient.perform(
+                mutation: GraphQL.ApplyEntitlementsSequenceToUsersMutation(
+                    input: GraphQL.ApplyEntitlementsSequenceToUsersInput(
+                        operations: items.map {
+                            GraphQL.ApplyEntitlementsSequenceToUserInput(
+                                entitlementsSequenceName: $0.entitlementsSequenceName,
+                                externalId: $0.externalId)
+                        }
+                    )
+                ),
+                resultHandler: { (result, error) in
+                    if let error = error {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error))
+                    }
+
+                    guard let result = result else {
+                        return continuation.resume(
+                            throwing: SudoEntitlementsAdminClientError.fatalError(
+                                description: "Mutation completed successfully but result is missing."
+                            )
+                        )
+                    }
+
+                    if let error = result.errors?.first {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromGraphQLError(error: error))
+                    }
+
+                    guard let results = result.data?.applyEntitlementsSequenceToUsers else {
+                        return continuation.resume(
+                            throwing: SudoEntitlementsAdminClientError.fatalError(
+                                description: "Mutation completed successfully but data is missing."
+                            )
+                        )
+                    }
+
+                    continuation.resume(
+                        returning: results.map {
+                            guard let success = $0.asExternalUserEntitlements else {
+                                guard let failure = $0.asExternalUserEntitlementsError else {
+                                        return .failure(.fatalError(
+                                            description: "Unexpected type \($0.__typename) returned"))
+                                }
+
+                                guard let error = SudoEntitlementsAdminClientError.fromGraphQLErrorType(failure.error) else {
+                                    return .failure(.fatalError(description: "Unexpected service error: \(failure.error)"))
+                                }
+                                return .failure(error)
+
+                            }
+
+                            return .success(UserEntitlements(
+                                createdAt: Date(millisecondsSinceEpoch: success.createdAtEpochMs),
+                                updatedAt: Date(millisecondsSinceEpoch: success.updatedAtEpochMs),
+                                version: success.version,
+                                externalId: success.externalId,
+                                owner: success.owner,
+                                entitlementsSetName: success.entitlementsSetName,
+                                entitlementsSequenceName: success.entitlementsSequenceName,
+                                entitlements: success.entitlements.map {
+                                    Entitlement(
+                                        name: $0.name,
+                                        description: $0.description,
+                                        value: $0.value
+                                    )
+                                },
+                                transitionsRelativeTo: success.transitionsRelativeToEpochMs.map { Date(millisecondsSinceEpoch: $0 ) } ?? nil,
+                                accountState: success.accountState.map { $0 == .active ? AccountState.active : AccountState.locked } ?? nil
+))
+                        }
+                    )
+                }
+            )
+        })
+    }
+
     public func applyEntitlementsSetToUserWithExternalId(
         _ externalId: String,
         entitlementsSetName: String
     ) async throws -> UserEntitlements {
         return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<UserEntitlements, Error>) in
             self.graphQLClient.perform(
-                mutation: ApplyEntitlementsSetToUserMutation(
-                    input: ApplyEntitlementsSetToUserInput(
-                        externalId: externalId,
-                        entitlementsSetName: entitlementsSetName
+                mutation: GraphQL.ApplyEntitlementsSetToUserMutation(
+                    input: GraphQL.ApplyEntitlementsSetToUserInput(
+                        entitlementsSetName: entitlementsSetName, externalId: externalId
                     )
                 ),
                 resultHandler: { (result, error) in
@@ -1094,18 +1262,96 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
         })
     }
 
+    public func applyEntitlementsSetToUsers(
+        items: [ApplyEntitlementsSetItem]
+    ) async throws -> [UserEntitlementsResult] {
+        return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<[UserEntitlementsResult], Error>) in
+            self.graphQLClient.perform(
+                mutation: GraphQL.ApplyEntitlementsSetToUsersMutation(
+                    input: GraphQL.ApplyEntitlementsSetToUsersInput(
+                        operations: items.map {
+                            GraphQL.ApplyEntitlementsSetToUserInput(
+                                entitlementsSetName: $0.entitlementsSetName,
+                                externalId: $0.externalId)
+                        }
+                    )
+                ),
+                resultHandler: { (result, error) in
+                    if let error = error {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error))
+                    }
+
+                    guard let result = result else {
+                        return continuation.resume(
+                            throwing: SudoEntitlementsAdminClientError.fatalError(
+                                description: "Mutation completed successfully but result is missing."
+                            )
+                        )
+                    }
+
+                    if let error = result.errors?.first {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromGraphQLError(error: error))
+                    }
+
+                    guard let results = result.data?.applyEntitlementsSetToUsers else {
+                        return continuation.resume(
+                            throwing: SudoEntitlementsAdminClientError.fatalError(
+                                description: "Mutation completed successfully but data is missing."
+                            )
+                        )
+                    }
+
+                    continuation.resume(
+                        returning: results.map {
+                            guard let success = $0.asExternalUserEntitlements else {
+                                guard let failure = $0.asExternalUserEntitlementsError else {
+                                        return .failure(.fatalError(
+                                            description: "Unexpected type \($0.__typename) returned"))
+                                }
+
+                                guard let error = SudoEntitlementsAdminClientError.fromGraphQLErrorType(failure.error) else {
+                                    return .failure(.fatalError(description: "Unexpected service error: \(failure.error)"))
+                                }
+                                return .failure(error)
+
+                            }
+
+                            return .success(UserEntitlements(
+                                createdAt: Date(millisecondsSinceEpoch: success.createdAtEpochMs),
+                                updatedAt: Date(millisecondsSinceEpoch: success.updatedAtEpochMs),
+                                version: success.version,
+                                externalId: success.externalId,
+                                owner: success.owner,
+                                entitlementsSetName: success.entitlementsSetName,
+                                entitlementsSequenceName: success.entitlementsSequenceName,
+                                entitlements: success.entitlements.map {
+                                    Entitlement(
+                                        name: $0.name,
+                                        description: $0.description,
+                                        value: $0.value
+                                    )
+                                },
+                                transitionsRelativeTo: success.transitionsRelativeToEpochMs.map { Date(millisecondsSinceEpoch: $0 ) } ?? nil,
+                                accountState: success.accountState.map { $0 == .active ? AccountState.active : AccountState.locked } ?? nil
+))
+                        }
+                    )
+                }
+            )
+        })
+    }
+
     public func applyEntitlementsToUserWithExternalId(
         _ externalId: String,
         entitlements: [Entitlement]
     ) async throws -> UserEntitlements {
         return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<UserEntitlements, Error>) in
             self.graphQLClient.perform(
-                mutation: ApplyEntitlementsToUserMutation(
-                    input: ApplyEntitlementsToUserInput(
-                        externalId: externalId,
+                mutation: GraphQL.ApplyEntitlementsToUserMutation(
+                    input: GraphQL.ApplyEntitlementsToUserInput(
                         entitlements: entitlements.map {
-                            EntitlementInput(name: $0.name, description: $0.description, value: $0.value)
-                        }
+                            GraphQL.EntitlementInput(description: $0.description, name: $0.name, value: $0.value)
+                        }, externalId: externalId
                     )
                 ),
                 resultHandler: { (result, error) in
@@ -1158,12 +1404,95 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
         })
     }
 
+    public func applyEntitlementsToUsers(
+        items: [ApplyEntitlementsItem]
+    ) async throws -> [UserEntitlementsResult] {
+        return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<[UserEntitlementsResult], Error>) in
+            self.graphQLClient.perform(
+                mutation: GraphQL.ApplyEntitlementsToUsersMutation(
+                    input: GraphQL.ApplyEntitlementsToUsersInput(
+                        operations: items.map {
+                            GraphQL.ApplyEntitlementsToUserInput(
+                                entitlements: $0.entitlements.map {
+                                        GraphQL.EntitlementInput(
+                                            description: $0.description,
+                                            name: $0.name,
+                                            value: $0.value)
+                                },
+                                externalId: $0.externalId)
+                        }
+                    )
+                ),
+                resultHandler: { (result, error) in
+                    if let error = error {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error))
+                    }
+
+                    guard let result = result else {
+                        return continuation.resume(
+                            throwing: SudoEntitlementsAdminClientError.fatalError(
+                                description: "Mutation completed successfully but result is missing."
+                            )
+                        )
+                    }
+
+                    if let error = result.errors?.first {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromGraphQLError(error: error))
+                    }
+
+                    guard let results = result.data?.applyEntitlementsToUsers else {
+                        return continuation.resume(
+                            throwing: SudoEntitlementsAdminClientError.fatalError(
+                                description: "Mutation completed successfully but data is missing."
+                            )
+                        )
+                    }
+
+                    continuation.resume(
+                        returning: results.map {
+                            guard let success = $0.asExternalUserEntitlements else {
+                                guard let failure = $0.asExternalUserEntitlementsError else {
+                                        return .failure(.fatalError(description: "Unexpected result type: \($0.__typename) returned"))
+                                }
+
+                                guard let error = SudoEntitlementsAdminClientError.fromGraphQLErrorType(failure.error) else {
+                                    return .failure(.fatalError(description: "Unexpected service error: \(failure.error)"))
+                                }
+                                return .failure(error)
+
+                            }
+
+                            return .success(UserEntitlements(
+                                createdAt: Date(millisecondsSinceEpoch: success.createdAtEpochMs),
+                                updatedAt: Date(millisecondsSinceEpoch: success.updatedAtEpochMs),
+                                version: success.version,
+                                externalId: success.externalId,
+                                owner: success.owner,
+                                entitlementsSetName: success.entitlementsSetName,
+                                entitlementsSequenceName: success.entitlementsSequenceName,
+                                entitlements: success.entitlements.map {
+                                    Entitlement(
+                                        name: $0.name,
+                                        description: $0.description,
+                                        value: $0.value
+                                    )
+                                },
+                                transitionsRelativeTo: success.transitionsRelativeToEpochMs.map { Date(millisecondsSinceEpoch: $0 ) } ?? nil,
+                                accountState: success.accountState.map { $0 == .active ? AccountState.active : AccountState.locked } ?? nil
+))
+                        }
+                    )
+                }
+            )
+        })
+    }
+
     public func removeEntitledUserWithExternalId(
         _ externalId: String
     ) async throws -> EntitledUser? {
         return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<EntitledUser?, Error>) in
             self.graphQLClient.perform(
-                mutation: RemoveEntitledUserMutation(input: RemoveEntitledUserInput(externalId: externalId)),
+                mutation: GraphQL.RemoveEntitledUserMutation(input: GraphQL.RemoveEntitledUserInput(externalId: externalId)),
                 resultHandler: { (result, error) in
                     if let error = error {
                         return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error))

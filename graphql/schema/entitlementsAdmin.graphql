@@ -1,89 +1,5 @@
-# An entitlement
-type Entitlement {
-  # Name of the entitlement
-  name: String!
-
-  # Optional description of the entitlement
-  description: String
-
-  # Value of the entitlement.
-  value: Int!
-}
-
-# Effective entitlements for a user
-type UserEntitlements {
-  # Version number of the user's entitlements. This is incremented every
-  # time there is a change of entitlements set or explicit entitlements
-  # for this user.
-  #
-  # For users entitled by entitlement set, the fractional part of this version
-  # specifies the version of the entitlements set itself. Entitlements set version
-  # is divided by 100000 then added to the user entitlements version
-  #
-  # This ensures that the version of user entitlements always increases mon
-  version: Float!
-
-  # Name of the entitlements set specified for this user. Will be undefined
-  # if entitlements have been specified explicitly rather than by an
-  # entitlements set name.
-  entitlementsSetName: String
-
-  # Effective entitlements for the user either obtained from the entitlements
-  # set or as specified explicitly for this user.
-  entitlements: [Entitlement!]!
-}
-
-# Sub-resource consumer of the entitlement
-# For example some entitlements are per-Sudo
-type EntitlementConsumer {
-  # ID of the consuming resource
-  id: ID!
-
-  # Issuer of the consuming resource ID e.g. sudoplatform.sudoservice for Sudos
-  issuer: String!
-}
-
-type EntitlementConsumption {
-  # Consumer of entitlement. If not present, entitlement is consumed
-  # at the user level
-  consumer: EntitlementConsumer
-
-  # Name of the entitlement
-  name: String!
-
-  # Entitled amount
-  value: Int!
-
-  # Consumed amount
-  consumed: Int!
-
-  # Available amount
-  available: Int!
-
-  # time this entitlement was first consumed
-  firstConsumedAtEpochMs: Float
-
-  # time of most recent consumption of this entitlement
-  lastConsumedAtEpochMs: Float
-}
-
-type EntitlementsConsumption {
-  # Current active entitlements for the user
-  entitlements: UserEntitlements!
-
-  # Current entitlements consumption for the user. Absence of a specific
-  # entitlement in this array implies no consumption of that entitlement.
-  consumption: [EntitlementConsumption!]!
-}
-
-input InternalGetEntitlementsForUserInput {
-  userId: ID!
-}
-
-input ConsumeBooleanEntitlementInput {
-  # Name of boolean entitlement to consume
-  entitlementName: String!
-}
+## See @anonyome/cdk-constructs/lib/entitledService/schema.graphql for additional types
+## referenced here
 
 # A set of entitlements
 type EntitlementsSet {
@@ -151,7 +67,13 @@ type EntitlementsSequence {
   transitions: [EntitlementsSequenceTransition!]!
 }
 
-# possible values for user account state
+# Pagination connection for use when listing entitlements sequences
+type EntitlementsSequencesConnection {
+  items: [EntitlementsSequence!]!
+  nextToken: String
+}
+
+# Possible values for user account state
 enum AccountStates {
   ACTIVE
   LOCKED
@@ -170,20 +92,14 @@ type ExternalUserEntitlements {
   updatedAtEpochMs: Float!
 
   # Version number of the user's entitlements. This is incremented every
-  # time there is a change of entitlements sequence, entitlements set or
-  # explicit entitlements for this user.
+  # time there is a change of entitlements set or explicit entitlements
+  # for this user.
   #
   # For users entitled by entitlement set, the fractional part of this version
   # specifies the version of the entitlements set itself. Entitlements set version
   # is divided by 100000 then added to the user entitlements version
   #
-  # For users entitled by entitlement sequence, the version is calculated as:
-  #
-  #   user entitlements version
-  # + (sum of versions of all entitlements sets referenced by the sequence) / 100 000
-  # + version of the entitlements sequence / 1 000 000 000
-  #
-  # This ensures that the version of user entitlements always increases monotonically
+  # This ensures that the version of user entitlements always increases mon
   version: Float!
 
   # External IDP identifier identifying the user
@@ -197,9 +113,9 @@ type ExternalUserEntitlements {
   # account state
   accountState: AccountStates
 
-  # Name of the effective entitlements set specified for this user.
-  # Will be undefined if entitlements have been specified explicitly rather than
-  # by an entitlements set or entitlements sequence.
+  # Name of the entitlements set specified for this user. Will be undefined
+  # if entitlements have been specified explicitly rather than by an
+  # entitlements set name.
   entitlementsSetName: String
 
   # Name of the entitlements sequence specified for this user. Will be undefined
@@ -207,8 +123,8 @@ type ExternalUserEntitlements {
   # rather than by an entitlements sequence name.
   entitlementsSequenceName: String
 
-  # Effective entitlements for the user either obtained from the effective
-  # entitlements set or as specified explicitly for this user.
+  # Effective entitlements for the user either obtained from the entitlements
+  # set or as specified explicitly for this user.
   entitlements: [Entitlement!]!
 
   # Milliseconds since epoch from when user's transitions should
@@ -217,12 +133,28 @@ type ExternalUserEntitlements {
   transitionsRelativeToEpochMs: Float
 }
 
+# An error result returned for an operation in a bulk applyEntitlements*ToUsers
+# mutation.
+type ExternalUserEntitlementsError {
+  # Error code of failed operation
+  error: String!
+}
+
+# Union of success and error results returned for operations in a bulk
+# applyEntitlements*ToUsers mutation.
+union ExternalUserEntitlementsResult = ExternalUserEntitlements | ExternalUserEntitlementsError
+
 # An aggregated list of entitlement consumption information for an external user.
 type ExternalEntitlementsConsumption {
   # User's active entitlements
   entitlements: ExternalUserEntitlements!
   # User's entitlement consumption
   consumption: [EntitlementConsumption!]!
+}
+
+# Entitled user.
+type EntitledUser {
+  externalId: String!
 }
 
 # Input representing an entitlement
@@ -236,17 +168,6 @@ input EntitlementInput {
 
   # Value of the entitlement.
   value: Int!
-}
-
-# Pagination connection for use when listing entitlements sequences
-type EntitlementsSequencesConnection {
-  items: [EntitlementsSequence!]!
-  nextToken: String
-}
-
-# Entitled user.
-type EntitledUser {
-  externalId: String!
 }
 
 # Input for the setEntitlementsSet mutation
@@ -279,6 +200,11 @@ input ApplyEntitlementsSetToUserInput {
   entitlementsSetName: String!
 }
 
+# Input for the applyEntitlementsSetToUsers mutation
+input ApplyEntitlementsSetToUsersInput {
+  operations: [ApplyEntitlementsSetToUserInput!]!
+}
+
 # Input for the applyEntitlementsSequenceToUser mutation
 input ApplyEntitlementsSequenceToUserInput {
   externalId: String!
@@ -290,10 +216,20 @@ input ApplyEntitlementsSequenceToUserInput {
   transitionsRelativeToEpochMs: Float
 }
 
+# Input for the applyEntitlementsSequenceToUsers mutation
+input ApplyEntitlementsSequenceToUsersInput {
+  operations: [ApplyEntitlementsSequenceToUserInput!]!
+}
+
 # Input for the applyEntitlementsToUser mutation
 input ApplyEntitlementsToUserInput {
   externalId: String!
   entitlements: [EntitlementInput!]!
+}
+
+# Input for the applyEntitlementsToUsers mutation
+input ApplyEntitlementsToUsersInput {
+  operations: [ApplyEntitlementsToUserInput!]!
 }
 
 # Input for the getEntitlementsForUser query
@@ -353,65 +289,98 @@ input RemoveEntitledUserInput {
 type Query {
   # Gets an entitlement set.
   getEntitlementsSet(input: GetEntitlementsSetInput!): EntitlementsSet
+    @aws_api_key
+    @aws_iam
 
   # Retrieves all entitlements sets.
   listEntitlementsSets(nextToken: String): EntitlementsSetsConnection!
+    @aws_api_key
+    @aws_iam
 
   # Gets an entitlement sequence.
   getEntitlementsSequence(
     input: GetEntitlementsSequenceInput!
-  ): EntitlementsSequence
+  ): EntitlementsSequence @aws_iam
 
   # Retrieves all entitlements sequences.
-  listEntitlementsSequences(nextToken: String): EntitlementsSequencesConnection!
+  listEntitlementsSequences(
+    nextToken: String
+  ): EntitlementsSequencesConnection! @aws_iam
 
   # Retrieve effective entitlements for a given external user.
   getEntitlementsForUser(
     input: GetEntitlementsForUserInput!
-  ): ExternalEntitlementsConsumption!
+  ): ExternalEntitlementsConsumption! @aws_iam
 }
 
 type Mutation {
   # Adds an entitlement set
   addEntitlementsSet(input: AddEntitlementsSetInput!): EntitlementsSet!
+    @aws_api_key
+    @aws_iam
 
   # Change the entitlements conferred by an entitlements set.
   setEntitlementsSet(input: SetEntitlementsSetInput!): EntitlementsSet!
+    @aws_api_key
+    @aws_iam
 
   # Remove an entitlements set. Any users configured against this entitlements
   # set will become unentitled.
   removeEntitlementsSet(input: RemoveEntitlementsSetInput!): EntitlementsSet
+    @aws_api_key
+    @aws_iam
 
   # Adds an entitlement sequence
   addEntitlementsSequence(
     input: AddEntitlementsSequenceInput!
-  ): EntitlementsSequence!
+  ): EntitlementsSequence! @aws_iam
 
   # Replace the definition of an entitlements sequence
   setEntitlementsSequence(
     input: SetEntitlementsSequenceInput!
-  ): EntitlementsSequence!
+  ): EntitlementsSequence! @aws_iam
 
   # Remove an entitlements sequence. Any users configured against this entitlements
   # sequence will become unentitled.
   removeEntitlementsSequence(
     input: RemoveEntitlementsSequenceInput!
-  ): EntitlementsSequence
+  ): EntitlementsSequence @aws_iam
 
   # Apply an entitlement set with the specified name to a user.
   applyEntitlementsSetToUser(
     input: ApplyEntitlementsSetToUserInput!
-  ): ExternalUserEntitlements!
+  ): ExternalUserEntitlements! @aws_iam
+
+  # Apply an entitlement set with the specified names to users in bulk.
+  # Equivalent to calling applyEntitlementsSetToUser
+  # for each operation.
+  applyEntitlementsSetToUsers(
+    input: ApplyEntitlementsSetToUsersInput!
+  ):  [ExternalUserEntitlementsResult!]!
 
   # Apply an entitlement sequence with the specified name to a user.
   applyEntitlementsSequenceToUser(
     input: ApplyEntitlementsSequenceToUserInput!
-  ): ExternalUserEntitlements!
+  ): ExternalUserEntitlements! @aws_iam
+
+  # Apply an entitlement sequence with the specified names to users in bulk.
+  # Equivalent to calling applyEntitlementsSequenceToUser
+  # for each operation.
+  applyEntitlementsSequenceToUsers(
+    input: ApplyEntitlementsSequenceToUsersInput!
+  ): [ExternalUserEntitlementsResult!]!
 
   # Apply entitlements to a user without using a named entitlements set.
   applyEntitlementsToUser(
     input: ApplyEntitlementsToUserInput!
-  ): ExternalUserEntitlements!
+  ): ExternalUserEntitlements! @aws_iam
+
+  # Apply entitlements to users without using a named entitlements set.
+  # Equivalent to calling applyEntitlementsToUser
+  # for each operation.
+  applyEntitlementsToUsers(
+    input: ApplyEntitlementsToUsersInput!
+  ): [ExternalUserEntitlementsResult!]!
 
   # Remove an entitled user. Entitlements and consumption records related
   # to the specified user will be removed.
