@@ -274,6 +274,41 @@ internal struct ApplyEntitlementsToUsersInput: GraphQLMapConvertible {
   }
 }
 
+internal struct ApplyExpendableEntitlementsToUserInput: GraphQLMapConvertible {
+  internal var graphQLMap: GraphQLMap
+
+  internal init(expendableEntitlements: [EntitlementInput], externalId: String, requestId: GraphQLID) {
+    graphQLMap = ["expendableEntitlements": expendableEntitlements, "externalId": externalId, "requestId": requestId]
+  }
+
+  internal var expendableEntitlements: [EntitlementInput] {
+    get {
+      return graphQLMap["expendableEntitlements"] as! [EntitlementInput]
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "expendableEntitlements")
+    }
+  }
+
+  internal var externalId: String {
+    get {
+      return graphQLMap["externalId"] as! String
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "externalId")
+    }
+  }
+
+  internal var requestId: GraphQLID {
+    get {
+      return graphQLMap["requestId"] as! GraphQLID
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "requestId")
+    }
+  }
+}
+
 internal enum AccountStates: RawRepresentable, Equatable, JSONDecodable, JSONEncodable {
   internal typealias RawValue = String
   case active
@@ -303,6 +338,23 @@ internal enum AccountStates: RawRepresentable, Equatable, JSONDecodable, JSONEnc
       case (.locked, .locked): return true
       case (.unknown(let lhsValue), .unknown(let rhsValue)): return lhsValue == rhsValue
       default: return false
+    }
+  }
+}
+
+internal struct GetEntitlementDefinitionInput: GraphQLMapConvertible {
+  internal var graphQLMap: GraphQLMap
+
+  internal init(name: String) {
+    graphQLMap = ["name": name]
+  }
+
+  internal var name: String {
+    get {
+      return graphQLMap["name"] as! String
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "name")
     }
   }
 }
@@ -994,6 +1046,7 @@ internal final class ApplyEntitlementsSequenceToUserMutation: GraphQLMutation {
         GraphQLField("entitlementsSetName", type: .scalar(String.self)),
         GraphQLField("entitlementsSequenceName", type: .scalar(String.self)),
         GraphQLField("entitlements", type: .nonNull(.list(.nonNull(.object(Entitlement.selections))))),
+        GraphQLField("expendableEntitlements", type: .nonNull(.list(.nonNull(.object(ExpendableEntitlement.selections))))),
         GraphQLField("transitionsRelativeToEpochMs", type: .scalar(Double.self)),
       ]
 
@@ -1003,8 +1056,8 @@ internal final class ApplyEntitlementsSequenceToUserMutation: GraphQLMutation {
         self.snapshot = snapshot
       }
 
-      internal init(createdAtEpochMs: Double, updatedAtEpochMs: Double, version: Double, externalId: String, owner: String? = nil, accountState: AccountStates? = nil, entitlementsSetName: String? = nil, entitlementsSequenceName: String? = nil, entitlements: [Entitlement], transitionsRelativeToEpochMs: Double? = nil) {
-        self.init(snapshot: ["__typename": "ExternalUserEntitlements", "createdAtEpochMs": createdAtEpochMs, "updatedAtEpochMs": updatedAtEpochMs, "version": version, "externalId": externalId, "owner": owner, "accountState": accountState, "entitlementsSetName": entitlementsSetName, "entitlementsSequenceName": entitlementsSequenceName, "entitlements": entitlements.map { $0.snapshot }, "transitionsRelativeToEpochMs": transitionsRelativeToEpochMs])
+      internal init(createdAtEpochMs: Double, updatedAtEpochMs: Double, version: Double, externalId: String, owner: String? = nil, accountState: AccountStates? = nil, entitlementsSetName: String? = nil, entitlementsSequenceName: String? = nil, entitlements: [Entitlement], expendableEntitlements: [ExpendableEntitlement], transitionsRelativeToEpochMs: Double? = nil) {
+        self.init(snapshot: ["__typename": "ExternalUserEntitlements", "createdAtEpochMs": createdAtEpochMs, "updatedAtEpochMs": updatedAtEpochMs, "version": version, "externalId": externalId, "owner": owner, "accountState": accountState, "entitlementsSetName": entitlementsSetName, "entitlementsSequenceName": entitlementsSequenceName, "entitlements": entitlements.map { $0.snapshot }, "expendableEntitlements": expendableEntitlements.map { $0.snapshot }, "transitionsRelativeToEpochMs": transitionsRelativeToEpochMs])
       }
 
       internal var __typename: String {
@@ -1097,6 +1150,15 @@ internal final class ApplyEntitlementsSequenceToUserMutation: GraphQLMutation {
         }
       }
 
+      internal var expendableEntitlements: [ExpendableEntitlement] {
+        get {
+          return (snapshot["expendableEntitlements"] as! [Snapshot]).map { ExpendableEntitlement(snapshot: $0) }
+        }
+        set {
+          snapshot.updateValue(newValue.map { $0.snapshot }, forKey: "expendableEntitlements")
+        }
+      }
+
       internal var transitionsRelativeToEpochMs: Double? {
         get {
           return snapshot["transitionsRelativeToEpochMs"] as? Double
@@ -1129,6 +1191,86 @@ internal final class ApplyEntitlementsSequenceToUserMutation: GraphQLMutation {
       }
 
       internal struct Entitlement: GraphQLSelectionSet {
+        internal static let possibleTypes = ["Entitlement"]
+
+        internal static let selections: [GraphQLSelection] = [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("name", type: .nonNull(.scalar(String.self))),
+          GraphQLField("description", type: .scalar(String.self)),
+          GraphQLField("value", type: .nonNull(.scalar(Int.self))),
+        ]
+
+        internal var snapshot: Snapshot
+
+        internal init(snapshot: Snapshot) {
+          self.snapshot = snapshot
+        }
+
+        internal init(name: String, description: String? = nil, value: Int) {
+          self.init(snapshot: ["__typename": "Entitlement", "name": name, "description": description, "value": value])
+        }
+
+        internal var __typename: String {
+          get {
+            return snapshot["__typename"]! as! String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        internal var name: String {
+          get {
+            return snapshot["name"]! as! String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "name")
+          }
+        }
+
+        internal var description: String? {
+          get {
+            return snapshot["description"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "description")
+          }
+        }
+
+        internal var value: Int {
+          get {
+            return snapshot["value"]! as! Int
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "value")
+          }
+        }
+
+        internal var fragments: Fragments {
+          get {
+            return Fragments(snapshot: snapshot)
+          }
+          set {
+            snapshot += newValue.snapshot
+          }
+        }
+
+        internal struct Fragments {
+          internal var snapshot: Snapshot
+
+          internal var entitlement: Entitlement {
+            get {
+              return Entitlement(snapshot: snapshot)
+            }
+            set {
+              snapshot += newValue.snapshot
+            }
+          }
+        }
+      }
+
+      internal struct ExpendableEntitlement: GraphQLSelectionSet {
         internal static let possibleTypes = ["Entitlement"]
 
         internal static let selections: [GraphQLSelection] = [
@@ -1271,8 +1413,8 @@ internal final class ApplyEntitlementsSequenceToUsersMutation: GraphQLMutation {
         self.snapshot = snapshot
       }
 
-      internal static func makeExternalUserEntitlements(createdAtEpochMs: Double, updatedAtEpochMs: Double, version: Double, externalId: String, owner: String? = nil, accountState: AccountStates? = nil, entitlementsSetName: String? = nil, entitlementsSequenceName: String? = nil, entitlements: [AsExternalUserEntitlements.Entitlement], transitionsRelativeToEpochMs: Double? = nil) -> ApplyEntitlementsSequenceToUser {
-        return ApplyEntitlementsSequenceToUser(snapshot: ["__typename": "ExternalUserEntitlements", "createdAtEpochMs": createdAtEpochMs, "updatedAtEpochMs": updatedAtEpochMs, "version": version, "externalId": externalId, "owner": owner, "accountState": accountState, "entitlementsSetName": entitlementsSetName, "entitlementsSequenceName": entitlementsSequenceName, "entitlements": entitlements.map { $0.snapshot }, "transitionsRelativeToEpochMs": transitionsRelativeToEpochMs])
+      internal static func makeExternalUserEntitlements(createdAtEpochMs: Double, updatedAtEpochMs: Double, version: Double, externalId: String, owner: String? = nil, accountState: AccountStates? = nil, entitlementsSetName: String? = nil, entitlementsSequenceName: String? = nil, entitlements: [AsExternalUserEntitlements.Entitlement], expendableEntitlements: [AsExternalUserEntitlements.ExpendableEntitlement], transitionsRelativeToEpochMs: Double? = nil) -> ApplyEntitlementsSequenceToUser {
+        return ApplyEntitlementsSequenceToUser(snapshot: ["__typename": "ExternalUserEntitlements", "createdAtEpochMs": createdAtEpochMs, "updatedAtEpochMs": updatedAtEpochMs, "version": version, "externalId": externalId, "owner": owner, "accountState": accountState, "entitlementsSetName": entitlementsSetName, "entitlementsSequenceName": entitlementsSequenceName, "entitlements": entitlements.map { $0.snapshot }, "expendableEntitlements": expendableEntitlements.map { $0.snapshot }, "transitionsRelativeToEpochMs": transitionsRelativeToEpochMs])
       }
 
       internal static func makeExternalUserEntitlementsError(error: String) -> ApplyEntitlementsSequenceToUser {
@@ -1314,6 +1456,7 @@ internal final class ApplyEntitlementsSequenceToUsersMutation: GraphQLMutation {
           GraphQLField("entitlementsSetName", type: .scalar(String.self)),
           GraphQLField("entitlementsSequenceName", type: .scalar(String.self)),
           GraphQLField("entitlements", type: .nonNull(.list(.nonNull(.object(Entitlement.selections))))),
+          GraphQLField("expendableEntitlements", type: .nonNull(.list(.nonNull(.object(ExpendableEntitlement.selections))))),
           GraphQLField("transitionsRelativeToEpochMs", type: .scalar(Double.self)),
         ]
 
@@ -1323,8 +1466,8 @@ internal final class ApplyEntitlementsSequenceToUsersMutation: GraphQLMutation {
           self.snapshot = snapshot
         }
 
-        internal init(createdAtEpochMs: Double, updatedAtEpochMs: Double, version: Double, externalId: String, owner: String? = nil, accountState: AccountStates? = nil, entitlementsSetName: String? = nil, entitlementsSequenceName: String? = nil, entitlements: [Entitlement], transitionsRelativeToEpochMs: Double? = nil) {
-          self.init(snapshot: ["__typename": "ExternalUserEntitlements", "createdAtEpochMs": createdAtEpochMs, "updatedAtEpochMs": updatedAtEpochMs, "version": version, "externalId": externalId, "owner": owner, "accountState": accountState, "entitlementsSetName": entitlementsSetName, "entitlementsSequenceName": entitlementsSequenceName, "entitlements": entitlements.map { $0.snapshot }, "transitionsRelativeToEpochMs": transitionsRelativeToEpochMs])
+        internal init(createdAtEpochMs: Double, updatedAtEpochMs: Double, version: Double, externalId: String, owner: String? = nil, accountState: AccountStates? = nil, entitlementsSetName: String? = nil, entitlementsSequenceName: String? = nil, entitlements: [Entitlement], expendableEntitlements: [ExpendableEntitlement], transitionsRelativeToEpochMs: Double? = nil) {
+          self.init(snapshot: ["__typename": "ExternalUserEntitlements", "createdAtEpochMs": createdAtEpochMs, "updatedAtEpochMs": updatedAtEpochMs, "version": version, "externalId": externalId, "owner": owner, "accountState": accountState, "entitlementsSetName": entitlementsSetName, "entitlementsSequenceName": entitlementsSequenceName, "entitlements": entitlements.map { $0.snapshot }, "expendableEntitlements": expendableEntitlements.map { $0.snapshot }, "transitionsRelativeToEpochMs": transitionsRelativeToEpochMs])
         }
 
         internal var __typename: String {
@@ -1417,6 +1560,15 @@ internal final class ApplyEntitlementsSequenceToUsersMutation: GraphQLMutation {
           }
         }
 
+        internal var expendableEntitlements: [ExpendableEntitlement] {
+          get {
+            return (snapshot["expendableEntitlements"] as! [Snapshot]).map { ExpendableEntitlement(snapshot: $0) }
+          }
+          set {
+            snapshot.updateValue(newValue.map { $0.snapshot }, forKey: "expendableEntitlements")
+          }
+        }
+
         internal var transitionsRelativeToEpochMs: Double? {
           get {
             return snapshot["transitionsRelativeToEpochMs"] as? Double
@@ -1449,6 +1601,86 @@ internal final class ApplyEntitlementsSequenceToUsersMutation: GraphQLMutation {
         }
 
         internal struct Entitlement: GraphQLSelectionSet {
+          internal static let possibleTypes = ["Entitlement"]
+
+          internal static let selections: [GraphQLSelection] = [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("name", type: .nonNull(.scalar(String.self))),
+            GraphQLField("description", type: .scalar(String.self)),
+            GraphQLField("value", type: .nonNull(.scalar(Int.self))),
+          ]
+
+          internal var snapshot: Snapshot
+
+          internal init(snapshot: Snapshot) {
+            self.snapshot = snapshot
+          }
+
+          internal init(name: String, description: String? = nil, value: Int) {
+            self.init(snapshot: ["__typename": "Entitlement", "name": name, "description": description, "value": value])
+          }
+
+          internal var __typename: String {
+            get {
+              return snapshot["__typename"]! as! String
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          internal var name: String {
+            get {
+              return snapshot["name"]! as! String
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "name")
+            }
+          }
+
+          internal var description: String? {
+            get {
+              return snapshot["description"] as? String
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "description")
+            }
+          }
+
+          internal var value: Int {
+            get {
+              return snapshot["value"]! as! Int
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "value")
+            }
+          }
+
+          internal var fragments: Fragments {
+            get {
+              return Fragments(snapshot: snapshot)
+            }
+            set {
+              snapshot += newValue.snapshot
+            }
+          }
+
+          internal struct Fragments {
+            internal var snapshot: Snapshot
+
+            internal var entitlement: Entitlement {
+              get {
+                return Entitlement(snapshot: snapshot)
+              }
+              set {
+                snapshot += newValue.snapshot
+              }
+            }
+          }
+        }
+
+        internal struct ExpendableEntitlement: GraphQLSelectionSet {
           internal static let possibleTypes = ["Entitlement"]
 
           internal static let selections: [GraphQLSelection] = [
@@ -1660,6 +1892,7 @@ internal final class ApplyEntitlementsSetToUserMutation: GraphQLMutation {
         GraphQLField("entitlementsSetName", type: .scalar(String.self)),
         GraphQLField("entitlementsSequenceName", type: .scalar(String.self)),
         GraphQLField("entitlements", type: .nonNull(.list(.nonNull(.object(Entitlement.selections))))),
+        GraphQLField("expendableEntitlements", type: .nonNull(.list(.nonNull(.object(ExpendableEntitlement.selections))))),
         GraphQLField("transitionsRelativeToEpochMs", type: .scalar(Double.self)),
       ]
 
@@ -1669,8 +1902,8 @@ internal final class ApplyEntitlementsSetToUserMutation: GraphQLMutation {
         self.snapshot = snapshot
       }
 
-      internal init(createdAtEpochMs: Double, updatedAtEpochMs: Double, version: Double, externalId: String, owner: String? = nil, accountState: AccountStates? = nil, entitlementsSetName: String? = nil, entitlementsSequenceName: String? = nil, entitlements: [Entitlement], transitionsRelativeToEpochMs: Double? = nil) {
-        self.init(snapshot: ["__typename": "ExternalUserEntitlements", "createdAtEpochMs": createdAtEpochMs, "updatedAtEpochMs": updatedAtEpochMs, "version": version, "externalId": externalId, "owner": owner, "accountState": accountState, "entitlementsSetName": entitlementsSetName, "entitlementsSequenceName": entitlementsSequenceName, "entitlements": entitlements.map { $0.snapshot }, "transitionsRelativeToEpochMs": transitionsRelativeToEpochMs])
+      internal init(createdAtEpochMs: Double, updatedAtEpochMs: Double, version: Double, externalId: String, owner: String? = nil, accountState: AccountStates? = nil, entitlementsSetName: String? = nil, entitlementsSequenceName: String? = nil, entitlements: [Entitlement], expendableEntitlements: [ExpendableEntitlement], transitionsRelativeToEpochMs: Double? = nil) {
+        self.init(snapshot: ["__typename": "ExternalUserEntitlements", "createdAtEpochMs": createdAtEpochMs, "updatedAtEpochMs": updatedAtEpochMs, "version": version, "externalId": externalId, "owner": owner, "accountState": accountState, "entitlementsSetName": entitlementsSetName, "entitlementsSequenceName": entitlementsSequenceName, "entitlements": entitlements.map { $0.snapshot }, "expendableEntitlements": expendableEntitlements.map { $0.snapshot }, "transitionsRelativeToEpochMs": transitionsRelativeToEpochMs])
       }
 
       internal var __typename: String {
@@ -1763,6 +1996,15 @@ internal final class ApplyEntitlementsSetToUserMutation: GraphQLMutation {
         }
       }
 
+      internal var expendableEntitlements: [ExpendableEntitlement] {
+        get {
+          return (snapshot["expendableEntitlements"] as! [Snapshot]).map { ExpendableEntitlement(snapshot: $0) }
+        }
+        set {
+          snapshot.updateValue(newValue.map { $0.snapshot }, forKey: "expendableEntitlements")
+        }
+      }
+
       internal var transitionsRelativeToEpochMs: Double? {
         get {
           return snapshot["transitionsRelativeToEpochMs"] as? Double
@@ -1795,6 +2037,86 @@ internal final class ApplyEntitlementsSetToUserMutation: GraphQLMutation {
       }
 
       internal struct Entitlement: GraphQLSelectionSet {
+        internal static let possibleTypes = ["Entitlement"]
+
+        internal static let selections: [GraphQLSelection] = [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("name", type: .nonNull(.scalar(String.self))),
+          GraphQLField("description", type: .scalar(String.self)),
+          GraphQLField("value", type: .nonNull(.scalar(Int.self))),
+        ]
+
+        internal var snapshot: Snapshot
+
+        internal init(snapshot: Snapshot) {
+          self.snapshot = snapshot
+        }
+
+        internal init(name: String, description: String? = nil, value: Int) {
+          self.init(snapshot: ["__typename": "Entitlement", "name": name, "description": description, "value": value])
+        }
+
+        internal var __typename: String {
+          get {
+            return snapshot["__typename"]! as! String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        internal var name: String {
+          get {
+            return snapshot["name"]! as! String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "name")
+          }
+        }
+
+        internal var description: String? {
+          get {
+            return snapshot["description"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "description")
+          }
+        }
+
+        internal var value: Int {
+          get {
+            return snapshot["value"]! as! Int
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "value")
+          }
+        }
+
+        internal var fragments: Fragments {
+          get {
+            return Fragments(snapshot: snapshot)
+          }
+          set {
+            snapshot += newValue.snapshot
+          }
+        }
+
+        internal struct Fragments {
+          internal var snapshot: Snapshot
+
+          internal var entitlement: Entitlement {
+            get {
+              return Entitlement(snapshot: snapshot)
+            }
+            set {
+              snapshot += newValue.snapshot
+            }
+          }
+        }
+      }
+
+      internal struct ExpendableEntitlement: GraphQLSelectionSet {
         internal static let possibleTypes = ["Entitlement"]
 
         internal static let selections: [GraphQLSelection] = [
@@ -1937,8 +2259,8 @@ internal final class ApplyEntitlementsSetToUsersMutation: GraphQLMutation {
         self.snapshot = snapshot
       }
 
-      internal static func makeExternalUserEntitlements(createdAtEpochMs: Double, updatedAtEpochMs: Double, version: Double, externalId: String, owner: String? = nil, accountState: AccountStates? = nil, entitlementsSetName: String? = nil, entitlementsSequenceName: String? = nil, entitlements: [AsExternalUserEntitlements.Entitlement], transitionsRelativeToEpochMs: Double? = nil) -> ApplyEntitlementsSetToUser {
-        return ApplyEntitlementsSetToUser(snapshot: ["__typename": "ExternalUserEntitlements", "createdAtEpochMs": createdAtEpochMs, "updatedAtEpochMs": updatedAtEpochMs, "version": version, "externalId": externalId, "owner": owner, "accountState": accountState, "entitlementsSetName": entitlementsSetName, "entitlementsSequenceName": entitlementsSequenceName, "entitlements": entitlements.map { $0.snapshot }, "transitionsRelativeToEpochMs": transitionsRelativeToEpochMs])
+      internal static func makeExternalUserEntitlements(createdAtEpochMs: Double, updatedAtEpochMs: Double, version: Double, externalId: String, owner: String? = nil, accountState: AccountStates? = nil, entitlementsSetName: String? = nil, entitlementsSequenceName: String? = nil, entitlements: [AsExternalUserEntitlements.Entitlement], expendableEntitlements: [AsExternalUserEntitlements.ExpendableEntitlement], transitionsRelativeToEpochMs: Double? = nil) -> ApplyEntitlementsSetToUser {
+        return ApplyEntitlementsSetToUser(snapshot: ["__typename": "ExternalUserEntitlements", "createdAtEpochMs": createdAtEpochMs, "updatedAtEpochMs": updatedAtEpochMs, "version": version, "externalId": externalId, "owner": owner, "accountState": accountState, "entitlementsSetName": entitlementsSetName, "entitlementsSequenceName": entitlementsSequenceName, "entitlements": entitlements.map { $0.snapshot }, "expendableEntitlements": expendableEntitlements.map { $0.snapshot }, "transitionsRelativeToEpochMs": transitionsRelativeToEpochMs])
       }
 
       internal static func makeExternalUserEntitlementsError(error: String) -> ApplyEntitlementsSetToUser {
@@ -1980,6 +2302,7 @@ internal final class ApplyEntitlementsSetToUsersMutation: GraphQLMutation {
           GraphQLField("entitlementsSetName", type: .scalar(String.self)),
           GraphQLField("entitlementsSequenceName", type: .scalar(String.self)),
           GraphQLField("entitlements", type: .nonNull(.list(.nonNull(.object(Entitlement.selections))))),
+          GraphQLField("expendableEntitlements", type: .nonNull(.list(.nonNull(.object(ExpendableEntitlement.selections))))),
           GraphQLField("transitionsRelativeToEpochMs", type: .scalar(Double.self)),
         ]
 
@@ -1989,8 +2312,8 @@ internal final class ApplyEntitlementsSetToUsersMutation: GraphQLMutation {
           self.snapshot = snapshot
         }
 
-        internal init(createdAtEpochMs: Double, updatedAtEpochMs: Double, version: Double, externalId: String, owner: String? = nil, accountState: AccountStates? = nil, entitlementsSetName: String? = nil, entitlementsSequenceName: String? = nil, entitlements: [Entitlement], transitionsRelativeToEpochMs: Double? = nil) {
-          self.init(snapshot: ["__typename": "ExternalUserEntitlements", "createdAtEpochMs": createdAtEpochMs, "updatedAtEpochMs": updatedAtEpochMs, "version": version, "externalId": externalId, "owner": owner, "accountState": accountState, "entitlementsSetName": entitlementsSetName, "entitlementsSequenceName": entitlementsSequenceName, "entitlements": entitlements.map { $0.snapshot }, "transitionsRelativeToEpochMs": transitionsRelativeToEpochMs])
+        internal init(createdAtEpochMs: Double, updatedAtEpochMs: Double, version: Double, externalId: String, owner: String? = nil, accountState: AccountStates? = nil, entitlementsSetName: String? = nil, entitlementsSequenceName: String? = nil, entitlements: [Entitlement], expendableEntitlements: [ExpendableEntitlement], transitionsRelativeToEpochMs: Double? = nil) {
+          self.init(snapshot: ["__typename": "ExternalUserEntitlements", "createdAtEpochMs": createdAtEpochMs, "updatedAtEpochMs": updatedAtEpochMs, "version": version, "externalId": externalId, "owner": owner, "accountState": accountState, "entitlementsSetName": entitlementsSetName, "entitlementsSequenceName": entitlementsSequenceName, "entitlements": entitlements.map { $0.snapshot }, "expendableEntitlements": expendableEntitlements.map { $0.snapshot }, "transitionsRelativeToEpochMs": transitionsRelativeToEpochMs])
         }
 
         internal var __typename: String {
@@ -2083,6 +2406,15 @@ internal final class ApplyEntitlementsSetToUsersMutation: GraphQLMutation {
           }
         }
 
+        internal var expendableEntitlements: [ExpendableEntitlement] {
+          get {
+            return (snapshot["expendableEntitlements"] as! [Snapshot]).map { ExpendableEntitlement(snapshot: $0) }
+          }
+          set {
+            snapshot.updateValue(newValue.map { $0.snapshot }, forKey: "expendableEntitlements")
+          }
+        }
+
         internal var transitionsRelativeToEpochMs: Double? {
           get {
             return snapshot["transitionsRelativeToEpochMs"] as? Double
@@ -2115,6 +2447,86 @@ internal final class ApplyEntitlementsSetToUsersMutation: GraphQLMutation {
         }
 
         internal struct Entitlement: GraphQLSelectionSet {
+          internal static let possibleTypes = ["Entitlement"]
+
+          internal static let selections: [GraphQLSelection] = [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("name", type: .nonNull(.scalar(String.self))),
+            GraphQLField("description", type: .scalar(String.self)),
+            GraphQLField("value", type: .nonNull(.scalar(Int.self))),
+          ]
+
+          internal var snapshot: Snapshot
+
+          internal init(snapshot: Snapshot) {
+            self.snapshot = snapshot
+          }
+
+          internal init(name: String, description: String? = nil, value: Int) {
+            self.init(snapshot: ["__typename": "Entitlement", "name": name, "description": description, "value": value])
+          }
+
+          internal var __typename: String {
+            get {
+              return snapshot["__typename"]! as! String
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          internal var name: String {
+            get {
+              return snapshot["name"]! as! String
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "name")
+            }
+          }
+
+          internal var description: String? {
+            get {
+              return snapshot["description"] as? String
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "description")
+            }
+          }
+
+          internal var value: Int {
+            get {
+              return snapshot["value"]! as! Int
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "value")
+            }
+          }
+
+          internal var fragments: Fragments {
+            get {
+              return Fragments(snapshot: snapshot)
+            }
+            set {
+              snapshot += newValue.snapshot
+            }
+          }
+
+          internal struct Fragments {
+            internal var snapshot: Snapshot
+
+            internal var entitlement: Entitlement {
+              get {
+                return Entitlement(snapshot: snapshot)
+              }
+              set {
+                snapshot += newValue.snapshot
+              }
+            }
+          }
+        }
+
+        internal struct ExpendableEntitlement: GraphQLSelectionSet {
           internal static let possibleTypes = ["Entitlement"]
 
           internal static let selections: [GraphQLSelection] = [
@@ -2326,6 +2738,7 @@ internal final class ApplyEntitlementsToUserMutation: GraphQLMutation {
         GraphQLField("entitlementsSetName", type: .scalar(String.self)),
         GraphQLField("entitlementsSequenceName", type: .scalar(String.self)),
         GraphQLField("entitlements", type: .nonNull(.list(.nonNull(.object(Entitlement.selections))))),
+        GraphQLField("expendableEntitlements", type: .nonNull(.list(.nonNull(.object(ExpendableEntitlement.selections))))),
         GraphQLField("transitionsRelativeToEpochMs", type: .scalar(Double.self)),
       ]
 
@@ -2335,8 +2748,8 @@ internal final class ApplyEntitlementsToUserMutation: GraphQLMutation {
         self.snapshot = snapshot
       }
 
-      internal init(createdAtEpochMs: Double, updatedAtEpochMs: Double, version: Double, externalId: String, owner: String? = nil, accountState: AccountStates? = nil, entitlementsSetName: String? = nil, entitlementsSequenceName: String? = nil, entitlements: [Entitlement], transitionsRelativeToEpochMs: Double? = nil) {
-        self.init(snapshot: ["__typename": "ExternalUserEntitlements", "createdAtEpochMs": createdAtEpochMs, "updatedAtEpochMs": updatedAtEpochMs, "version": version, "externalId": externalId, "owner": owner, "accountState": accountState, "entitlementsSetName": entitlementsSetName, "entitlementsSequenceName": entitlementsSequenceName, "entitlements": entitlements.map { $0.snapshot }, "transitionsRelativeToEpochMs": transitionsRelativeToEpochMs])
+      internal init(createdAtEpochMs: Double, updatedAtEpochMs: Double, version: Double, externalId: String, owner: String? = nil, accountState: AccountStates? = nil, entitlementsSetName: String? = nil, entitlementsSequenceName: String? = nil, entitlements: [Entitlement], expendableEntitlements: [ExpendableEntitlement], transitionsRelativeToEpochMs: Double? = nil) {
+        self.init(snapshot: ["__typename": "ExternalUserEntitlements", "createdAtEpochMs": createdAtEpochMs, "updatedAtEpochMs": updatedAtEpochMs, "version": version, "externalId": externalId, "owner": owner, "accountState": accountState, "entitlementsSetName": entitlementsSetName, "entitlementsSequenceName": entitlementsSequenceName, "entitlements": entitlements.map { $0.snapshot }, "expendableEntitlements": expendableEntitlements.map { $0.snapshot }, "transitionsRelativeToEpochMs": transitionsRelativeToEpochMs])
       }
 
       internal var __typename: String {
@@ -2429,6 +2842,15 @@ internal final class ApplyEntitlementsToUserMutation: GraphQLMutation {
         }
       }
 
+      internal var expendableEntitlements: [ExpendableEntitlement] {
+        get {
+          return (snapshot["expendableEntitlements"] as! [Snapshot]).map { ExpendableEntitlement(snapshot: $0) }
+        }
+        set {
+          snapshot.updateValue(newValue.map { $0.snapshot }, forKey: "expendableEntitlements")
+        }
+      }
+
       internal var transitionsRelativeToEpochMs: Double? {
         get {
           return snapshot["transitionsRelativeToEpochMs"] as? Double
@@ -2461,6 +2883,86 @@ internal final class ApplyEntitlementsToUserMutation: GraphQLMutation {
       }
 
       internal struct Entitlement: GraphQLSelectionSet {
+        internal static let possibleTypes = ["Entitlement"]
+
+        internal static let selections: [GraphQLSelection] = [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("name", type: .nonNull(.scalar(String.self))),
+          GraphQLField("description", type: .scalar(String.self)),
+          GraphQLField("value", type: .nonNull(.scalar(Int.self))),
+        ]
+
+        internal var snapshot: Snapshot
+
+        internal init(snapshot: Snapshot) {
+          self.snapshot = snapshot
+        }
+
+        internal init(name: String, description: String? = nil, value: Int) {
+          self.init(snapshot: ["__typename": "Entitlement", "name": name, "description": description, "value": value])
+        }
+
+        internal var __typename: String {
+          get {
+            return snapshot["__typename"]! as! String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        internal var name: String {
+          get {
+            return snapshot["name"]! as! String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "name")
+          }
+        }
+
+        internal var description: String? {
+          get {
+            return snapshot["description"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "description")
+          }
+        }
+
+        internal var value: Int {
+          get {
+            return snapshot["value"]! as! Int
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "value")
+          }
+        }
+
+        internal var fragments: Fragments {
+          get {
+            return Fragments(snapshot: snapshot)
+          }
+          set {
+            snapshot += newValue.snapshot
+          }
+        }
+
+        internal struct Fragments {
+          internal var snapshot: Snapshot
+
+          internal var entitlement: Entitlement {
+            get {
+              return Entitlement(snapshot: snapshot)
+            }
+            set {
+              snapshot += newValue.snapshot
+            }
+          }
+        }
+      }
+
+      internal struct ExpendableEntitlement: GraphQLSelectionSet {
         internal static let possibleTypes = ["Entitlement"]
 
         internal static let selections: [GraphQLSelection] = [
@@ -2603,8 +3105,8 @@ internal final class ApplyEntitlementsToUsersMutation: GraphQLMutation {
         self.snapshot = snapshot
       }
 
-      internal static func makeExternalUserEntitlements(createdAtEpochMs: Double, updatedAtEpochMs: Double, version: Double, externalId: String, owner: String? = nil, accountState: AccountStates? = nil, entitlementsSetName: String? = nil, entitlementsSequenceName: String? = nil, entitlements: [AsExternalUserEntitlements.Entitlement], transitionsRelativeToEpochMs: Double? = nil) -> ApplyEntitlementsToUser {
-        return ApplyEntitlementsToUser(snapshot: ["__typename": "ExternalUserEntitlements", "createdAtEpochMs": createdAtEpochMs, "updatedAtEpochMs": updatedAtEpochMs, "version": version, "externalId": externalId, "owner": owner, "accountState": accountState, "entitlementsSetName": entitlementsSetName, "entitlementsSequenceName": entitlementsSequenceName, "entitlements": entitlements.map { $0.snapshot }, "transitionsRelativeToEpochMs": transitionsRelativeToEpochMs])
+      internal static func makeExternalUserEntitlements(createdAtEpochMs: Double, updatedAtEpochMs: Double, version: Double, externalId: String, owner: String? = nil, accountState: AccountStates? = nil, entitlementsSetName: String? = nil, entitlementsSequenceName: String? = nil, entitlements: [AsExternalUserEntitlements.Entitlement], expendableEntitlements: [AsExternalUserEntitlements.ExpendableEntitlement], transitionsRelativeToEpochMs: Double? = nil) -> ApplyEntitlementsToUser {
+        return ApplyEntitlementsToUser(snapshot: ["__typename": "ExternalUserEntitlements", "createdAtEpochMs": createdAtEpochMs, "updatedAtEpochMs": updatedAtEpochMs, "version": version, "externalId": externalId, "owner": owner, "accountState": accountState, "entitlementsSetName": entitlementsSetName, "entitlementsSequenceName": entitlementsSequenceName, "entitlements": entitlements.map { $0.snapshot }, "expendableEntitlements": expendableEntitlements.map { $0.snapshot }, "transitionsRelativeToEpochMs": transitionsRelativeToEpochMs])
       }
 
       internal static func makeExternalUserEntitlementsError(error: String) -> ApplyEntitlementsToUser {
@@ -2646,6 +3148,7 @@ internal final class ApplyEntitlementsToUsersMutation: GraphQLMutation {
           GraphQLField("entitlementsSetName", type: .scalar(String.self)),
           GraphQLField("entitlementsSequenceName", type: .scalar(String.self)),
           GraphQLField("entitlements", type: .nonNull(.list(.nonNull(.object(Entitlement.selections))))),
+          GraphQLField("expendableEntitlements", type: .nonNull(.list(.nonNull(.object(ExpendableEntitlement.selections))))),
           GraphQLField("transitionsRelativeToEpochMs", type: .scalar(Double.self)),
         ]
 
@@ -2655,8 +3158,8 @@ internal final class ApplyEntitlementsToUsersMutation: GraphQLMutation {
           self.snapshot = snapshot
         }
 
-        internal init(createdAtEpochMs: Double, updatedAtEpochMs: Double, version: Double, externalId: String, owner: String? = nil, accountState: AccountStates? = nil, entitlementsSetName: String? = nil, entitlementsSequenceName: String? = nil, entitlements: [Entitlement], transitionsRelativeToEpochMs: Double? = nil) {
-          self.init(snapshot: ["__typename": "ExternalUserEntitlements", "createdAtEpochMs": createdAtEpochMs, "updatedAtEpochMs": updatedAtEpochMs, "version": version, "externalId": externalId, "owner": owner, "accountState": accountState, "entitlementsSetName": entitlementsSetName, "entitlementsSequenceName": entitlementsSequenceName, "entitlements": entitlements.map { $0.snapshot }, "transitionsRelativeToEpochMs": transitionsRelativeToEpochMs])
+        internal init(createdAtEpochMs: Double, updatedAtEpochMs: Double, version: Double, externalId: String, owner: String? = nil, accountState: AccountStates? = nil, entitlementsSetName: String? = nil, entitlementsSequenceName: String? = nil, entitlements: [Entitlement], expendableEntitlements: [ExpendableEntitlement], transitionsRelativeToEpochMs: Double? = nil) {
+          self.init(snapshot: ["__typename": "ExternalUserEntitlements", "createdAtEpochMs": createdAtEpochMs, "updatedAtEpochMs": updatedAtEpochMs, "version": version, "externalId": externalId, "owner": owner, "accountState": accountState, "entitlementsSetName": entitlementsSetName, "entitlementsSequenceName": entitlementsSequenceName, "entitlements": entitlements.map { $0.snapshot }, "expendableEntitlements": expendableEntitlements.map { $0.snapshot }, "transitionsRelativeToEpochMs": transitionsRelativeToEpochMs])
         }
 
         internal var __typename: String {
@@ -2749,6 +3252,15 @@ internal final class ApplyEntitlementsToUsersMutation: GraphQLMutation {
           }
         }
 
+        internal var expendableEntitlements: [ExpendableEntitlement] {
+          get {
+            return (snapshot["expendableEntitlements"] as! [Snapshot]).map { ExpendableEntitlement(snapshot: $0) }
+          }
+          set {
+            snapshot.updateValue(newValue.map { $0.snapshot }, forKey: "expendableEntitlements")
+          }
+        }
+
         internal var transitionsRelativeToEpochMs: Double? {
           get {
             return snapshot["transitionsRelativeToEpochMs"] as? Double
@@ -2781,6 +3293,86 @@ internal final class ApplyEntitlementsToUsersMutation: GraphQLMutation {
         }
 
         internal struct Entitlement: GraphQLSelectionSet {
+          internal static let possibleTypes = ["Entitlement"]
+
+          internal static let selections: [GraphQLSelection] = [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("name", type: .nonNull(.scalar(String.self))),
+            GraphQLField("description", type: .scalar(String.self)),
+            GraphQLField("value", type: .nonNull(.scalar(Int.self))),
+          ]
+
+          internal var snapshot: Snapshot
+
+          internal init(snapshot: Snapshot) {
+            self.snapshot = snapshot
+          }
+
+          internal init(name: String, description: String? = nil, value: Int) {
+            self.init(snapshot: ["__typename": "Entitlement", "name": name, "description": description, "value": value])
+          }
+
+          internal var __typename: String {
+            get {
+              return snapshot["__typename"]! as! String
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          internal var name: String {
+            get {
+              return snapshot["name"]! as! String
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "name")
+            }
+          }
+
+          internal var description: String? {
+            get {
+              return snapshot["description"] as? String
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "description")
+            }
+          }
+
+          internal var value: Int {
+            get {
+              return snapshot["value"]! as! Int
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "value")
+            }
+          }
+
+          internal var fragments: Fragments {
+            get {
+              return Fragments(snapshot: snapshot)
+            }
+            set {
+              snapshot += newValue.snapshot
+            }
+          }
+
+          internal struct Fragments {
+            internal var snapshot: Snapshot
+
+            internal var entitlement: Entitlement {
+              get {
+                return Entitlement(snapshot: snapshot)
+              }
+              set {
+                snapshot += newValue.snapshot
+              }
+            }
+          }
+        }
+
+        internal struct ExpendableEntitlement: GraphQLSelectionSet {
           internal static let possibleTypes = ["Entitlement"]
 
           internal static let selections: [GraphQLSelection] = [
@@ -2935,6 +3527,504 @@ internal final class ApplyEntitlementsToUsersMutation: GraphQLMutation {
   }
 }
 
+internal final class ApplyExpendableEntitlementsToUserMutation: GraphQLMutation {
+  internal static let operationString =
+    "mutation ApplyExpendableEntitlementsToUser($input: ApplyExpendableEntitlementsToUserInput!) {\n  applyExpendableEntitlementsToUser(input: $input) {\n    __typename\n    ...ExternalUserEntitlements\n  }\n}"
+
+  internal static var requestString: String { return operationString.appending(ExternalUserEntitlements.fragmentString).appending(Entitlement.fragmentString) }
+
+  internal var input: ApplyExpendableEntitlementsToUserInput
+
+  internal init(input: ApplyExpendableEntitlementsToUserInput) {
+    self.input = input
+  }
+
+  internal var variables: GraphQLMap? {
+    return ["input": input]
+  }
+
+  internal struct Data: GraphQLSelectionSet {
+    internal static let possibleTypes = ["Mutation"]
+
+    internal static let selections: [GraphQLSelection] = [
+      GraphQLField("applyExpendableEntitlementsToUser", arguments: ["input": GraphQLVariable("input")], type: .nonNull(.object(ApplyExpendableEntitlementsToUser.selections))),
+    ]
+
+    internal var snapshot: Snapshot
+
+    internal init(snapshot: Snapshot) {
+      self.snapshot = snapshot
+    }
+
+    internal init(applyExpendableEntitlementsToUser: ApplyExpendableEntitlementsToUser) {
+      self.init(snapshot: ["__typename": "Mutation", "applyExpendableEntitlementsToUser": applyExpendableEntitlementsToUser.snapshot])
+    }
+
+    internal var applyExpendableEntitlementsToUser: ApplyExpendableEntitlementsToUser {
+      get {
+        return ApplyExpendableEntitlementsToUser(snapshot: snapshot["applyExpendableEntitlementsToUser"]! as! Snapshot)
+      }
+      set {
+        snapshot.updateValue(newValue.snapshot, forKey: "applyExpendableEntitlementsToUser")
+      }
+    }
+
+    internal struct ApplyExpendableEntitlementsToUser: GraphQLSelectionSet {
+      internal static let possibleTypes = ["ExternalUserEntitlements"]
+
+      internal static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("createdAtEpochMs", type: .nonNull(.scalar(Double.self))),
+        GraphQLField("updatedAtEpochMs", type: .nonNull(.scalar(Double.self))),
+        GraphQLField("version", type: .nonNull(.scalar(Double.self))),
+        GraphQLField("externalId", type: .nonNull(.scalar(String.self))),
+        GraphQLField("owner", type: .scalar(String.self)),
+        GraphQLField("accountState", type: .scalar(AccountStates.self)),
+        GraphQLField("entitlementsSetName", type: .scalar(String.self)),
+        GraphQLField("entitlementsSequenceName", type: .scalar(String.self)),
+        GraphQLField("entitlements", type: .nonNull(.list(.nonNull(.object(Entitlement.selections))))),
+        GraphQLField("expendableEntitlements", type: .nonNull(.list(.nonNull(.object(ExpendableEntitlement.selections))))),
+        GraphQLField("transitionsRelativeToEpochMs", type: .scalar(Double.self)),
+      ]
+
+      internal var snapshot: Snapshot
+
+      internal init(snapshot: Snapshot) {
+        self.snapshot = snapshot
+      }
+
+      internal init(createdAtEpochMs: Double, updatedAtEpochMs: Double, version: Double, externalId: String, owner: String? = nil, accountState: AccountStates? = nil, entitlementsSetName: String? = nil, entitlementsSequenceName: String? = nil, entitlements: [Entitlement], expendableEntitlements: [ExpendableEntitlement], transitionsRelativeToEpochMs: Double? = nil) {
+        self.init(snapshot: ["__typename": "ExternalUserEntitlements", "createdAtEpochMs": createdAtEpochMs, "updatedAtEpochMs": updatedAtEpochMs, "version": version, "externalId": externalId, "owner": owner, "accountState": accountState, "entitlementsSetName": entitlementsSetName, "entitlementsSequenceName": entitlementsSequenceName, "entitlements": entitlements.map { $0.snapshot }, "expendableEntitlements": expendableEntitlements.map { $0.snapshot }, "transitionsRelativeToEpochMs": transitionsRelativeToEpochMs])
+      }
+
+      internal var __typename: String {
+        get {
+          return snapshot["__typename"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      internal var createdAtEpochMs: Double {
+        get {
+          return snapshot["createdAtEpochMs"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "createdAtEpochMs")
+        }
+      }
+
+      internal var updatedAtEpochMs: Double {
+        get {
+          return snapshot["updatedAtEpochMs"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "updatedAtEpochMs")
+        }
+      }
+
+      internal var version: Double {
+        get {
+          return snapshot["version"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "version")
+        }
+      }
+
+      internal var externalId: String {
+        get {
+          return snapshot["externalId"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "externalId")
+        }
+      }
+
+      internal var owner: String? {
+        get {
+          return snapshot["owner"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "owner")
+        }
+      }
+
+      internal var accountState: AccountStates? {
+        get {
+          return snapshot["accountState"] as? AccountStates
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "accountState")
+        }
+      }
+
+      internal var entitlementsSetName: String? {
+        get {
+          return snapshot["entitlementsSetName"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "entitlementsSetName")
+        }
+      }
+
+      internal var entitlementsSequenceName: String? {
+        get {
+          return snapshot["entitlementsSequenceName"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "entitlementsSequenceName")
+        }
+      }
+
+      internal var entitlements: [Entitlement] {
+        get {
+          return (snapshot["entitlements"] as! [Snapshot]).map { Entitlement(snapshot: $0) }
+        }
+        set {
+          snapshot.updateValue(newValue.map { $0.snapshot }, forKey: "entitlements")
+        }
+      }
+
+      internal var expendableEntitlements: [ExpendableEntitlement] {
+        get {
+          return (snapshot["expendableEntitlements"] as! [Snapshot]).map { ExpendableEntitlement(snapshot: $0) }
+        }
+        set {
+          snapshot.updateValue(newValue.map { $0.snapshot }, forKey: "expendableEntitlements")
+        }
+      }
+
+      internal var transitionsRelativeToEpochMs: Double? {
+        get {
+          return snapshot["transitionsRelativeToEpochMs"] as? Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "transitionsRelativeToEpochMs")
+        }
+      }
+
+      internal var fragments: Fragments {
+        get {
+          return Fragments(snapshot: snapshot)
+        }
+        set {
+          snapshot += newValue.snapshot
+        }
+      }
+
+      internal struct Fragments {
+        internal var snapshot: Snapshot
+
+        internal var externalUserEntitlements: ExternalUserEntitlements {
+          get {
+            return ExternalUserEntitlements(snapshot: snapshot)
+          }
+          set {
+            snapshot += newValue.snapshot
+          }
+        }
+      }
+
+      internal struct Entitlement: GraphQLSelectionSet {
+        internal static let possibleTypes = ["Entitlement"]
+
+        internal static let selections: [GraphQLSelection] = [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("name", type: .nonNull(.scalar(String.self))),
+          GraphQLField("description", type: .scalar(String.self)),
+          GraphQLField("value", type: .nonNull(.scalar(Int.self))),
+        ]
+
+        internal var snapshot: Snapshot
+
+        internal init(snapshot: Snapshot) {
+          self.snapshot = snapshot
+        }
+
+        internal init(name: String, description: String? = nil, value: Int) {
+          self.init(snapshot: ["__typename": "Entitlement", "name": name, "description": description, "value": value])
+        }
+
+        internal var __typename: String {
+          get {
+            return snapshot["__typename"]! as! String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        internal var name: String {
+          get {
+            return snapshot["name"]! as! String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "name")
+          }
+        }
+
+        internal var description: String? {
+          get {
+            return snapshot["description"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "description")
+          }
+        }
+
+        internal var value: Int {
+          get {
+            return snapshot["value"]! as! Int
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "value")
+          }
+        }
+
+        internal var fragments: Fragments {
+          get {
+            return Fragments(snapshot: snapshot)
+          }
+          set {
+            snapshot += newValue.snapshot
+          }
+        }
+
+        internal struct Fragments {
+          internal var snapshot: Snapshot
+
+          internal var entitlement: Entitlement {
+            get {
+              return Entitlement(snapshot: snapshot)
+            }
+            set {
+              snapshot += newValue.snapshot
+            }
+          }
+        }
+      }
+
+      internal struct ExpendableEntitlement: GraphQLSelectionSet {
+        internal static let possibleTypes = ["Entitlement"]
+
+        internal static let selections: [GraphQLSelection] = [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("name", type: .nonNull(.scalar(String.self))),
+          GraphQLField("description", type: .scalar(String.self)),
+          GraphQLField("value", type: .nonNull(.scalar(Int.self))),
+        ]
+
+        internal var snapshot: Snapshot
+
+        internal init(snapshot: Snapshot) {
+          self.snapshot = snapshot
+        }
+
+        internal init(name: String, description: String? = nil, value: Int) {
+          self.init(snapshot: ["__typename": "Entitlement", "name": name, "description": description, "value": value])
+        }
+
+        internal var __typename: String {
+          get {
+            return snapshot["__typename"]! as! String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        internal var name: String {
+          get {
+            return snapshot["name"]! as! String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "name")
+          }
+        }
+
+        internal var description: String? {
+          get {
+            return snapshot["description"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "description")
+          }
+        }
+
+        internal var value: Int {
+          get {
+            return snapshot["value"]! as! Int
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "value")
+          }
+        }
+
+        internal var fragments: Fragments {
+          get {
+            return Fragments(snapshot: snapshot)
+          }
+          set {
+            snapshot += newValue.snapshot
+          }
+        }
+
+        internal struct Fragments {
+          internal var snapshot: Snapshot
+
+          internal var entitlement: Entitlement {
+            get {
+              return Entitlement(snapshot: snapshot)
+            }
+            set {
+              snapshot += newValue.snapshot
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+internal final class GetEntitlementDefinitionQuery: GraphQLQuery {
+  internal static let operationString =
+    "query GetEntitlementDefinition($input: GetEntitlementDefinitionInput!) {\n  getEntitlementDefinition(input: $input) {\n    __typename\n    ...EntitlementDefinition\n  }\n}"
+
+  internal static var requestString: String { return operationString.appending(EntitlementDefinition.fragmentString) }
+
+  internal var input: GetEntitlementDefinitionInput
+
+  internal init(input: GetEntitlementDefinitionInput) {
+    self.input = input
+  }
+
+  internal var variables: GraphQLMap? {
+    return ["input": input]
+  }
+
+  internal struct Data: GraphQLSelectionSet {
+    internal static let possibleTypes = ["Query"]
+
+    internal static let selections: [GraphQLSelection] = [
+      GraphQLField("getEntitlementDefinition", arguments: ["input": GraphQLVariable("input")], type: .object(GetEntitlementDefinition.selections)),
+    ]
+
+    internal var snapshot: Snapshot
+
+    internal init(snapshot: Snapshot) {
+      self.snapshot = snapshot
+    }
+
+    internal init(getEntitlementDefinition: GetEntitlementDefinition? = nil) {
+      self.init(snapshot: ["__typename": "Query", "getEntitlementDefinition": getEntitlementDefinition.flatMap { $0.snapshot }])
+    }
+
+    internal var getEntitlementDefinition: GetEntitlementDefinition? {
+      get {
+        return (snapshot["getEntitlementDefinition"] as? Snapshot).flatMap { GetEntitlementDefinition(snapshot: $0) }
+      }
+      set {
+        snapshot.updateValue(newValue?.snapshot, forKey: "getEntitlementDefinition")
+      }
+    }
+
+    internal struct GetEntitlementDefinition: GraphQLSelectionSet {
+      internal static let possibleTypes = ["EntitlementDefinition"]
+
+      internal static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("name", type: .nonNull(.scalar(String.self))),
+        GraphQLField("description", type: .scalar(String.self)),
+        GraphQLField("type", type: .nonNull(.scalar(String.self))),
+        GraphQLField("expendable", type: .nonNull(.scalar(Bool.self))),
+      ]
+
+      internal var snapshot: Snapshot
+
+      internal init(snapshot: Snapshot) {
+        self.snapshot = snapshot
+      }
+
+      internal init(name: String, description: String? = nil, type: String, expendable: Bool) {
+        self.init(snapshot: ["__typename": "EntitlementDefinition", "name": name, "description": description, "type": type, "expendable": expendable])
+      }
+
+      internal var __typename: String {
+        get {
+          return snapshot["__typename"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      internal var name: String {
+        get {
+          return snapshot["name"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "name")
+        }
+      }
+
+      internal var description: String? {
+        get {
+          return snapshot["description"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "description")
+        }
+      }
+
+      internal var type: String {
+        get {
+          return snapshot["type"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "type")
+        }
+      }
+
+      internal var expendable: Bool {
+        get {
+          return snapshot["expendable"]! as! Bool
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "expendable")
+        }
+      }
+
+      internal var fragments: Fragments {
+        get {
+          return Fragments(snapshot: snapshot)
+        }
+        set {
+          snapshot += newValue.snapshot
+        }
+      }
+
+      internal struct Fragments {
+        internal var snapshot: Snapshot
+
+        internal var entitlementDefinition: EntitlementDefinition {
+          get {
+            return EntitlementDefinition(snapshot: snapshot)
+          }
+          set {
+            snapshot += newValue.snapshot
+          }
+        }
+      }
+    }
+  }
+}
+
 internal final class GetEntitlementsForUserQuery: GraphQLQuery {
   internal static let operationString =
     "query GetEntitlementsForUser($input: GetEntitlementsForUserInput!) {\n  getEntitlementsForUser(input: $input) {\n    __typename\n    ...ExternalEntitlementsConsumption\n  }\n}"
@@ -3061,6 +4151,7 @@ internal final class GetEntitlementsForUserQuery: GraphQLQuery {
           GraphQLField("entitlementsSetName", type: .scalar(String.self)),
           GraphQLField("entitlementsSequenceName", type: .scalar(String.self)),
           GraphQLField("entitlements", type: .nonNull(.list(.nonNull(.object(Entitlement.selections))))),
+          GraphQLField("expendableEntitlements", type: .nonNull(.list(.nonNull(.object(ExpendableEntitlement.selections))))),
           GraphQLField("transitionsRelativeToEpochMs", type: .scalar(Double.self)),
         ]
 
@@ -3070,8 +4161,8 @@ internal final class GetEntitlementsForUserQuery: GraphQLQuery {
           self.snapshot = snapshot
         }
 
-        internal init(createdAtEpochMs: Double, updatedAtEpochMs: Double, version: Double, externalId: String, owner: String? = nil, accountState: AccountStates? = nil, entitlementsSetName: String? = nil, entitlementsSequenceName: String? = nil, entitlements: [Entitlement], transitionsRelativeToEpochMs: Double? = nil) {
-          self.init(snapshot: ["__typename": "ExternalUserEntitlements", "createdAtEpochMs": createdAtEpochMs, "updatedAtEpochMs": updatedAtEpochMs, "version": version, "externalId": externalId, "owner": owner, "accountState": accountState, "entitlementsSetName": entitlementsSetName, "entitlementsSequenceName": entitlementsSequenceName, "entitlements": entitlements.map { $0.snapshot }, "transitionsRelativeToEpochMs": transitionsRelativeToEpochMs])
+        internal init(createdAtEpochMs: Double, updatedAtEpochMs: Double, version: Double, externalId: String, owner: String? = nil, accountState: AccountStates? = nil, entitlementsSetName: String? = nil, entitlementsSequenceName: String? = nil, entitlements: [Entitlement], expendableEntitlements: [ExpendableEntitlement], transitionsRelativeToEpochMs: Double? = nil) {
+          self.init(snapshot: ["__typename": "ExternalUserEntitlements", "createdAtEpochMs": createdAtEpochMs, "updatedAtEpochMs": updatedAtEpochMs, "version": version, "externalId": externalId, "owner": owner, "accountState": accountState, "entitlementsSetName": entitlementsSetName, "entitlementsSequenceName": entitlementsSequenceName, "entitlements": entitlements.map { $0.snapshot }, "expendableEntitlements": expendableEntitlements.map { $0.snapshot }, "transitionsRelativeToEpochMs": transitionsRelativeToEpochMs])
         }
 
         internal var __typename: String {
@@ -3161,6 +4252,15 @@ internal final class GetEntitlementsForUserQuery: GraphQLQuery {
           }
           set {
             snapshot.updateValue(newValue.map { $0.snapshot }, forKey: "entitlements")
+          }
+        }
+
+        internal var expendableEntitlements: [ExpendableEntitlement] {
+          get {
+            return (snapshot["expendableEntitlements"] as! [Snapshot]).map { ExpendableEntitlement(snapshot: $0) }
+          }
+          set {
+            snapshot.updateValue(newValue.map { $0.snapshot }, forKey: "expendableEntitlements")
           }
         }
 
@@ -3274,6 +4374,86 @@ internal final class GetEntitlementsForUserQuery: GraphQLQuery {
             }
           }
         }
+
+        internal struct ExpendableEntitlement: GraphQLSelectionSet {
+          internal static let possibleTypes = ["Entitlement"]
+
+          internal static let selections: [GraphQLSelection] = [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("name", type: .nonNull(.scalar(String.self))),
+            GraphQLField("description", type: .scalar(String.self)),
+            GraphQLField("value", type: .nonNull(.scalar(Int.self))),
+          ]
+
+          internal var snapshot: Snapshot
+
+          internal init(snapshot: Snapshot) {
+            self.snapshot = snapshot
+          }
+
+          internal init(name: String, description: String? = nil, value: Int) {
+            self.init(snapshot: ["__typename": "Entitlement", "name": name, "description": description, "value": value])
+          }
+
+          internal var __typename: String {
+            get {
+              return snapshot["__typename"]! as! String
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          internal var name: String {
+            get {
+              return snapshot["name"]! as! String
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "name")
+            }
+          }
+
+          internal var description: String? {
+            get {
+              return snapshot["description"] as? String
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "description")
+            }
+          }
+
+          internal var value: Int {
+            get {
+              return snapshot["value"]! as! Int
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "value")
+            }
+          }
+
+          internal var fragments: Fragments {
+            get {
+              return Fragments(snapshot: snapshot)
+            }
+            set {
+              snapshot += newValue.snapshot
+            }
+          }
+
+          internal struct Fragments {
+            internal var snapshot: Snapshot
+
+            internal var entitlement: Entitlement {
+              get {
+                return Entitlement(snapshot: snapshot)
+              }
+              set {
+                snapshot += newValue.snapshot
+              }
+            }
+          }
+        }
       }
 
       internal struct Consumption: GraphQLSelectionSet {
@@ -3288,6 +4468,7 @@ internal final class GetEntitlementsForUserQuery: GraphQLQuery {
           GraphQLField("available", type: .nonNull(.scalar(Int.self))),
           GraphQLField("firstConsumedAtEpochMs", type: .scalar(Double.self)),
           GraphQLField("lastConsumedAtEpochMs", type: .scalar(Double.self)),
+          GraphQLField("consumer", type: .object(Consumer.selections)),
         ]
 
         internal var snapshot: Snapshot
@@ -3296,8 +4477,8 @@ internal final class GetEntitlementsForUserQuery: GraphQLQuery {
           self.snapshot = snapshot
         }
 
-        internal init(name: String, value: Int, consumed: Int, available: Int, firstConsumedAtEpochMs: Double? = nil, lastConsumedAtEpochMs: Double? = nil) {
-          self.init(snapshot: ["__typename": "EntitlementConsumption", "name": name, "value": value, "consumed": consumed, "available": available, "firstConsumedAtEpochMs": firstConsumedAtEpochMs, "lastConsumedAtEpochMs": lastConsumedAtEpochMs])
+        internal init(name: String, value: Int, consumed: Int, available: Int, firstConsumedAtEpochMs: Double? = nil, lastConsumedAtEpochMs: Double? = nil, consumer: Consumer? = nil) {
+          self.init(snapshot: ["__typename": "EntitlementConsumption", "name": name, "value": value, "consumed": consumed, "available": available, "firstConsumedAtEpochMs": firstConsumedAtEpochMs, "lastConsumedAtEpochMs": lastConsumedAtEpochMs, "consumer": consumer.flatMap { $0.snapshot }])
         }
 
         internal var __typename: String {
@@ -3363,6 +4544,15 @@ internal final class GetEntitlementsForUserQuery: GraphQLQuery {
           }
         }
 
+        internal var consumer: Consumer? {
+          get {
+            return (snapshot["consumer"] as? Snapshot).flatMap { Consumer(snapshot: $0) }
+          }
+          set {
+            snapshot.updateValue(newValue?.snapshot, forKey: "consumer")
+          }
+        }
+
         internal var fragments: Fragments {
           get {
             return Fragments(snapshot: snapshot)
@@ -3381,6 +4571,53 @@ internal final class GetEntitlementsForUserQuery: GraphQLQuery {
             }
             set {
               snapshot += newValue.snapshot
+            }
+          }
+        }
+
+        internal struct Consumer: GraphQLSelectionSet {
+          internal static let possibleTypes = ["EntitlementConsumer"]
+
+          internal static let selections: [GraphQLSelection] = [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+            GraphQLField("issuer", type: .nonNull(.scalar(String.self))),
+          ]
+
+          internal var snapshot: Snapshot
+
+          internal init(snapshot: Snapshot) {
+            self.snapshot = snapshot
+          }
+
+          internal init(id: GraphQLID, issuer: String) {
+            self.init(snapshot: ["__typename": "EntitlementConsumer", "id": id, "issuer": issuer])
+          }
+
+          internal var __typename: String {
+            get {
+              return snapshot["__typename"]! as! String
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          internal var id: GraphQLID {
+            get {
+              return snapshot["id"]! as! GraphQLID
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "id")
+            }
+          }
+
+          internal var issuer: String {
+            get {
+              return snapshot["issuer"]! as! String
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "issuer")
             }
           }
         }
@@ -3836,6 +5073,189 @@ internal final class GetEntitlementsSetQuery: GraphQLQuery {
           internal var entitlement: Entitlement {
             get {
               return Entitlement(snapshot: snapshot)
+            }
+            set {
+              snapshot += newValue.snapshot
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+internal final class ListEntitlementDefinitionsQuery: GraphQLQuery {
+  internal static let operationString =
+    "query ListEntitlementDefinitions($limit: Int, $nextToken: String) {\n  listEntitlementDefinitions(limit: $limit, nextToken: $nextToken) {\n    __typename\n    items {\n      __typename\n      ...EntitlementDefinition\n    }\n    nextToken\n  }\n}"
+
+  internal static var requestString: String { return operationString.appending(EntitlementDefinition.fragmentString) }
+
+  internal var limit: Int?
+  internal var nextToken: String?
+
+  internal init(limit: Int? = nil, nextToken: String? = nil) {
+    self.limit = limit
+    self.nextToken = nextToken
+  }
+
+  internal var variables: GraphQLMap? {
+    return ["limit": limit, "nextToken": nextToken]
+  }
+
+  internal struct Data: GraphQLSelectionSet {
+    internal static let possibleTypes = ["Query"]
+
+    internal static let selections: [GraphQLSelection] = [
+      GraphQLField("listEntitlementDefinitions", arguments: ["limit": GraphQLVariable("limit"), "nextToken": GraphQLVariable("nextToken")], type: .nonNull(.object(ListEntitlementDefinition.selections))),
+    ]
+
+    internal var snapshot: Snapshot
+
+    internal init(snapshot: Snapshot) {
+      self.snapshot = snapshot
+    }
+
+    internal init(listEntitlementDefinitions: ListEntitlementDefinition) {
+      self.init(snapshot: ["__typename": "Query", "listEntitlementDefinitions": listEntitlementDefinitions.snapshot])
+    }
+
+    internal var listEntitlementDefinitions: ListEntitlementDefinition {
+      get {
+        return ListEntitlementDefinition(snapshot: snapshot["listEntitlementDefinitions"]! as! Snapshot)
+      }
+      set {
+        snapshot.updateValue(newValue.snapshot, forKey: "listEntitlementDefinitions")
+      }
+    }
+
+    internal struct ListEntitlementDefinition: GraphQLSelectionSet {
+      internal static let possibleTypes = ["EntitlementDefinitionConnection"]
+
+      internal static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("items", type: .nonNull(.list(.nonNull(.object(Item.selections))))),
+        GraphQLField("nextToken", type: .scalar(String.self)),
+      ]
+
+      internal var snapshot: Snapshot
+
+      internal init(snapshot: Snapshot) {
+        self.snapshot = snapshot
+      }
+
+      internal init(items: [Item], nextToken: String? = nil) {
+        self.init(snapshot: ["__typename": "EntitlementDefinitionConnection", "items": items.map { $0.snapshot }, "nextToken": nextToken])
+      }
+
+      internal var __typename: String {
+        get {
+          return snapshot["__typename"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      internal var items: [Item] {
+        get {
+          return (snapshot["items"] as! [Snapshot]).map { Item(snapshot: $0) }
+        }
+        set {
+          snapshot.updateValue(newValue.map { $0.snapshot }, forKey: "items")
+        }
+      }
+
+      internal var nextToken: String? {
+        get {
+          return snapshot["nextToken"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "nextToken")
+        }
+      }
+
+      internal struct Item: GraphQLSelectionSet {
+        internal static let possibleTypes = ["EntitlementDefinition"]
+
+        internal static let selections: [GraphQLSelection] = [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("name", type: .nonNull(.scalar(String.self))),
+          GraphQLField("description", type: .scalar(String.self)),
+          GraphQLField("type", type: .nonNull(.scalar(String.self))),
+          GraphQLField("expendable", type: .nonNull(.scalar(Bool.self))),
+        ]
+
+        internal var snapshot: Snapshot
+
+        internal init(snapshot: Snapshot) {
+          self.snapshot = snapshot
+        }
+
+        internal init(name: String, description: String? = nil, type: String, expendable: Bool) {
+          self.init(snapshot: ["__typename": "EntitlementDefinition", "name": name, "description": description, "type": type, "expendable": expendable])
+        }
+
+        internal var __typename: String {
+          get {
+            return snapshot["__typename"]! as! String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        internal var name: String {
+          get {
+            return snapshot["name"]! as! String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "name")
+          }
+        }
+
+        internal var description: String? {
+          get {
+            return snapshot["description"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "description")
+          }
+        }
+
+        internal var type: String {
+          get {
+            return snapshot["type"]! as! String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "type")
+          }
+        }
+
+        internal var expendable: Bool {
+          get {
+            return snapshot["expendable"]! as! Bool
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "expendable")
+          }
+        }
+
+        internal var fragments: Fragments {
+          get {
+            return Fragments(snapshot: snapshot)
+          }
+          set {
+            snapshot += newValue.snapshot
+          }
+        }
+
+        internal struct Fragments {
+          internal var snapshot: Snapshot
+
+          internal var entitlementDefinition: EntitlementDefinition {
+            get {
+              return EntitlementDefinition(snapshot: snapshot)
             }
             set {
               snapshot += newValue.snapshot
@@ -5479,7 +6899,7 @@ internal struct Entitlement: GraphQLFragment {
 
 internal struct EntitlementConsumption: GraphQLFragment {
   internal static let fragmentString =
-    "fragment EntitlementConsumption on EntitlementConsumption {\n  __typename\n  name\n  value\n  consumed\n  available\n  firstConsumedAtEpochMs\n  lastConsumedAtEpochMs\n}"
+    "fragment EntitlementConsumption on EntitlementConsumption {\n  __typename\n  name\n  value\n  consumed\n  available\n  firstConsumedAtEpochMs\n  lastConsumedAtEpochMs\n  consumer {\n    __typename\n    id\n    issuer\n  }\n}"
 
   internal static let possibleTypes = ["EntitlementConsumption"]
 
@@ -5491,6 +6911,7 @@ internal struct EntitlementConsumption: GraphQLFragment {
     GraphQLField("available", type: .nonNull(.scalar(Int.self))),
     GraphQLField("firstConsumedAtEpochMs", type: .scalar(Double.self)),
     GraphQLField("lastConsumedAtEpochMs", type: .scalar(Double.self)),
+    GraphQLField("consumer", type: .object(Consumer.selections)),
   ]
 
   internal var snapshot: Snapshot
@@ -5499,8 +6920,8 @@ internal struct EntitlementConsumption: GraphQLFragment {
     self.snapshot = snapshot
   }
 
-  internal init(name: String, value: Int, consumed: Int, available: Int, firstConsumedAtEpochMs: Double? = nil, lastConsumedAtEpochMs: Double? = nil) {
-    self.init(snapshot: ["__typename": "EntitlementConsumption", "name": name, "value": value, "consumed": consumed, "available": available, "firstConsumedAtEpochMs": firstConsumedAtEpochMs, "lastConsumedAtEpochMs": lastConsumedAtEpochMs])
+  internal init(name: String, value: Int, consumed: Int, available: Int, firstConsumedAtEpochMs: Double? = nil, lastConsumedAtEpochMs: Double? = nil, consumer: Consumer? = nil) {
+    self.init(snapshot: ["__typename": "EntitlementConsumption", "name": name, "value": value, "consumed": consumed, "available": available, "firstConsumedAtEpochMs": firstConsumedAtEpochMs, "lastConsumedAtEpochMs": lastConsumedAtEpochMs, "consumer": consumer.flatMap { $0.snapshot }])
   }
 
   internal var __typename: String {
@@ -5563,6 +6984,132 @@ internal struct EntitlementConsumption: GraphQLFragment {
     }
     set {
       snapshot.updateValue(newValue, forKey: "lastConsumedAtEpochMs")
+    }
+  }
+
+  internal var consumer: Consumer? {
+    get {
+      return (snapshot["consumer"] as? Snapshot).flatMap { Consumer(snapshot: $0) }
+    }
+    set {
+      snapshot.updateValue(newValue?.snapshot, forKey: "consumer")
+    }
+  }
+
+  internal struct Consumer: GraphQLSelectionSet {
+    internal static let possibleTypes = ["EntitlementConsumer"]
+
+    internal static let selections: [GraphQLSelection] = [
+      GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+      GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+      GraphQLField("issuer", type: .nonNull(.scalar(String.self))),
+    ]
+
+    internal var snapshot: Snapshot
+
+    internal init(snapshot: Snapshot) {
+      self.snapshot = snapshot
+    }
+
+    internal init(id: GraphQLID, issuer: String) {
+      self.init(snapshot: ["__typename": "EntitlementConsumer", "id": id, "issuer": issuer])
+    }
+
+    internal var __typename: String {
+      get {
+        return snapshot["__typename"]! as! String
+      }
+      set {
+        snapshot.updateValue(newValue, forKey: "__typename")
+      }
+    }
+
+    internal var id: GraphQLID {
+      get {
+        return snapshot["id"]! as! GraphQLID
+      }
+      set {
+        snapshot.updateValue(newValue, forKey: "id")
+      }
+    }
+
+    internal var issuer: String {
+      get {
+        return snapshot["issuer"]! as! String
+      }
+      set {
+        snapshot.updateValue(newValue, forKey: "issuer")
+      }
+    }
+  }
+}
+
+internal struct EntitlementDefinition: GraphQLFragment {
+  internal static let fragmentString =
+    "fragment EntitlementDefinition on EntitlementDefinition {\n  __typename\n  name\n  description\n  type\n  expendable\n}"
+
+  internal static let possibleTypes = ["EntitlementDefinition"]
+
+  internal static let selections: [GraphQLSelection] = [
+    GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+    GraphQLField("name", type: .nonNull(.scalar(String.self))),
+    GraphQLField("description", type: .scalar(String.self)),
+    GraphQLField("type", type: .nonNull(.scalar(String.self))),
+    GraphQLField("expendable", type: .nonNull(.scalar(Bool.self))),
+  ]
+
+  internal var snapshot: Snapshot
+
+  internal init(snapshot: Snapshot) {
+    self.snapshot = snapshot
+  }
+
+  internal init(name: String, description: String? = nil, type: String, expendable: Bool) {
+    self.init(snapshot: ["__typename": "EntitlementDefinition", "name": name, "description": description, "type": type, "expendable": expendable])
+  }
+
+  internal var __typename: String {
+    get {
+      return snapshot["__typename"]! as! String
+    }
+    set {
+      snapshot.updateValue(newValue, forKey: "__typename")
+    }
+  }
+
+  internal var name: String {
+    get {
+      return snapshot["name"]! as! String
+    }
+    set {
+      snapshot.updateValue(newValue, forKey: "name")
+    }
+  }
+
+  internal var description: String? {
+    get {
+      return snapshot["description"] as? String
+    }
+    set {
+      snapshot.updateValue(newValue, forKey: "description")
+    }
+  }
+
+  internal var type: String {
+    get {
+      return snapshot["type"]! as! String
+    }
+    set {
+      snapshot.updateValue(newValue, forKey: "type")
+    }
+  }
+
+  internal var expendable: Bool {
+    get {
+      return snapshot["expendable"]! as! Bool
+    }
+    set {
+      snapshot.updateValue(newValue, forKey: "expendable")
     }
   }
 }
@@ -6241,6 +7788,7 @@ internal struct ExternalEntitlementsConsumption: GraphQLFragment {
       GraphQLField("entitlementsSetName", type: .scalar(String.self)),
       GraphQLField("entitlementsSequenceName", type: .scalar(String.self)),
       GraphQLField("entitlements", type: .nonNull(.list(.nonNull(.object(Entitlement.selections))))),
+      GraphQLField("expendableEntitlements", type: .nonNull(.list(.nonNull(.object(ExpendableEntitlement.selections))))),
       GraphQLField("transitionsRelativeToEpochMs", type: .scalar(Double.self)),
     ]
 
@@ -6250,8 +7798,8 @@ internal struct ExternalEntitlementsConsumption: GraphQLFragment {
       self.snapshot = snapshot
     }
 
-    internal init(createdAtEpochMs: Double, updatedAtEpochMs: Double, version: Double, externalId: String, owner: String? = nil, accountState: AccountStates? = nil, entitlementsSetName: String? = nil, entitlementsSequenceName: String? = nil, entitlements: [Entitlement], transitionsRelativeToEpochMs: Double? = nil) {
-      self.init(snapshot: ["__typename": "ExternalUserEntitlements", "createdAtEpochMs": createdAtEpochMs, "updatedAtEpochMs": updatedAtEpochMs, "version": version, "externalId": externalId, "owner": owner, "accountState": accountState, "entitlementsSetName": entitlementsSetName, "entitlementsSequenceName": entitlementsSequenceName, "entitlements": entitlements.map { $0.snapshot }, "transitionsRelativeToEpochMs": transitionsRelativeToEpochMs])
+    internal init(createdAtEpochMs: Double, updatedAtEpochMs: Double, version: Double, externalId: String, owner: String? = nil, accountState: AccountStates? = nil, entitlementsSetName: String? = nil, entitlementsSequenceName: String? = nil, entitlements: [Entitlement], expendableEntitlements: [ExpendableEntitlement], transitionsRelativeToEpochMs: Double? = nil) {
+      self.init(snapshot: ["__typename": "ExternalUserEntitlements", "createdAtEpochMs": createdAtEpochMs, "updatedAtEpochMs": updatedAtEpochMs, "version": version, "externalId": externalId, "owner": owner, "accountState": accountState, "entitlementsSetName": entitlementsSetName, "entitlementsSequenceName": entitlementsSequenceName, "entitlements": entitlements.map { $0.snapshot }, "expendableEntitlements": expendableEntitlements.map { $0.snapshot }, "transitionsRelativeToEpochMs": transitionsRelativeToEpochMs])
     }
 
     internal var __typename: String {
@@ -6341,6 +7889,15 @@ internal struct ExternalEntitlementsConsumption: GraphQLFragment {
       }
       set {
         snapshot.updateValue(newValue.map { $0.snapshot }, forKey: "entitlements")
+      }
+    }
+
+    internal var expendableEntitlements: [ExpendableEntitlement] {
+      get {
+        return (snapshot["expendableEntitlements"] as! [Snapshot]).map { ExpendableEntitlement(snapshot: $0) }
+      }
+      set {
+        snapshot.updateValue(newValue.map { $0.snapshot }, forKey: "expendableEntitlements")
       }
     }
 
@@ -6454,6 +8011,86 @@ internal struct ExternalEntitlementsConsumption: GraphQLFragment {
         }
       }
     }
+
+    internal struct ExpendableEntitlement: GraphQLSelectionSet {
+      internal static let possibleTypes = ["Entitlement"]
+
+      internal static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("name", type: .nonNull(.scalar(String.self))),
+        GraphQLField("description", type: .scalar(String.self)),
+        GraphQLField("value", type: .nonNull(.scalar(Int.self))),
+      ]
+
+      internal var snapshot: Snapshot
+
+      internal init(snapshot: Snapshot) {
+        self.snapshot = snapshot
+      }
+
+      internal init(name: String, description: String? = nil, value: Int) {
+        self.init(snapshot: ["__typename": "Entitlement", "name": name, "description": description, "value": value])
+      }
+
+      internal var __typename: String {
+        get {
+          return snapshot["__typename"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      internal var name: String {
+        get {
+          return snapshot["name"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "name")
+        }
+      }
+
+      internal var description: String? {
+        get {
+          return snapshot["description"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "description")
+        }
+      }
+
+      internal var value: Int {
+        get {
+          return snapshot["value"]! as! Int
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "value")
+        }
+      }
+
+      internal var fragments: Fragments {
+        get {
+          return Fragments(snapshot: snapshot)
+        }
+        set {
+          snapshot += newValue.snapshot
+        }
+      }
+
+      internal struct Fragments {
+        internal var snapshot: Snapshot
+
+        internal var entitlement: Entitlement {
+          get {
+            return Entitlement(snapshot: snapshot)
+          }
+          set {
+            snapshot += newValue.snapshot
+          }
+        }
+      }
+    }
   }
 
   internal struct Consumption: GraphQLSelectionSet {
@@ -6468,6 +8105,7 @@ internal struct ExternalEntitlementsConsumption: GraphQLFragment {
       GraphQLField("available", type: .nonNull(.scalar(Int.self))),
       GraphQLField("firstConsumedAtEpochMs", type: .scalar(Double.self)),
       GraphQLField("lastConsumedAtEpochMs", type: .scalar(Double.self)),
+      GraphQLField("consumer", type: .object(Consumer.selections)),
     ]
 
     internal var snapshot: Snapshot
@@ -6476,8 +8114,8 @@ internal struct ExternalEntitlementsConsumption: GraphQLFragment {
       self.snapshot = snapshot
     }
 
-    internal init(name: String, value: Int, consumed: Int, available: Int, firstConsumedAtEpochMs: Double? = nil, lastConsumedAtEpochMs: Double? = nil) {
-      self.init(snapshot: ["__typename": "EntitlementConsumption", "name": name, "value": value, "consumed": consumed, "available": available, "firstConsumedAtEpochMs": firstConsumedAtEpochMs, "lastConsumedAtEpochMs": lastConsumedAtEpochMs])
+    internal init(name: String, value: Int, consumed: Int, available: Int, firstConsumedAtEpochMs: Double? = nil, lastConsumedAtEpochMs: Double? = nil, consumer: Consumer? = nil) {
+      self.init(snapshot: ["__typename": "EntitlementConsumption", "name": name, "value": value, "consumed": consumed, "available": available, "firstConsumedAtEpochMs": firstConsumedAtEpochMs, "lastConsumedAtEpochMs": lastConsumedAtEpochMs, "consumer": consumer.flatMap { $0.snapshot }])
     }
 
     internal var __typename: String {
@@ -6543,6 +8181,15 @@ internal struct ExternalEntitlementsConsumption: GraphQLFragment {
       }
     }
 
+    internal var consumer: Consumer? {
+      get {
+        return (snapshot["consumer"] as? Snapshot).flatMap { Consumer(snapshot: $0) }
+      }
+      set {
+        snapshot.updateValue(newValue?.snapshot, forKey: "consumer")
+      }
+    }
+
     internal var fragments: Fragments {
       get {
         return Fragments(snapshot: snapshot)
@@ -6564,12 +8211,59 @@ internal struct ExternalEntitlementsConsumption: GraphQLFragment {
         }
       }
     }
+
+    internal struct Consumer: GraphQLSelectionSet {
+      internal static let possibleTypes = ["EntitlementConsumer"]
+
+      internal static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+        GraphQLField("issuer", type: .nonNull(.scalar(String.self))),
+      ]
+
+      internal var snapshot: Snapshot
+
+      internal init(snapshot: Snapshot) {
+        self.snapshot = snapshot
+      }
+
+      internal init(id: GraphQLID, issuer: String) {
+        self.init(snapshot: ["__typename": "EntitlementConsumer", "id": id, "issuer": issuer])
+      }
+
+      internal var __typename: String {
+        get {
+          return snapshot["__typename"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      internal var id: GraphQLID {
+        get {
+          return snapshot["id"]! as! GraphQLID
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "id")
+        }
+      }
+
+      internal var issuer: String {
+        get {
+          return snapshot["issuer"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "issuer")
+        }
+      }
+    }
   }
 }
 
 internal struct ExternalUserEntitlements: GraphQLFragment {
   internal static let fragmentString =
-    "fragment ExternalUserEntitlements on ExternalUserEntitlements {\n  __typename\n  createdAtEpochMs\n  updatedAtEpochMs\n  version\n  externalId\n  owner\n  accountState\n  entitlementsSetName\n  entitlementsSequenceName\n  entitlements {\n    __typename\n    ...Entitlement\n  }\n  transitionsRelativeToEpochMs\n}"
+    "fragment ExternalUserEntitlements on ExternalUserEntitlements {\n  __typename\n  createdAtEpochMs\n  updatedAtEpochMs\n  version\n  externalId\n  owner\n  accountState\n  entitlementsSetName\n  entitlementsSequenceName\n  entitlements {\n    __typename\n    ...Entitlement\n  }\n  expendableEntitlements {\n    __typename\n    ...Entitlement\n  }\n  transitionsRelativeToEpochMs\n}"
 
   internal static let possibleTypes = ["ExternalUserEntitlements"]
 
@@ -6584,6 +8278,7 @@ internal struct ExternalUserEntitlements: GraphQLFragment {
     GraphQLField("entitlementsSetName", type: .scalar(String.self)),
     GraphQLField("entitlementsSequenceName", type: .scalar(String.self)),
     GraphQLField("entitlements", type: .nonNull(.list(.nonNull(.object(Entitlement.selections))))),
+    GraphQLField("expendableEntitlements", type: .nonNull(.list(.nonNull(.object(ExpendableEntitlement.selections))))),
     GraphQLField("transitionsRelativeToEpochMs", type: .scalar(Double.self)),
   ]
 
@@ -6593,8 +8288,8 @@ internal struct ExternalUserEntitlements: GraphQLFragment {
     self.snapshot = snapshot
   }
 
-  internal init(createdAtEpochMs: Double, updatedAtEpochMs: Double, version: Double, externalId: String, owner: String? = nil, accountState: AccountStates? = nil, entitlementsSetName: String? = nil, entitlementsSequenceName: String? = nil, entitlements: [Entitlement], transitionsRelativeToEpochMs: Double? = nil) {
-    self.init(snapshot: ["__typename": "ExternalUserEntitlements", "createdAtEpochMs": createdAtEpochMs, "updatedAtEpochMs": updatedAtEpochMs, "version": version, "externalId": externalId, "owner": owner, "accountState": accountState, "entitlementsSetName": entitlementsSetName, "entitlementsSequenceName": entitlementsSequenceName, "entitlements": entitlements.map { $0.snapshot }, "transitionsRelativeToEpochMs": transitionsRelativeToEpochMs])
+  internal init(createdAtEpochMs: Double, updatedAtEpochMs: Double, version: Double, externalId: String, owner: String? = nil, accountState: AccountStates? = nil, entitlementsSetName: String? = nil, entitlementsSequenceName: String? = nil, entitlements: [Entitlement], expendableEntitlements: [ExpendableEntitlement], transitionsRelativeToEpochMs: Double? = nil) {
+    self.init(snapshot: ["__typename": "ExternalUserEntitlements", "createdAtEpochMs": createdAtEpochMs, "updatedAtEpochMs": updatedAtEpochMs, "version": version, "externalId": externalId, "owner": owner, "accountState": accountState, "entitlementsSetName": entitlementsSetName, "entitlementsSequenceName": entitlementsSequenceName, "entitlements": entitlements.map { $0.snapshot }, "expendableEntitlements": expendableEntitlements.map { $0.snapshot }, "transitionsRelativeToEpochMs": transitionsRelativeToEpochMs])
   }
 
   internal var __typename: String {
@@ -6687,6 +8382,15 @@ internal struct ExternalUserEntitlements: GraphQLFragment {
     }
   }
 
+  internal var expendableEntitlements: [ExpendableEntitlement] {
+    get {
+      return (snapshot["expendableEntitlements"] as! [Snapshot]).map { ExpendableEntitlement(snapshot: $0) }
+    }
+    set {
+      snapshot.updateValue(newValue.map { $0.snapshot }, forKey: "expendableEntitlements")
+    }
+  }
+
   internal var transitionsRelativeToEpochMs: Double? {
     get {
       return snapshot["transitionsRelativeToEpochMs"] as? Double
@@ -6697,6 +8401,86 @@ internal struct ExternalUserEntitlements: GraphQLFragment {
   }
 
   internal struct Entitlement: GraphQLSelectionSet {
+    internal static let possibleTypes = ["Entitlement"]
+
+    internal static let selections: [GraphQLSelection] = [
+      GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+      GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+      GraphQLField("name", type: .nonNull(.scalar(String.self))),
+      GraphQLField("description", type: .scalar(String.self)),
+      GraphQLField("value", type: .nonNull(.scalar(Int.self))),
+    ]
+
+    internal var snapshot: Snapshot
+
+    internal init(snapshot: Snapshot) {
+      self.snapshot = snapshot
+    }
+
+    internal init(name: String, description: String? = nil, value: Int) {
+      self.init(snapshot: ["__typename": "Entitlement", "name": name, "description": description, "value": value])
+    }
+
+    internal var __typename: String {
+      get {
+        return snapshot["__typename"]! as! String
+      }
+      set {
+        snapshot.updateValue(newValue, forKey: "__typename")
+      }
+    }
+
+    internal var name: String {
+      get {
+        return snapshot["name"]! as! String
+      }
+      set {
+        snapshot.updateValue(newValue, forKey: "name")
+      }
+    }
+
+    internal var description: String? {
+      get {
+        return snapshot["description"] as? String
+      }
+      set {
+        snapshot.updateValue(newValue, forKey: "description")
+      }
+    }
+
+    internal var value: Int {
+      get {
+        return snapshot["value"]! as! Int
+      }
+      set {
+        snapshot.updateValue(newValue, forKey: "value")
+      }
+    }
+
+    internal var fragments: Fragments {
+      get {
+        return Fragments(snapshot: snapshot)
+      }
+      set {
+        snapshot += newValue.snapshot
+      }
+    }
+
+    internal struct Fragments {
+      internal var snapshot: Snapshot
+
+      internal var entitlement: Entitlement {
+        get {
+          return Entitlement(snapshot: snapshot)
+        }
+        set {
+          snapshot += newValue.snapshot
+        }
+      }
+    }
+  }
+
+  internal struct ExpendableEntitlement: GraphQLSelectionSet {
     internal static let possibleTypes = ["Entitlement"]
 
     internal static let selections: [GraphQLSelection] = [

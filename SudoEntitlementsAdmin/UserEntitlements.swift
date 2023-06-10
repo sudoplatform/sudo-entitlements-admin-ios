@@ -57,6 +57,9 @@ public struct UserEntitlements {
     /// set or as specified explicitly for this user.
     public let entitlements: [Entitlement]
 
+    /// User's expendable entitlements.
+    public let expendableEntitlements: [Entitlement]
+
     /// Date from when user's transitions should
     /// be calculated. Defaults to current time.
     public let transitionsRelativeTo: Date?
@@ -65,7 +68,19 @@ public struct UserEntitlements {
     /// if the user has not redeemed any entitlements.
     public let accountState: AccountState?
 
-    public init(createdAt: Date, updatedAt: Date, version: Double, externalId: String, owner: String?, entitlementsSetName: String?, entitlementsSequenceName: String?, entitlements: [Entitlement], transitionsRelativeTo: Date?, accountState: AccountState?) {
+    public init(
+        createdAt: Date,
+        updatedAt: Date,
+        version: Double,
+        externalId: String,
+        owner: String?,
+        entitlementsSetName: String?,
+        entitlementsSequenceName: String?,
+        entitlements: [Entitlement],
+        expendableEntitlements: [Entitlement],
+        transitionsRelativeTo: Date?,
+        accountState: AccountState?
+    ) {
         self.createdAt = createdAt
         self.updatedAt = updatedAt
         self.version = version
@@ -74,6 +89,7 @@ public struct UserEntitlements {
         self.entitlementsSetName = entitlementsSetName
         self.entitlementsSequenceName = entitlementsSequenceName
         self.entitlements = entitlements
+        self.expendableEntitlements = expendableEntitlements
         self.transitionsRelativeTo = transitionsRelativeTo
         self.accountState = accountState
     }

@@ -1,5 +1,7 @@
-## See @anonyome/cdk-constructs/lib/entitledService/schema.graphql for additional types
-## referenced here
+## See entitledService.graphql for additional types referenced here
+
+# Entitlement Type in an entitlement definition
+scalar EntitlementType
 
 # A set of entitlements
 type EntitlementsSet {
@@ -29,6 +31,20 @@ type EntitlementsSet {
 # Pagination connection for use when listing entitlements sets
 type EntitlementsSetsConnection {
   items: [EntitlementsSet!]!
+  nextToken: String
+}
+
+# Definition of an Entitlement
+type EntitlementDefinition {
+  name: String!
+  description: String
+  type: EntitlementType!
+  expendable: Boolean!
+}
+
+# Pagination connection for use when listing entitlement definitions
+type EntitlementDefinitionConnection {
+  items: [EntitlementDefinition!]!
   nextToken: String
 }
 
@@ -127,6 +143,9 @@ type ExternalUserEntitlements {
   # set or as specified explicitly for this user.
   entitlements: [Entitlement!]!
 
+  # Expendable entitlements for the user.
+  expendableEntitlements: [Entitlement!]!
+
   # Milliseconds since epoch from when user's transitions should
   # be calculated. Defaults to current time.
   # Is a Float only for precision. Must be an integral value.
@@ -142,7 +161,9 @@ type ExternalUserEntitlementsError {
 
 # Union of success and error results returned for operations in a bulk
 # applyEntitlements*ToUsers mutation.
-union ExternalUserEntitlementsResult = ExternalUserEntitlements | ExternalUserEntitlementsError
+union ExternalUserEntitlementsResult =
+    ExternalUserEntitlements
+  | ExternalUserEntitlementsError
 
 # An aggregated list of entitlement consumption information for an external user.
 type ExternalEntitlementsConsumption {
@@ -232,9 +253,21 @@ input ApplyEntitlementsToUsersInput {
   operations: [ApplyEntitlementsToUserInput!]!
 }
 
+# Input for the applyExpendableEntitlementsToUser mutation
+input ApplyExpendableEntitlementsToUserInput {
+  externalId: String!
+  expendableEntitlements: [EntitlementInput!]!
+  requestId: ID!
+}
+
 # Input for the getEntitlementsForUser query
 input GetEntitlementsForUserInput {
   externalId: String!
+}
+
+# Input for the getEntitlementDefinition query
+input GetEntitlementDefinitionInput {
+  name: String!
 }
 
 # Input of a single transition within an entitlements sequence
@@ -307,6 +340,17 @@ type Query {
     nextToken: String
   ): EntitlementsSequencesConnection! @aws_iam
 
+  # Gets an entitlement definition
+  getEntitlementDefinition(
+    input: GetEntitlementDefinitionInput!
+  ): EntitlementDefinition @aws_api_key @aws_iam
+
+  # Retrieves all entitlements definitions
+  listEntitlementDefinitions(
+    limit: Int
+    nextToken: String
+  ): EntitlementDefinitionConnection! @aws_api_key @aws_iam
+
   # Retrieve effective entitlements for a given external user.
   getEntitlementsForUser(
     input: GetEntitlementsForUserInput!
@@ -356,7 +400,7 @@ type Mutation {
   # for each operation.
   applyEntitlementsSetToUsers(
     input: ApplyEntitlementsSetToUsersInput!
-  ):  [ExternalUserEntitlementsResult!]!
+  ): [ExternalUserEntitlementsResult!]!
 
   # Apply an entitlement sequence with the specified name to a user.
   applyEntitlementsSequenceToUser(
@@ -381,6 +425,11 @@ type Mutation {
   applyEntitlementsToUsers(
     input: ApplyEntitlementsToUsersInput!
   ): [ExternalUserEntitlementsResult!]!
+
+  # Apply expendable entitlements to a user
+  applyExpendableEntitlementsToUser(
+    input: ApplyExpendableEntitlementsToUserInput!
+  ): ExternalUserEntitlements!
 
   # Remove an entitled user. Entitlements and consumption records related
   # to the specified user will be removed.

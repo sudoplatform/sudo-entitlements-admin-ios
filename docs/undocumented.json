@@ -72,7 +72,7 @@
     },
     {
       "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminClient.swift",
-      "line": 399,
+      "line": 428,
       "symbol": "DefaultSudoEntitlementsAdminClient.Config",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
@@ -93,8 +93,8 @@
     },
     {
       "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/UserEntitlements.swift",
-      "line": 68,
-      "symbol": "UserEntitlements.init(createdAt:updatedAt:version:externalId:owner:entitlementsSetName:entitlementsSequenceName:entitlements:transitionsRelativeTo:accountState:)",
+      "line": 71,
+      "symbol": "UserEntitlements.init(createdAt:updatedAt:version:externalId:owner:entitlementsSetName:entitlementsSequenceName:entitlements:expendableEntitlements:transitionsRelativeTo:accountState:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },

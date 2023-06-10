@@ -68,6 +68,9 @@ public enum SudoEntitlementsAdminClientError: Error, Equatable {
     /// A bulk operations has specified multiple operations for the same user
     case bulkOperationDuplicateUsersError
 
+    /// An operation has invalidly specified the same entitlement multiple times
+    case duplicateEntitlement
+
     /// Indicates that the attempt to add a new entitlement sequence failed because an entitlements sequence
     /// with the same name already exists
     case entitlementsSequenceAlreadyExistsError
@@ -100,6 +103,9 @@ public enum SudoEntitlementsAdminClientError: Error, Equatable {
     /// The request would exceed an API limit
     case limitExceededError
 
+    /// A call to applyExpendableEntitlementsToUser would result in negative expendable entitlements for the user
+    case negativeEntitlement
+
     /// Indicates that an internal server error caused the operation to fail. The error is possibly transient and
     /// retrying at a later time may cause the operation to complete successfully
     case serviceError
@@ -119,6 +125,7 @@ public enum SudoEntitlementsAdminClientError: Error, Equatable {
             return false
         case (.alreadyUpdatedError, .alreadyUpdatedError): return true
         case (.bulkOperationDuplicateUsersError, .bulkOperationDuplicateUsersError): return true
+        case (.duplicateEntitlement, .duplicateEntitlement): return true
         case (.entitlementsSequenceAlreadyExistsError, .entitlementsSequenceAlreadyExistsError): return true
         case (.entitlementsSequenceNotFoundError, .entitlementsSequenceNotFoundError): return true
         case (.entitlementsSequenceUpdateInProgressError, .entitlementsSequenceUpdateInProgressError): return true
@@ -128,6 +135,7 @@ public enum SudoEntitlementsAdminClientError: Error, Equatable {
         case (.entitlementsSetNotFoundError, .entitlementsSetNotFoundError): return true
         case (.invalidEntitlementsError, .invalidEntitlementsError): return true
         case (.limitExceededError, .limitExceededError): return true
+        case (.negativeEntitlement, .negativeEntitlement): return true
         case (.serviceError, .serviceError): return true
         default: return false
         }
@@ -138,6 +146,7 @@ public enum SudoEntitlementsAdminClientError: Error, Equatable {
         static let decodingError = "sudoplatform.DecodingError"
         static let alreadyUpdatedError = "sudoplatform.entitlements.AlreadyUpdatedError"
         static let bulkOperationDuplicateUsersError = "sudoplatform.entitlements.BulkOperationDuplicateUsersError"
+        static let duplicateEntitlement = "sudoplatform.entitlements.DuplicateEntitlementError"
         static let entitlementsSequenceAlreadyExistsError = "sudoplatform.entitlements.EntitlementsSequenceAlreadyExistsError"
         static let entitlementsSequenceNotFoundError = "sudoplatform.entitlements.EntitlementsSequenceNotFoundError"
         static let entitlementsSequenceUpdateInProgressError = "sudoplatform.entitlements.EntitlementsSequenceUpdateInProgressError"
@@ -148,6 +157,7 @@ public enum SudoEntitlementsAdminClientError: Error, Equatable {
         static let invalidArgumentError = "sudoplatform.InvalidArgumentError"
         static let invalidEntitlementsError = "sudoplatform.entitlements.InvalidEntitlementsError"
         static let limitExceededError = "sudoplatform.LimitExceededError"
+        static let negativeEntitlement = "sudoplatform.entitlements.NegativeEntitlementError"
         static let serviceError = "sudoplatform.ServiceError"
     }
 
@@ -186,6 +196,8 @@ public enum SudoEntitlementsAdminClientError: Error, Equatable {
             return .alreadyUpdatedError
         case SudoPlatformServiceError.bulkOperationDuplicateUsersError:
             return .bulkOperationDuplicateUsersError
+        case SudoPlatformServiceError.duplicateEntitlement:
+            return .duplicateEntitlement
         case SudoPlatformServiceError.entitlementsSequenceAlreadyExistsError:
             return .entitlementsSequenceAlreadyExistsError
         case SudoPlatformServiceError.entitlementsSequenceNotFoundError:
@@ -200,10 +212,12 @@ public enum SudoEntitlementsAdminClientError: Error, Equatable {
             return .entitlementsSetInUseError
         case SudoPlatformServiceError.entitlementsSetNotFoundError:
             return .entitlementsSetNotFoundError
-        case SudoPlatformServiceError.limitExceededError:
-            return .limitExceededError
         case SudoPlatformServiceError.invalidEntitlementsError:
             return .invalidEntitlementsError
+        case SudoPlatformServiceError.limitExceededError:
+            return .limitExceededError
+        case SudoPlatformServiceError.negativeEntitlement:
+            return .negativeEntitlement
         case SudoPlatformServiceError.serviceError:
             return .serviceError
         default:
@@ -382,6 +396,21 @@ public protocol SudoEntitlementsAdminClient: AnyObject {
     func applyEntitlementsToUsers(
         items: [ApplyEntitlementsItem]
     ) async throws -> [UserEntitlementsResult]
+
+    /// Apply an expendable entitlements delta to a user. If a record for the user's entitlements does
+    /// not yet exist a NoEntitlementsForUserError is thrown. Call an applyEntitlements\*
+    /// method to assign entitlements before calling this method.
+    ///
+    /// - Parameters:
+    ///   - externalId: external IDP user ID of user to apply entitlements to.
+    ///   - expendableEntitlements: the expendable entitlements delta to apply to the user
+    ///   - requestId: Request of this delta. Repetition of requests for the same external ID with the same requestId are idempotent
+    /// - Returns: The resulting user entitlements.
+    func applyExpendableEntitlementsToUserWithExternalId(
+        _ externalId: String,
+        expendableEntitlements: [Entitlement],
+        requestId: String
+    ) async throws -> UserEntitlements
 
     /// Removes entitlements and consumption records of the specified user.
     /// - Parameters:
@@ -620,8 +649,15 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                                     value: $0.value
                                 )
                             },
-                            transitionsRelativeTo: item.entitlements.transitionsRelativeToEpochMs.map { Date(millisecondsSinceEpoch: $0 ) } ?? nil,
-                            accountState: item.entitlements.accountState.map { $0 == .active ? AccountState.active : AccountState.locked } ?? nil
+                            expendableEntitlements: item.entitlements.expendableEntitlements.map {
+                                Entitlement(
+                                    name: $0.name,
+                                    description: $0.description,
+                                    value: $0.value
+                                )
+                            },
+                            transitionsRelativeTo: item.entitlements.transitionsRelativeToEpochMs.map { Date(millisecondsSinceEpoch: $0 ) },
+                            accountState: item.entitlements.accountState.map { $0 == .active ? AccountState.active : AccountState.locked }
                         )
                         let consumption = item.consumption.map {
                             EntitlementConsumption(
@@ -629,8 +665,8 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                                 value: $0.value,
                                 available: $0.available,
                                 consumed: $0.consumed,
-                                firstConsumedAt: $0.firstConsumedAtEpochMs.map { Date(millisecondsSinceEpoch: $0) } ?? nil,
-                                lastConsumedAt: $0.lastConsumedAtEpochMs.map { Date(millisecondsSinceEpoch: $0) } ?? nil
+                                firstConsumedAt: $0.firstConsumedAtEpochMs.map { Date(millisecondsSinceEpoch: $0) },
+                                lastConsumedAt: $0.lastConsumedAtEpochMs.map { Date(millisecondsSinceEpoch: $0) }
                             )
                         }
                         userEntitlementsConsumption = UserEntitlementsConsumption(entitlements: entitlements, consumption: consumption)
@@ -792,7 +828,7 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                                     Entitlement(name: $0.name, description: $0.description, value: $0.value)
                                 }
                             )
-                        } ?? nil
+                        }
                     )
                 }
             )
@@ -838,7 +874,7 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                                     )
                                 }
                             )
-                        } ?? nil
+                        }
                     )
                 }
             )
@@ -1054,7 +1090,7 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                                     )
                                 }
                             )
-                        } ?? nil
+                        }
                     )
                 }
             )
@@ -1113,8 +1149,15 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                                     value: $0.value
                                 )
                             },
-                            transitionsRelativeTo: item.transitionsRelativeToEpochMs.map { Date(millisecondsSinceEpoch: $0 ) } ?? nil,
-                            accountState: item.accountState.map { $0 == .active ? AccountState.active : AccountState.locked } ?? nil
+                            expendableEntitlements: item.expendableEntitlements.map {
+                                Entitlement(
+                                    name: $0.name,
+                                    description: $0.description,
+                                    value: $0.value
+                                )
+                            },
+                            transitionsRelativeTo: item.transitionsRelativeToEpochMs.map { Date(millisecondsSinceEpoch: $0 ) },
+                            accountState: item.accountState.map { $0 == .active ? AccountState.active : AccountState.locked }
                         )
                     )
                 }
@@ -1191,8 +1234,15 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                                         value: $0.value
                                     )
                                 },
-                                transitionsRelativeTo: success.transitionsRelativeToEpochMs.map { Date(millisecondsSinceEpoch: $0 ) } ?? nil,
-                                accountState: success.accountState.map { $0 == .active ? AccountState.active : AccountState.locked } ?? nil
+                                expendableEntitlements: success.expendableEntitlements.map {
+                                    Entitlement(
+                                        name: $0.name,
+                                        description: $0.description,
+                                        value: $0.value
+                                    )
+                                },
+                                transitionsRelativeTo: success.transitionsRelativeToEpochMs.map { Date(millisecondsSinceEpoch: $0 ) },
+                                accountState: success.accountState.map { $0 == .active ? AccountState.active : AccountState.locked }
 ))
                         }
                     )
@@ -1253,8 +1303,15 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                                     value: $0.value
                                 )
                             },
-                            transitionsRelativeTo: item.transitionsRelativeToEpochMs.map { Date(millisecondsSinceEpoch: $0 ) } ?? nil,
-                            accountState: item.accountState.map { $0 == .active ? AccountState.active : AccountState.locked } ?? nil
+                            expendableEntitlements: item.expendableEntitlements.map {
+                                Entitlement(
+                                    name: $0.name,
+                                    description: $0.description,
+                                    value: $0.value
+                                )
+                            },
+                            transitionsRelativeTo: item.transitionsRelativeToEpochMs.map { Date(millisecondsSinceEpoch: $0 ) },
+                            accountState: item.accountState.map { $0 == .active ? AccountState.active : AccountState.locked }
                         )
                     )
                 }
@@ -1331,8 +1388,15 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                                         value: $0.value
                                     )
                                 },
-                                transitionsRelativeTo: success.transitionsRelativeToEpochMs.map { Date(millisecondsSinceEpoch: $0 ) } ?? nil,
-                                accountState: success.accountState.map { $0 == .active ? AccountState.active : AccountState.locked } ?? nil
+                                expendableEntitlements: success.expendableEntitlements.map {
+                                    Entitlement(
+                                        name: $0.name,
+                                        description: $0.description,
+                                        value: $0.value
+                                    )
+                                },
+                                transitionsRelativeTo: success.transitionsRelativeToEpochMs.map { Date(millisecondsSinceEpoch: $0 ) },
+                                accountState: success.accountState.map { $0 == .active ? AccountState.active : AccountState.locked }
 ))
                         }
                     )
@@ -1395,8 +1459,15 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                                     value: $0.value
                                 )
                             },
-                            transitionsRelativeTo: item.transitionsRelativeToEpochMs.map { Date(millisecondsSinceEpoch: $0 ) } ?? nil,
-                            accountState: item.accountState.map { $0 == .active ? AccountState.active : AccountState.locked } ?? nil
+                            expendableEntitlements: item.expendableEntitlements.map {
+                                Entitlement(
+                                    name: $0.name,
+                                    description: $0.description,
+                                    value: $0.value
+                                )
+                            },
+                            transitionsRelativeTo: item.transitionsRelativeToEpochMs.map { Date(millisecondsSinceEpoch: $0 ) },
+                            accountState: item.accountState.map { $0 == .active ? AccountState.active : AccountState.locked }
                         )
                     )
                 }
@@ -1477,10 +1548,90 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                                         value: $0.value
                                     )
                                 },
-                                transitionsRelativeTo: success.transitionsRelativeToEpochMs.map { Date(millisecondsSinceEpoch: $0 ) } ?? nil,
-                                accountState: success.accountState.map { $0 == .active ? AccountState.active : AccountState.locked } ?? nil
+                                expendableEntitlements: success.expendableEntitlements.map {
+                                    Entitlement(
+                                        name: $0.name,
+                                        description: $0.description,
+                                        value: $0.value
+                                    )
+                                },
+                                transitionsRelativeTo: success.transitionsRelativeToEpochMs.map { Date(millisecondsSinceEpoch: $0 ) },
+                                accountState: success.accountState.map { $0 == .active ? AccountState.active : AccountState.locked }
 ))
                         }
+                    )
+                }
+            )
+        })
+    }
+
+    public func applyExpendableEntitlementsToUserWithExternalId(
+        _ externalId: String,
+        expendableEntitlements: [Entitlement],
+        requestId: String
+    ) async throws -> UserEntitlements {
+        return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<UserEntitlements, Error>) in
+            self.graphQLClient.perform(
+                mutation: GraphQL.ApplyExpendableEntitlementsToUserMutation(
+                    input: GraphQL.ApplyExpendableEntitlementsToUserInput(
+                        expendableEntitlements: expendableEntitlements.map {
+                            GraphQL.EntitlementInput(description: $0.description, name: $0.name, value: $0.value)
+                        },
+                        externalId: externalId,
+                        requestId: requestId
+                    )
+                ),
+                resultHandler: { (result, error) in
+                    if let error = error {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromAppSyncClientError(error: error))
+                    }
+
+                    guard let result = result else {
+                        return continuation.resume(
+                            throwing: SudoEntitlementsAdminClientError.fatalError(
+                                description: "Mutation completed successfully but result is missing."
+                            )
+                        )
+                    }
+
+                    if let error = result.errors?.first {
+                        return continuation.resume(throwing: SudoEntitlementsAdminClientError.fromGraphQLError(error: error))
+                    }
+
+                    guard let item = result.data?.applyExpendableEntitlementsToUser else {
+                        return continuation.resume(
+                            throwing: SudoEntitlementsAdminClientError.fatalError(
+                                description: "Mutation completed successfully but data is missing."
+                            )
+                        )
+                    }
+
+                    continuation.resume(
+                        returning: UserEntitlements(
+                            createdAt: Date(millisecondsSinceEpoch: item.createdAtEpochMs),
+                            updatedAt: Date(millisecondsSinceEpoch: item.updatedAtEpochMs),
+                            version: item.version,
+                            externalId: item.externalId,
+                            owner: item.owner,
+                            entitlementsSetName: item.entitlementsSetName,
+                            entitlementsSequenceName: item.entitlementsSequenceName,
+                            entitlements: item.entitlements.map {
+                                Entitlement(
+                                    name: $0.name,
+                                    description: $0.description,
+                                    value: $0.value
+                                )
+                            },
+                            expendableEntitlements: item.expendableEntitlements.map {
+                                Entitlement(
+                                    name: $0.name,
+                                    description: $0.description,
+                                    value: $0.value
+                                )
+                            },
+                            transitionsRelativeTo: item.transitionsRelativeToEpochMs.map { Date(millisecondsSinceEpoch: $0 ) },
+                            accountState: item.accountState.map { $0 == .active ? AccountState.active : AccountState.locked }
+                        )
                     )
                 }
             )
@@ -1513,7 +1664,7 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                     continuation.resume(
                         returning: result.data?.removeEntitledUser.map {
                             EntitledUser(externalId: $0.externalId)
-                        } ?? nil
+                        }
                     )
                 }
             )
