@@ -106,6 +106,9 @@ public enum SudoEntitlementsAdminClientError: Error, Equatable {
     /// A call to applyExpendableEntitlementsToUser would result in negative expendable entitlements for the user
     case negativeEntitlement
 
+    /// An operation failed because no entitlements have been assigned to the user
+    case noEntitlements
+
     /// Indicates that an internal server error caused the operation to fail. The error is possibly transient and
     /// retrying at a later time may cause the operation to complete successfully
     case serviceError
@@ -136,6 +139,7 @@ public enum SudoEntitlementsAdminClientError: Error, Equatable {
         case (.invalidEntitlementsError, .invalidEntitlementsError): return true
         case (.limitExceededError, .limitExceededError): return true
         case (.negativeEntitlement, .negativeEntitlement): return true
+        case (.noEntitlements, .noEntitlements): return true
         case (.serviceError, .serviceError): return true
         default: return false
         }
@@ -158,6 +162,7 @@ public enum SudoEntitlementsAdminClientError: Error, Equatable {
         static let invalidEntitlementsError = "sudoplatform.entitlements.InvalidEntitlementsError"
         static let limitExceededError = "sudoplatform.LimitExceededError"
         static let negativeEntitlement = "sudoplatform.entitlements.NegativeEntitlementError"
+        static let noEntitlements = "sudoplatform.NoEntitlementsError"
         static let serviceError = "sudoplatform.ServiceError"
     }
 
@@ -218,6 +223,8 @@ public enum SudoEntitlementsAdminClientError: Error, Equatable {
             return .limitExceededError
         case SudoPlatformServiceError.negativeEntitlement:
             return .negativeEntitlement
+        case SudoPlatformServiceError.noEntitlements:
+            return .noEntitlements
         case SudoPlatformServiceError.serviceError:
             return .serviceError
         default:
