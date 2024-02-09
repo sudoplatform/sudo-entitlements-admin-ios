@@ -15,9 +15,9 @@ public struct Entitlement {
     public let description: String?
 
     /// Value of the entitlement.
-    public let value: Int
+    public let value: Int64
 
-    public init(name: String, description: String? = nil, value: Int) {
+    public init(name: String, description: String? = nil, value: Int64) {
         self.name = name
         self.value = value
         self.description = description

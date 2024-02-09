@@ -109,6 +109,9 @@ public enum SudoEntitlementsAdminClientError: Error, Equatable {
     /// An operation failed because no entitlements have been assigned to the user
     case noEntitlements
 
+    /// A call to applyExpendableEntitlementsToUser would result in overflow of the entitled amount
+    case overflowedEntitlement
+
     /// Indicates that an internal server error caused the operation to fail. The error is possibly transient and
     /// retrying at a later time may cause the operation to complete successfully
     case serviceError
@@ -140,6 +143,7 @@ public enum SudoEntitlementsAdminClientError: Error, Equatable {
         case (.limitExceededError, .limitExceededError): return true
         case (.negativeEntitlement, .negativeEntitlement): return true
         case (.noEntitlements, .noEntitlements): return true
+        case (.overflowedEntitlement, .overflowedEntitlement): return true
         case (.serviceError, .serviceError): return true
         default: return false
         }
@@ -163,6 +167,7 @@ public enum SudoEntitlementsAdminClientError: Error, Equatable {
         static let limitExceededError = "sudoplatform.LimitExceededError"
         static let negativeEntitlement = "sudoplatform.entitlements.NegativeEntitlementError"
         static let noEntitlements = "sudoplatform.NoEntitlementsError"
+        static let overflowedEntitlement = "sudoplatform.entitlements.OverflowedEntitlementError"
         static let serviceError = "sudoplatform.ServiceError"
     }
 
@@ -225,6 +230,8 @@ public enum SudoEntitlementsAdminClientError: Error, Equatable {
             return .negativeEntitlement
         case SudoPlatformServiceError.noEntitlements:
             return .noEntitlements
+        case SudoPlatformServiceError.overflowedEntitlement:
+            return .overflowedEntitlement
         case SudoPlatformServiceError.serviceError:
             return .serviceError
         default:
@@ -555,7 +562,7 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                                 Entitlement(
                                     name: $0.name,
                                     description: $0.description,
-                                    value: $0.value
+                                    value: Int64($0.value)
                                 )
                             }
                         )
@@ -601,7 +608,7 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                                     Entitlement(
                                         name: $0.name,
                                         description: $0.description,
-                                        value: $0.value
+                                        value: Int64($0.value)
                                     )
                                 }
                             )
@@ -653,14 +660,14 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                                 Entitlement(
                                     name: $0.name,
                                     description: $0.description,
-                                    value: $0.value
+                                    value: Int64($0.value)
                                 )
                             },
                             expendableEntitlements: item.entitlements.expendableEntitlements.map {
                                 Entitlement(
                                     name: $0.name,
                                     description: $0.description,
-                                    value: $0.value
+                                    value: Int64($0.value)
                                 )
                             },
                             transitionsRelativeTo: item.entitlements.transitionsRelativeToEpochMs.map { Date(millisecondsSinceEpoch: $0 ) },
@@ -669,9 +676,9 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                         let consumption = item.consumption.map {
                             EntitlementConsumption(
                                 name: $0.name,
-                                value: $0.value,
-                                available: $0.available,
-                                consumed: $0.consumed,
+                                value: Int64($0.value),
+                                available: Int64($0.available),
+                                consumed: Int64($0.consumed),
                                 firstConsumedAt: $0.firstConsumedAtEpochMs.map { Date(millisecondsSinceEpoch: $0) },
                                 lastConsumedAt: $0.lastConsumedAtEpochMs.map { Date(millisecondsSinceEpoch: $0) }
                             )
@@ -695,7 +702,7 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                     input: GraphQL.AddEntitlementsSetInput(
                         description: description,
                         entitlements: entitlements.map {
-                            GraphQL.EntitlementInput(description: $0.description, name: $0.name, value: $0.value)
+                            GraphQL.EntitlementInput(description: $0.description, name: $0.name, value: Double($0.value))
                         },
                         name: name
                     )
@@ -733,7 +740,7 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                             name: item.name,
                             description: item.description,
                             entitlements: item.entitlements.map {
-                                Entitlement(name: $0.name, description: $0.description, value: $0.value)
+                                Entitlement(name: $0.name, description: $0.description, value: Int64($0.value))
                             }
                         )
                     )
@@ -753,7 +760,7 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                     input: GraphQL.SetEntitlementsSetInput(
                         description: description,
                         entitlements: entitlements.map {
-                            GraphQL.EntitlementInput(description: $0.description, name: $0.name, value: $0.value)
+                            GraphQL.EntitlementInput(description: $0.description, name: $0.name, value: Double($0.value))
                         },
                         name: name
                     )
@@ -791,7 +798,7 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                             name: item.name,
                             description: item.description,
                             entitlements: item.entitlements.map {
-                                Entitlement(name: $0.name, description: $0.description, value: $0.value)
+                                Entitlement(name: $0.name, description: $0.description, value: Int64($0.value))
                             }
                         )
                     )
@@ -832,7 +839,7 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                                 name: $0.name,
                                 description: $0.description,
                                 entitlements: $0.entitlements.map {
-                                    Entitlement(name: $0.name, description: $0.description, value: $0.value)
+                                    Entitlement(name: $0.name, description: $0.description, value: Int64($0.value))
                                 }
                             )
                         }
@@ -1153,14 +1160,14 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                                 Entitlement(
                                     name: $0.name,
                                     description: $0.description,
-                                    value: $0.value
+                                    value: Int64($0.value)
                                 )
                             },
                             expendableEntitlements: item.expendableEntitlements.map {
                                 Entitlement(
                                     name: $0.name,
                                     description: $0.description,
-                                    value: $0.value
+                                    value: Int64($0.value)
                                 )
                             },
                             transitionsRelativeTo: item.transitionsRelativeToEpochMs.map { Date(millisecondsSinceEpoch: $0 ) },
@@ -1238,14 +1245,14 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                                     Entitlement(
                                         name: $0.name,
                                         description: $0.description,
-                                        value: $0.value
+                                        value: Int64($0.value)
                                     )
                                 },
                                 expendableEntitlements: success.expendableEntitlements.map {
                                     Entitlement(
                                         name: $0.name,
                                         description: $0.description,
-                                        value: $0.value
+                                        value: Int64($0.value)
                                     )
                                 },
                                 transitionsRelativeTo: success.transitionsRelativeToEpochMs.map { Date(millisecondsSinceEpoch: $0 ) },
@@ -1307,14 +1314,14 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                                 Entitlement(
                                     name: $0.name,
                                     description: $0.description,
-                                    value: $0.value
+                                    value: Int64($0.value)
                                 )
                             },
                             expendableEntitlements: item.expendableEntitlements.map {
                                 Entitlement(
                                     name: $0.name,
                                     description: $0.description,
-                                    value: $0.value
+                                    value: Int64($0.value)
                                 )
                             },
                             transitionsRelativeTo: item.transitionsRelativeToEpochMs.map { Date(millisecondsSinceEpoch: $0 ) },
@@ -1392,14 +1399,14 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                                     Entitlement(
                                         name: $0.name,
                                         description: $0.description,
-                                        value: $0.value
+                                        value: Int64($0.value)
                                     )
                                 },
                                 expendableEntitlements: success.expendableEntitlements.map {
                                     Entitlement(
                                         name: $0.name,
                                         description: $0.description,
-                                        value: $0.value
+                                        value: Int64($0.value)
                                     )
                                 },
                                 transitionsRelativeTo: success.transitionsRelativeToEpochMs.map { Date(millisecondsSinceEpoch: $0 ) },
@@ -1421,7 +1428,7 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                 mutation: GraphQL.ApplyEntitlementsToUserMutation(
                     input: GraphQL.ApplyEntitlementsToUserInput(
                         entitlements: entitlements.map {
-                            GraphQL.EntitlementInput(description: $0.description, name: $0.name, value: $0.value)
+                            GraphQL.EntitlementInput(description: $0.description, name: $0.name, value: Double($0.value))
                         }, externalId: externalId
                     )
                 ),
@@ -1463,14 +1470,14 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                                 Entitlement(
                                     name: $0.name,
                                     description: $0.description,
-                                    value: $0.value
+                                    value: Int64($0.value)
                                 )
                             },
                             expendableEntitlements: item.expendableEntitlements.map {
                                 Entitlement(
                                     name: $0.name,
                                     description: $0.description,
-                                    value: $0.value
+                                    value: Int64($0.value)
                                 )
                             },
                             transitionsRelativeTo: item.transitionsRelativeToEpochMs.map { Date(millisecondsSinceEpoch: $0 ) },
@@ -1495,7 +1502,7 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                                         GraphQL.EntitlementInput(
                                             description: $0.description,
                                             name: $0.name,
-                                            value: $0.value)
+                                            value: Double($0.value))
                                 },
                                 externalId: $0.externalId)
                         }
@@ -1552,14 +1559,14 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                                     Entitlement(
                                         name: $0.name,
                                         description: $0.description,
-                                        value: $0.value
+                                        value: Int64($0.value)
                                     )
                                 },
                                 expendableEntitlements: success.expendableEntitlements.map {
                                     Entitlement(
                                         name: $0.name,
                                         description: $0.description,
-                                        value: $0.value
+                                        value: Int64($0.value)
                                     )
                                 },
                                 transitionsRelativeTo: success.transitionsRelativeToEpochMs.map { Date(millisecondsSinceEpoch: $0 ) },
@@ -1582,7 +1589,7 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                 mutation: GraphQL.ApplyExpendableEntitlementsToUserMutation(
                     input: GraphQL.ApplyExpendableEntitlementsToUserInput(
                         expendableEntitlements: expendableEntitlements.map {
-                            GraphQL.EntitlementInput(description: $0.description, name: $0.name, value: $0.value)
+                            GraphQL.EntitlementInput(description: $0.description, name: $0.name, value: Double($0.value))
                         },
                         externalId: externalId,
                         requestId: requestId
@@ -1626,14 +1633,14 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                                 Entitlement(
                                     name: $0.name,
                                     description: $0.description,
-                                    value: $0.value
+                                    value: Int64($0.value)
                                 )
                             },
                             expendableEntitlements: item.expendableEntitlements.map {
                                 Entitlement(
                                     name: $0.name,
                                     description: $0.description,
-                                    value: $0.value
+                                    value: Int64($0.value)
                                 )
                             },
                             transitionsRelativeTo: item.transitionsRelativeToEpochMs.map { Date(millisecondsSinceEpoch: $0 ) },

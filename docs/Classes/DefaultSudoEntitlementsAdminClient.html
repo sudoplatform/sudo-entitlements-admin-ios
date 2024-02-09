@@ -21,7 +21,7 @@
     <header class="header">
       <p class="header-col header-col--primary">
         <a class="header-link" href="../index.html">
-          SudoEntitlementsAdmin 4.1.1 Docs
+          SudoEntitlementsAdmin 5.0.0 Docs
         </a>
         
       </p>
@@ -152,7 +152,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">convenience</span> <span class="kd">public</span> <span class="nf">init</span><span class="p">(</span>
+                          <pre class="highlight swift"><code><span class="n">convenience</span> <span class="kd">public</span> <span class="nf">init</span><span class="p">(</span>
     <span class="nv">apiKey</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
     <span class="nv">logger</span><span class="p">:</span> <span class="kt">Logger</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span>
 <span class="p">)</span> <span class="k">throws</span></code></pre>
@@ -309,7 +309,7 @@
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getEntitlementsSetWithName</span><span class="p">(</span>
     <span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span>
-<span class="p">)</span> <span class="k">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/EntitlementsSet.html">EntitlementsSet</a></span><span class="p">?</span></code></pre>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/EntitlementsSet.html">EntitlementsSet</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -340,7 +340,7 @@
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">listEntitlementsSetsWithNextToken</span><span class="p">(</span>
     <span class="n">_</span> <span class="nv">nextToken</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span>
-<span class="p">)</span> <span class="k">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/ListOutput.html">ListOutput</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs/EntitlementsSet.html">EntitlementsSet</a></span><span class="o">&gt;</span></code></pre>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/ListOutput.html">ListOutput</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs/EntitlementsSet.html">EntitlementsSet</a></span><span class="o">&gt;</span></code></pre>
 
                         </div>
                       </div>
@@ -371,7 +371,7 @@
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getEntitlementsForUserWithExternalId</span><span class="p">(</span>
     <span class="n">_</span> <span class="nv">externalId</span><span class="p">:</span> <span class="kt">String</span>
-<span class="p">)</span> <span class="k">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/UserEntitlementsConsumption.html">UserEntitlementsConsumption</a></span><span class="p">?</span></code></pre>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/UserEntitlementsConsumption.html">UserEntitlementsConsumption</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -404,7 +404,7 @@
     <span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
     <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span>
     <span class="nv">entitlements</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Entitlement.html">Entitlement</a></span><span class="p">]</span>
-<span class="p">)</span> <span class="k">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/EntitlementsSet.html">EntitlementsSet</a></span></code></pre>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/EntitlementsSet.html">EntitlementsSet</a></span></code></pre>
 
                         </div>
                       </div>
@@ -437,7 +437,7 @@
     <span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
     <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span>
     <span class="nv">entitlements</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Entitlement.html">Entitlement</a></span><span class="p">]</span>
-<span class="p">)</span> <span class="k">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/EntitlementsSet.html">EntitlementsSet</a></span></code></pre>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/EntitlementsSet.html">EntitlementsSet</a></span></code></pre>
 
                         </div>
                       </div>
@@ -468,7 +468,7 @@
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">removeEntitlementsSetWithName</span><span class="p">(</span>
     <span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span>
-<span class="p">)</span> <span class="k">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/EntitlementsSet.html">EntitlementsSet</a></span><span class="p">?</span></code></pre>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/EntitlementsSet.html">EntitlementsSet</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -499,7 +499,7 @@
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getEntitlementsSequenceWithName</span><span class="p">(</span>
     <span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span>
-<span class="p">)</span> <span class="k">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/EntitlementsSequence.html">EntitlementsSequence</a></span><span class="p">?</span></code></pre>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/EntitlementsSequence.html">EntitlementsSequence</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -530,7 +530,7 @@
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">listEntitlementsSequencesWithNextToken</span><span class="p">(</span>
     <span class="n">_</span> <span class="nv">nextToken</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span>
-<span class="p">)</span> <span class="k">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/ListOutput.html">ListOutput</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs/EntitlementsSequence.html">EntitlementsSequence</a></span><span class="o">&gt;</span></code></pre>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/ListOutput.html">ListOutput</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs/EntitlementsSequence.html">EntitlementsSequence</a></span><span class="o">&gt;</span></code></pre>
 
                         </div>
                       </div>
@@ -563,7 +563,7 @@
     <span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
     <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
     <span class="nv">transitions</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/EntitlementsSequenceTransition.html">EntitlementsSequenceTransition</a></span><span class="p">]</span>
-<span class="p">)</span> <span class="k">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/EntitlementsSequence.html">EntitlementsSequence</a></span></code></pre>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/EntitlementsSequence.html">EntitlementsSequence</a></span></code></pre>
 
                         </div>
                       </div>
@@ -596,7 +596,7 @@
     <span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
     <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
     <span class="nv">transitions</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/EntitlementsSequenceTransition.html">EntitlementsSequenceTransition</a></span><span class="p">]</span>
-<span class="p">)</span> <span class="k">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/EntitlementsSequence.html">EntitlementsSequence</a></span></code></pre>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/EntitlementsSequence.html">EntitlementsSequence</a></span></code></pre>
 
                         </div>
                       </div>
@@ -627,7 +627,7 @@
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">removeEntitlementsSequenceWithName</span><span class="p">(</span>
     <span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span>
-<span class="p">)</span> <span class="k">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/EntitlementsSequence.html">EntitlementsSequence</a></span><span class="p">?</span></code></pre>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/EntitlementsSequence.html">EntitlementsSequence</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -659,7 +659,7 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">applyEntitlementsSequenceToUserWithExternalId</span><span class="p">(</span>
     <span class="n">_</span> <span class="nv">externalId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
     <span class="nv">entitlementsSequenceName</span><span class="p">:</span> <span class="kt">String</span>
-<span class="p">)</span> <span class="k">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/UserEntitlements.html">UserEntitlements</a></span></code></pre>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/UserEntitlements.html">UserEntitlements</a></span></code></pre>
 
                         </div>
                       </div>
@@ -690,7 +690,7 @@
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">applyEntitlementsSequenceToUsers</span><span class="p">(</span>
     <span class="nv">items</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/ApplyEntitlementsSequenceItem.html">ApplyEntitlementsSequenceItem</a></span><span class="p">]</span>
-<span class="p">)</span> <span class="k">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">UserEntitlementsResult</span><span class="p">]</span></code></pre>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">UserEntitlementsResult</span><span class="p">]</span></code></pre>
 
                         </div>
                       </div>
@@ -722,7 +722,7 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">applyEntitlementsSetToUserWithExternalId</span><span class="p">(</span>
     <span class="n">_</span> <span class="nv">externalId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
     <span class="nv">entitlementsSetName</span><span class="p">:</span> <span class="kt">String</span>
-<span class="p">)</span> <span class="k">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/UserEntitlements.html">UserEntitlements</a></span></code></pre>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/UserEntitlements.html">UserEntitlements</a></span></code></pre>
 
                         </div>
                       </div>
@@ -753,7 +753,7 @@
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">applyEntitlementsSetToUsers</span><span class="p">(</span>
     <span class="nv">items</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/ApplyEntitlementsSetItem.html">ApplyEntitlementsSetItem</a></span><span class="p">]</span>
-<span class="p">)</span> <span class="k">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">UserEntitlementsResult</span><span class="p">]</span></code></pre>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">UserEntitlementsResult</span><span class="p">]</span></code></pre>
 
                         </div>
                       </div>
@@ -785,7 +785,7 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">applyEntitlementsToUserWithExternalId</span><span class="p">(</span>
     <span class="n">_</span> <span class="nv">externalId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
     <span class="nv">entitlements</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Entitlement.html">Entitlement</a></span><span class="p">]</span>
-<span class="p">)</span> <span class="k">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/UserEntitlements.html">UserEntitlements</a></span></code></pre>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/UserEntitlements.html">UserEntitlements</a></span></code></pre>
 
                         </div>
                       </div>
@@ -816,7 +816,7 @@
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">applyEntitlementsToUsers</span><span class="p">(</span>
     <span class="nv">items</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/ApplyEntitlementsItem.html">ApplyEntitlementsItem</a></span><span class="p">]</span>
-<span class="p">)</span> <span class="k">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">UserEntitlementsResult</span><span class="p">]</span></code></pre>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">UserEntitlementsResult</span><span class="p">]</span></code></pre>
 
                         </div>
                       </div>
@@ -849,7 +849,7 @@
     <span class="n">_</span> <span class="nv">externalId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
     <span class="nv">expendableEntitlements</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Entitlement.html">Entitlement</a></span><span class="p">],</span>
     <span class="nv">requestId</span><span class="p">:</span> <span class="kt">String</span>
-<span class="p">)</span> <span class="k">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/UserEntitlements.html">UserEntitlements</a></span></code></pre>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/UserEntitlements.html">UserEntitlements</a></span></code></pre>
 
                         </div>
                       </div>
@@ -880,7 +880,7 @@
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">removeEntitledUserWithExternalId</span><span class="p">(</span>
     <span class="n">_</span> <span class="nv">externalId</span><span class="p">:</span> <span class="kt">String</span>
-<span class="p">)</span> <span class="k">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/EntitledUser.html">EntitledUser</a></span><span class="p">?</span></code></pre>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/EntitledUser.html">EntitledUser</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -895,7 +895,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2023 <a class="link" href="https://sudoplatform.com/" target="_blank" rel="external noopener">Sudo Platform Engineering</a>. All rights reserved. (Last updated: 2023-06-12)</p>
+      <p>&copy; 2024 <a class="link" href="https://sudoplatform.com/" target="_blank" rel="external noopener">Sudo Platform Engineering</a>. All rights reserved. (Last updated: 2024-02-09)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>

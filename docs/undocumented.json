@@ -1,124 +1,124 @@
 {
   "warnings": [
     {
-      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/ApplyEntitlementsItem.swift",
+      "file": "/Users/gitlab-runner/builds/s4pLexCBv/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/ApplyEntitlementsItem.swift",
       "line": 18,
       "symbol": "ApplyEntitlementsItem.init(externalId:entitlements:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/ApplyEntitlementsSequenceItem.swift",
+      "file": "/Users/gitlab-runner/builds/s4pLexCBv/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/ApplyEntitlementsSequenceItem.swift",
       "line": 18,
       "symbol": "ApplyEntitlementsSequenceItem.init(externalId:entitlementsSequenceName:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/ApplyEntitlementsSetItem.swift",
+      "file": "/Users/gitlab-runner/builds/s4pLexCBv/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/ApplyEntitlementsSetItem.swift",
       "line": 18,
       "symbol": "ApplyEntitlementsSetItem.init(externalId:entitlementsSetName:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/EntitledUser.swift",
+      "file": "/Users/gitlab-runner/builds/s4pLexCBv/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/EntitledUser.swift",
       "line": 14,
       "symbol": "EntitledUser.init(externalId:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/Entitlement.swift",
+      "file": "/Users/gitlab-runner/builds/s4pLexCBv/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/Entitlement.swift",
       "line": 20,
       "symbol": "Entitlement.init(name:description:value:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/EntitlementConsumption.swift",
+      "file": "/Users/gitlab-runner/builds/s4pLexCBv/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/EntitlementConsumption.swift",
       "line": 30,
       "symbol": "EntitlementConsumption.init(name:value:available:consumed:firstConsumedAt:lastConsumedAt:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/EntitlementsSequence.swift",
+      "file": "/Users/gitlab-runner/builds/s4pLexCBv/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/EntitlementsSequence.swift",
       "line": 19,
       "symbol": "EntitlementsSequenceTransition.init(entitlementsSetName:duration:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/EntitlementsSequence.swift",
+      "file": "/Users/gitlab-runner/builds/s4pLexCBv/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/EntitlementsSequence.swift",
       "line": 49,
       "symbol": "EntitlementsSequence.init(createdAt:updatedAt:version:name:description:transitions:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/EntitlementsSet.swift",
+      "file": "/Users/gitlab-runner/builds/s4pLexCBv/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/EntitlementsSet.swift",
       "line": 38,
       "symbol": "EntitlementsSet.init(createdAt:updatedAt:version:name:description:entitlements:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminClient.swift",
+      "file": "/Users/gitlab-runner/builds/s4pLexCBv/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminClient.swift",
       "line": 35,
       "symbol": "SudoEntitlementsAdminClientError",
       "symbol_kind": "source.lang.swift.decl.enum",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminClient.swift",
-      "line": 435,
+      "file": "/Users/gitlab-runner/builds/s4pLexCBv/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminClient.swift",
+      "line": 442,
       "symbol": "DefaultSudoEntitlementsAdminClient.Config",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminClientConfigProvider.swift",
+      "file": "/Users/gitlab-runner/builds/s4pLexCBv/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminClientConfigProvider.swift",
       "line": 14,
       "symbol": "SudoEntitlementsAdminClientConfigProvider.Config",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/UserEntitlements.swift",
+      "file": "/Users/gitlab-runner/builds/s4pLexCBv/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/UserEntitlements.swift",
       "line": 9,
       "symbol": "AccountState",
       "symbol_kind": "source.lang.swift.decl.enum",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/UserEntitlements.swift",
+      "file": "/Users/gitlab-runner/builds/s4pLexCBv/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/UserEntitlements.swift",
       "line": 71,
       "symbol": "UserEntitlements.init(createdAt:updatedAt:version:externalId:owner:entitlementsSetName:entitlementsSequenceName:entitlements:expendableEntitlements:transitionsRelativeTo:accountState:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/UserEntitlementsConsumption.swift",
+      "file": "/Users/gitlab-runner/builds/s4pLexCBv/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/UserEntitlementsConsumption.swift",
       "line": 20,
       "symbol": "UserEntitlementsConsumption.init(entitlements:consumption:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/UserEntitlementsError.swift",
+      "file": "/Users/gitlab-runner/builds/s4pLexCBv/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/UserEntitlementsError.swift",
       "line": 9,
       "symbol": "UserEntitlementsError",
       "symbol_kind": "source.lang.swift.decl.typealias",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/UserEntitlementsResult.swift",
+      "file": "/Users/gitlab-runner/builds/s4pLexCBv/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/UserEntitlementsResult.swift",
       "line": 9,
       "symbol": "UserEntitlementsResult",
       "symbol_kind": "source.lang.swift.decl.typealias",
       "warning": "undocumented"
     }
   ],
-  "source_directory": "/Users/anonyome/builds/c2dfa4ea/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh"
+  "source_directory": "/Users/gitlab-runner/builds/s4pLexCBv/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh"
 }

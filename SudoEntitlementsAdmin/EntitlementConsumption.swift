@@ -13,13 +13,13 @@ public struct EntitlementConsumption {
     public let name: String
 
     /// Value of the entitlement.
-    public let value: Int
+    public let value: Int64
 
     /// Remaining amount of entitlement.
-    public let available: Int
+    public let available: Int64
 
     /// Consumed amount of entitlement.
-    public let consumed: Int
+    public let consumed: Int64
 
     /// The time at which this entitlement was first consumed.
     public let firstConsumedAt: Date?
@@ -27,7 +27,7 @@ public struct EntitlementConsumption {
     /// The most recent time at which this entitlement was consumed.
     public let lastConsumedAt: Date?
 
-    public init(name: String, value: Int, available: Int, consumed: Int, firstConsumedAt: Date?, lastConsumedAt: Date?) {
+    public init(name: String, value: Int64, available: Int64, consumed: Int64, firstConsumedAt: Date?, lastConsumedAt: Date?) {
         self.name = name
         self.value = value
         self.available = available
