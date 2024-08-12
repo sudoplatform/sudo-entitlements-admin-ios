@@ -353,10 +353,14 @@ public protocol SudoEntitlementsAdminClient: AnyObject {
     /// - Parameters:
     ///   - externalId: external IDP user ID of user to apply entitlements sequence to.
     ///   - entitlementsSequenceName: name of the entitlements sequence to apply to the user.
+    ///   - transitionsRelativeToEpochMs: time in milliseconds since epoch from when transition times should be calculated
+    ///   - version: if specified, version of any current entitlements that must be matched
     /// - Returns: The resulting user entitlements.
     func applyEntitlementsSequenceToUserWithExternalId(
         _ externalId: String,
-        entitlementsSequenceName: String
+        entitlementsSequenceName: String,
+        transitionsRelativeToEpochMs: Double?,
+        version: Double?
     ) async throws -> UserEntitlements
 
     /// Apply entitlements sequence to users. If a record for that user's entitlements sequence
@@ -374,10 +378,12 @@ public protocol SudoEntitlementsAdminClient: AnyObject {
     /// - Parameters:
     ///   - externalId: external IDP user ID of user to apply entitlements set to.
     ///   - entitlementsSetName: name of the entitlements set to apply to the user.
+    ///   - version: if specified, version of any current entitlements that must be matched
     /// - Returns: The resulting user entitlements.
     func applyEntitlementsSetToUserWithExternalId(
         _ externalId: String,
-        entitlementsSetName: String
+        entitlementsSetName: String,
+        version: Double?
     ) async throws -> UserEntitlements
 
     /// Apply entitlements set to users. If a record for that user's entitlements set
@@ -395,10 +401,12 @@ public protocol SudoEntitlementsAdminClient: AnyObject {
     /// - Parameters:
     ///   - externalId: external IDP user ID of user to apply entitlements to.
     ///   - entitlements: list of the entitlements to apply to the user.
+    ///   - version: if specified, version of any current entitlements that must be matched
     /// - Returns: The resulting user entitlements.
     func applyEntitlementsToUserWithExternalId(
         _ externalId: String,
-        entitlements: [Entitlement]
+        entitlements: [Entitlement],
+        version: Double?
     ) async throws -> UserEntitlements
 
     /// Apply entitlements to users. If a record for that user's entitlements
@@ -436,9 +444,44 @@ public protocol SudoEntitlementsAdminClient: AnyObject {
 
 }
 
+public extension SudoEntitlementsAdminClient {
+    func applyEntitlementsSequenceToUserWithExternalId(
+        _ externalId: String,
+        entitlementsSequenceName: String
+    ) async throws -> UserEntitlements {
+        return try await self.applyEntitlementsSequenceToUserWithExternalId(
+            externalId,
+            entitlementsSequenceName: entitlementsSequenceName,
+            transitionsRelativeToEpochMs: nil,
+            version: nil
+        )
+    }
+
+    func applyEntitlementsSetToUserWithExternalId(
+        _ externalId: String,
+        entitlementsSetName: String
+    ) async throws -> UserEntitlements {
+        return try await self.applyEntitlementsSetToUserWithExternalId(
+            externalId,
+            entitlementsSetName: entitlementsSetName,
+            version: nil
+        )
+    }
+
+    func applyEntitlementsToUserWithExternalId(
+        _ externalId: String,
+        entitlements: [Entitlement]
+    ) async throws -> UserEntitlements {
+        return try await self.applyEntitlementsToUserWithExternalId(
+            externalId,
+            entitlements: entitlements,
+            version: nil
+        )
+    }
+}
+
 /// Default implementation of `SudoEntitlementsAdminClient`.
 public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
-
     public struct Config {
 
         // Configuration namespace.
@@ -1113,14 +1156,43 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
 
     public func applyEntitlementsSequenceToUserWithExternalId(
         _ externalId: String,
-        entitlementsSequenceName: String
+        entitlementsSequenceName: String,
+        transitionsRelativeToEpochMs: Double?,
+        version: Double?
     ) async throws -> UserEntitlements {
         return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<UserEntitlements, Error>) in
+            // Weirdly, if version is nil and we pass version in by reference then we get bad input to the service.
+            // Either explicitly setting to nil or relying on the defailt is OK. Nothing is different in the constructed
+            // Input except the order of keys in the variable map. Assume that transitionsRelativeToEpochMs suffers
+            // from the same issue but this has not been specifically tested.
+            let input = version == nil && transitionsRelativeToEpochMs == nil ?
+                GraphQL.ApplyEntitlementsSequenceToUserInput(
+                    entitlementsSequenceName: entitlementsSequenceName,
+                    externalId: externalId
+                ) :
+            version == nil && transitionsRelativeToEpochMs != nil ?
+                GraphQL.ApplyEntitlementsSequenceToUserInput(
+                    entitlementsSequenceName: entitlementsSequenceName,
+                    externalId: externalId,
+                    transitionsRelativeToEpochMs: transitionsRelativeToEpochMs
+                ) :
+            version != nil && transitionsRelativeToEpochMs == nil ?
+                GraphQL.ApplyEntitlementsSequenceToUserInput(
+                    entitlementsSequenceName: entitlementsSequenceName,
+                    externalId: externalId,
+                    transitionsRelativeToEpochMs: nil,
+                    version: version
+                ) :
+            GraphQL.ApplyEntitlementsSequenceToUserInput(
+                entitlementsSequenceName: entitlementsSequenceName,
+                externalId: externalId,
+                transitionsRelativeToEpochMs: transitionsRelativeToEpochMs,
+                version: version
+            )
+
             self.graphQLClient.perform(
                 mutation: GraphQL.ApplyEntitlementsSequenceToUserMutation(
-                    input: GraphQL.ApplyEntitlementsSequenceToUserInput(
-                        entitlementsSequenceName: entitlementsSequenceName, externalId: externalId
-                    )
+                    input: input
                 ),
                 resultHandler: { (result, error) in
                     if let error = error {
@@ -1187,9 +1259,34 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                 mutation: GraphQL.ApplyEntitlementsSequenceToUsersMutation(
                     input: GraphQL.ApplyEntitlementsSequenceToUsersInput(
                         operations: items.map {
+                            // Weirdly, if version is nil and we pass version in by reference then we get bad input to the service.
+                            // Either explicitly setting to nil or relying on the defailt is OK. Nothing is different in the constructed
+                            // Input except the order of keys in the variable map. Assume that transitionsRelativeToEpochMs suffers
+                            // from the same issue but this has not been specifically tested.
+                            $0.version == nil && $0.transitionsRelativeToEpochMs == nil ?
+                                GraphQL.ApplyEntitlementsSequenceToUserInput(
+                                    entitlementsSequenceName: $0.entitlementsSequenceName,
+                                    externalId: $0.externalId
+                                ) :
+                            $0.version == nil && $0.transitionsRelativeToEpochMs != nil ?
+                                GraphQL.ApplyEntitlementsSequenceToUserInput(
+                                    entitlementsSequenceName: $0.entitlementsSequenceName,
+                                    externalId: $0.externalId,
+                                    transitionsRelativeToEpochMs: $0.transitionsRelativeToEpochMs
+                                ) :
+                            $0.version != nil && $0.transitionsRelativeToEpochMs == nil ?
+                                GraphQL.ApplyEntitlementsSequenceToUserInput(
+                                    entitlementsSequenceName: $0.entitlementsSequenceName,
+                                    externalId: $0.externalId,
+                                    transitionsRelativeToEpochMs: nil,
+                                    version: $0.version
+                                ) :
                             GraphQL.ApplyEntitlementsSequenceToUserInput(
                                 entitlementsSequenceName: $0.entitlementsSequenceName,
-                                externalId: $0.externalId)
+                                externalId: $0.externalId,
+                                transitionsRelativeToEpochMs: $0.transitionsRelativeToEpochMs,
+                                version: $0.version
+                            )
                         }
                     )
                 ),
@@ -1267,14 +1364,26 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
 
     public func applyEntitlementsSetToUserWithExternalId(
         _ externalId: String,
-        entitlementsSetName: String
+        entitlementsSetName: String,
+        version: Double?
     ) async throws -> UserEntitlements {
         return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<UserEntitlements, Error>) in
+            // Weirdly, if version is nil and we pass version in by reference then we get bad input to the service.
+            // Either explicitly setting to nil or relying on the defailt is OK. Nothing is different in the constructed
+            // Input except the order of keys in the variable map.
+            let input = version == nil ?
+                GraphQL.ApplyEntitlementsSetToUserInput(
+                    entitlementsSetName: entitlementsSetName,
+                    externalId: externalId
+                ) :
+                GraphQL.ApplyEntitlementsSetToUserInput(
+                    entitlementsSetName: entitlementsSetName,
+                    externalId: externalId,
+                    version: version
+                )
             self.graphQLClient.perform(
                 mutation: GraphQL.ApplyEntitlementsSetToUserMutation(
-                    input: GraphQL.ApplyEntitlementsSetToUserInput(
-                        entitlementsSetName: entitlementsSetName, externalId: externalId
-                    )
+                    input: input
                 ),
                 resultHandler: { (result, error) in
                     if let error = error {
@@ -1341,9 +1450,19 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                 mutation: GraphQL.ApplyEntitlementsSetToUsersMutation(
                     input: GraphQL.ApplyEntitlementsSetToUsersInput(
                         operations: items.map {
-                            GraphQL.ApplyEntitlementsSetToUserInput(
-                                entitlementsSetName: $0.entitlementsSetName,
-                                externalId: $0.externalId)
+                            // Weirdly, if version is nil and we pass version in by reference then we get bad input to the service.
+                            // Either explicitly setting to nil or relying on the defailt is OK. Nothing is different in the constructed
+                            // Input except the order of keys in the variable map.
+                            $0.version == nil ?
+                                GraphQL.ApplyEntitlementsSetToUserInput(
+                                    entitlementsSetName: $0.entitlementsSetName,
+                                    externalId: $0.externalId
+                                ) :
+                                GraphQL.ApplyEntitlementsSetToUserInput(
+                                    entitlementsSetName: $0.entitlementsSetName,
+                                    externalId: $0.externalId,
+                                    version: $0.version
+                                )
                         }
                     )
                 ),
@@ -1421,16 +1540,29 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
 
     public func applyEntitlementsToUserWithExternalId(
         _ externalId: String,
-        entitlements: [Entitlement]
+        entitlements: [Entitlement],
+        version: Double?
     ) async throws -> UserEntitlements {
         return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<UserEntitlements, Error>) in
+            // Weirdly, if version is nil and we pass version in by reference then we get bad input to the service.
+            // Either explicitly setting to nil or relying on the defailt is OK. Nothing is different in the constructed
+            // Input except the order of keys in the variable map.
+            let input = version == nil ? GraphQL.ApplyEntitlementsToUserInput(
+                entitlements: entitlements.map {
+                    GraphQL.EntitlementInput(description: $0.description, name: $0.name, value: Double($0.value))
+                },
+                externalId: externalId,
+                version: nil
+            ) : GraphQL.ApplyEntitlementsToUserInput(
+                entitlements: entitlements.map {
+                    GraphQL.EntitlementInput(description: $0.description, name: $0.name, value: Double($0.value))
+                },
+                externalId: externalId,
+                version: version
+            )
             self.graphQLClient.perform(
                 mutation: GraphQL.ApplyEntitlementsToUserMutation(
-                    input: GraphQL.ApplyEntitlementsToUserInput(
-                        entitlements: entitlements.map {
-                            GraphQL.EntitlementInput(description: $0.description, name: $0.name, value: Double($0.value))
-                        }, externalId: externalId
-                    )
+                    input: input
                 ),
                 resultHandler: { (result, error) in
                     if let error = error {
@@ -1497,6 +1629,10 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                 mutation: GraphQL.ApplyEntitlementsToUsersMutation(
                     input: GraphQL.ApplyEntitlementsToUsersInput(
                         operations: items.map {
+                            // Weirdly, if version is nil and we pass version in by reference then we get bad input to the service.
+                            // Either explicitly setting to nil or relying on the defailt is OK. Nothing is different in the constructed
+                            // Input except the order of keys in the variable map.
+                            $0.version == nil ?
                             GraphQL.ApplyEntitlementsToUserInput(
                                 entitlements: $0.entitlements.map {
                                         GraphQL.EntitlementInput(
@@ -1504,7 +1640,17 @@ public class DefaultSudoEntitlementsAdminClient: SudoEntitlementsAdminClient {
                                             name: $0.name,
                                             value: Double($0.value))
                                 },
-                                externalId: $0.externalId)
+                                externalId: $0.externalId
+                            ) : GraphQL.ApplyEntitlementsToUserInput(
+                                entitlements: $0.entitlements.map {
+                                        GraphQL.EntitlementInput(
+                                            description: $0.description,
+                                            name: $0.name,
+                                            value: Double($0.value))
+                                },
+                                externalId: $0.externalId,
+                                version: $0.version
+                            )
                         }
                     )
                 ),

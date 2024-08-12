@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name                  = 'SudoEntitlementsAdmin'
-  spec.version               = '5.0.0'
+  spec.version               = '5.1.0'
   spec.author                = { 'Sudo Platform Engineering' => 'sudoplatform-engineering@anonyome.com' }
   spec.homepage              = 'https://sudoplatform.com/'
   spec.summary               = 'Sudo Entitlements Admin SDK for the Sudo Platform by Anonyome Labs.'

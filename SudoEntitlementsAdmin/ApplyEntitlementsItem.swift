@@ -15,8 +15,12 @@ public struct ApplyEntitlementsItem {
     /// Name of the entitlements set to apply to the user.
     public let entitlements: [Entitlement]
 
-    public init(externalId: String, entitlements: [Entitlement]) {
+    /// If specified, version of any current entitlements that must be matched
+    public let version: Double?
+
+    public init(externalId: String, entitlements: [Entitlement], version: Double? = nil) {
         self.externalId = externalId
         self.entitlements = entitlements
+        self.version = version
     }
 }

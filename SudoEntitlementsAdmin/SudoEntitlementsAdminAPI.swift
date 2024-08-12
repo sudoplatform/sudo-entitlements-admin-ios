@@ -139,8 +139,8 @@ internal struct EntitlementInput: GraphQLMapConvertible {
 internal struct ApplyEntitlementsSequenceToUserInput: GraphQLMapConvertible {
   internal var graphQLMap: GraphQLMap
 
-  internal init(entitlementsSequenceName: String, externalId: String, transitionsRelativeToEpochMs: Optional<Double?> = nil) {
-    graphQLMap = ["entitlementsSequenceName": entitlementsSequenceName, "externalId": externalId, "transitionsRelativeToEpochMs": transitionsRelativeToEpochMs]
+  internal init(entitlementsSequenceName: String, externalId: String, transitionsRelativeToEpochMs: Optional<Double?> = nil, version: Optional<Double?> = nil) {
+    graphQLMap = ["entitlementsSequenceName": entitlementsSequenceName, "externalId": externalId, "transitionsRelativeToEpochMs": transitionsRelativeToEpochMs, "version": version]
   }
 
   internal var entitlementsSequenceName: String {
@@ -169,6 +169,15 @@ internal struct ApplyEntitlementsSequenceToUserInput: GraphQLMapConvertible {
       graphQLMap.updateValue(newValue, forKey: "transitionsRelativeToEpochMs")
     }
   }
+
+  internal var version: Optional<Double?> {
+    get {
+      return graphQLMap["version"] as! Optional<Double?>
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "version")
+    }
+  }
 }
 
 internal struct ApplyEntitlementsSequenceToUsersInput: GraphQLMapConvertible {
@@ -191,8 +200,8 @@ internal struct ApplyEntitlementsSequenceToUsersInput: GraphQLMapConvertible {
 internal struct ApplyEntitlementsSetToUserInput: GraphQLMapConvertible {
   internal var graphQLMap: GraphQLMap
 
-  internal init(entitlementsSetName: String, externalId: String) {
-    graphQLMap = ["entitlementsSetName": entitlementsSetName, "externalId": externalId]
+  internal init(entitlementsSetName: String, externalId: String, version: Optional<Double?> = nil) {
+    graphQLMap = ["entitlementsSetName": entitlementsSetName, "externalId": externalId, "version": version]
   }
 
   internal var entitlementsSetName: String {
@@ -210,6 +219,15 @@ internal struct ApplyEntitlementsSetToUserInput: GraphQLMapConvertible {
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "externalId")
+    }
+  }
+
+  internal var version: Optional<Double?> {
+    get {
+      return graphQLMap["version"] as! Optional<Double?>
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "version")
     }
   }
 }
@@ -234,8 +252,8 @@ internal struct ApplyEntitlementsSetToUsersInput: GraphQLMapConvertible {
 internal struct ApplyEntitlementsToUserInput: GraphQLMapConvertible {
   internal var graphQLMap: GraphQLMap
 
-  internal init(entitlements: [EntitlementInput], externalId: String) {
-    graphQLMap = ["entitlements": entitlements, "externalId": externalId]
+  internal init(entitlements: [EntitlementInput], externalId: String, version: Optional<Double?> = nil) {
+    graphQLMap = ["entitlements": entitlements, "externalId": externalId, "version": version]
   }
 
   internal var entitlements: [EntitlementInput] {
@@ -253,6 +271,15 @@ internal struct ApplyEntitlementsToUserInput: GraphQLMapConvertible {
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "externalId")
+    }
+  }
+
+  internal var version: Optional<Double?> {
+    get {
+      return graphQLMap["version"] as! Optional<Double?>
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "version")
     }
   }
 }

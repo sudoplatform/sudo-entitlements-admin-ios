@@ -15,8 +15,21 @@ public struct ApplyEntitlementsSequenceItem {
     /// Name of the entitlements sequence to apply to the user.
     public let entitlementsSequenceName: String
 
-    public init(externalId: String, entitlementsSequenceName: String) {
+    /// Time in milliseconds since epoch from when transition times should be calculated
+    public let transitionsRelativeToEpochMs: Double?
+
+    /// if specified, version of any current entitlements that must be matched
+    public let version: Double?
+
+    public init(
+        externalId: String,
+        entitlementsSequenceName: String,
+        transitionsRelativeToEpochMs: Double? = nil,
+        version: Double? = nil
+    ) {
         self.externalId = externalId
         self.entitlementsSequenceName = entitlementsSequenceName
+        self.transitionsRelativeToEpochMs = transitionsRelativeToEpochMs
+        self.version = version
     }
 }
