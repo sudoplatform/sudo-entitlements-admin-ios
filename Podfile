@@ -9,24 +9,24 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 target "SudoEntitlementsAdmin" do
   podspec :name => 'SudoEntitlementsAdmin'
-end
 
-target "SudoEntitlementsAdminTests" do
-  podspec :name => 'SudoEntitlementsAdmin'
-end
+  target "SudoEntitlementsAdminTests" do
+    podspec :name => 'SudoEntitlementsAdmin'
+  end
 
-target "SudoEntitlementsAdminIntegrationTests" do
-  podspec :name => 'SudoEntitlementsAdmin'
+  target "SudoEntitlementsAdminIntegrationTests" do
+    podspec :name => 'SudoEntitlementsAdmin'
+  end
 end
 
 # Fix Xcode nagging warning on pod install/update
 post_install do |installer|
     installer.generated_projects.each do |project|
-          project.targets.each do |target|
-              target.build_configurations.each do |config|
-                  config.build_settings['CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED'] = 'YES'
-                  config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15.0'
-               end
-          end
+        project.targets.each do |target|
+            target.build_configurations.each do |config|
+                config.build_settings['CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED'] = 'YES'
+                config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15.0'
+              end
+        end
    end
 end
