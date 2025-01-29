@@ -14,8 +14,11 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
-Carthage/Build/
 config
-build/
 node_modules
 yarn-error.log
+.Build/
+.build
+
+# We generate .jazzy.yaml from .jazzy.yaml.tempalte
+.jazzy.yaml

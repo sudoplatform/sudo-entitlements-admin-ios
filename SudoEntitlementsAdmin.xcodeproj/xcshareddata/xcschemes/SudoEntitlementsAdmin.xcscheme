@@ -14,10 +14,24 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D9971C5722FD299A0077076C"
-               BuildableName = "SudoEntitlementsAdmin.framework"
-               BlueprintName = "SudoEntitlementsAdmin"
+               BlueprintIdentifier = "D931C7B52342D22700932612"
+               BuildableName = "TestApp.app"
+               BlueprintName = "TestApp"
                ReferencedContainer = "container:SudoEntitlementsAdmin.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SudoEntitlementsAdmin"
+               BuildableName = "SudoEntitlementsAdmin"
+               BlueprintName = "SudoEntitlementsAdmin"
+               ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -70,15 +84,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D9971C5722FD299A0077076C"
-            BuildableName = "SudoEntitlementsAdmin.framework"
-            BlueprintName = "SudoEntitlementsAdmin"
-            ReferencedContainer = "container:SudoEntitlementsAdmin.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -89,9 +94,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D9971C5722FD299A0077076C"
-            BuildableName = "SudoEntitlementsAdmin.framework"
-            BlueprintName = "SudoEntitlementsAdmin"
+            BlueprintIdentifier = "D931C7B52342D22700932612"
+            BuildableName = "TestApp.app"
+            BlueprintName = "TestApp"
             ReferencedContainer = "container:SudoEntitlementsAdmin.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

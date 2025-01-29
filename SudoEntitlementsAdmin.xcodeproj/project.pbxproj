@@ -7,38 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		195800587A430DDC63A49DE9 /* Pods_SudoEntitlementsAdmin_SudoEntitlementsAdminIntegrationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E27D4E72803C3368724C5FF /* Pods_SudoEntitlementsAdmin_SudoEntitlementsAdminIntegrationTests.framework */; };
-		3F4D134691E20F4BF2CEF757 /* Pods_SudoEntitlementsAdmin_SudoEntitlementsAdminTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46B255CF26B149985C0796F0 /* Pods_SudoEntitlementsAdmin_SudoEntitlementsAdminTests.framework */; };
-		5DBE10C52824D76B00434A07 /* ApplyEntitlementsSequenceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBE10C42824D76A00434A07 /* ApplyEntitlementsSequenceItem.swift */; };
-		5DBE10C72824D82100434A07 /* UserEntitlementsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBE10C62824D82100434A07 /* UserEntitlementsError.swift */; };
-		5DBE10C92824E02300434A07 /* UserEntitlementsResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBE10C82824E02300434A07 /* UserEntitlementsResult.swift */; };
-		5DBE10CB2824E31F00434A07 /* ApplyEntitlementsSetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBE10CA2824E31F00434A07 /* ApplyEntitlementsSetItem.swift */; };
-		5DBE10CD2824E36200434A07 /* ApplyEntitlementsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBE10CC2824E36200434A07 /* ApplyEntitlementsItem.swift */; };
-		9E6B750F47C3733DF303D451 /* Pods_SudoEntitlementsAdmin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5265BBF11808B495A4929002 /* Pods_SudoEntitlementsAdmin.framework */; };
-		D91CAE4F2451484300DA1152 /* AWSEndpoint+RegionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91CAE4E2451484300DA1152 /* AWSEndpoint+RegionType.swift */; };
 		D931C7B92342D22700932612 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D931C7B82342D22700932612 /* AppDelegate.swift */; };
 		D931C7BB2342D22700932612 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D931C7BA2342D22700932612 /* ViewController.swift */; };
 		D931C7BE2342D22700932612 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D931C7BC2342D22700932612 /* Main.storyboard */; };
 		D931C7C02342D22800932612 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D931C7BF2342D22800932612 /* Assets.xcassets */; };
 		D931C7C32342D22800932612 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D931C7C12342D22800932612 /* LaunchScreen.storyboard */; };
-		D931C7CB2342D3D000932612 /* Data+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = D931C7CA2342D3D000932612 /* Data+JSON.swift */; };
-		D946445F23580EF100F4BCF8 /* Date+EpochMs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D946445E23580EF100F4BCF8 /* Date+EpochMs.swift */; };
-		D974FC6D271FE98200BBF638 /* EntitlementsSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D974FC6C271FE98200BBF638 /* EntitlementsSet.swift */; };
-		D974FC6F271FE99600BBF638 /* EntitlementsSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D974FC6E271FE99600BBF638 /* EntitlementsSequence.swift */; };
-		D974FC71271FEA3F00BBF638 /* Entitlement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D974FC70271FEA3F00BBF638 /* Entitlement.swift */; };
-		D974FC73271FEC0700BBF638 /* EntitlementConsumption.swift in Sources */ = {isa = PBXBuildFile; fileRef = D974FC72271FEC0700BBF638 /* EntitlementConsumption.swift */; };
-		D9971C6222FD299A0077076C /* SudoEntitlementsAdmin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9971C5822FD299A0077076C /* SudoEntitlementsAdmin.framework */; };
 		D9971C6722FD299A0077076C /* SudoEntitlementsAdminTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9971C6622FD299A0077076C /* SudoEntitlementsAdminTests.swift */; };
-		D9971C6922FD299A0077076C /* SudoEntitlementsAdmin.h in Headers */ = {isa = PBXBuildFile; fileRef = D9971C5B22FD299A0077076C /* SudoEntitlementsAdmin.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D9971C7722FD31690077076C /* SudoEntitlementsAdminClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9971C7622FD31690077076C /* SudoEntitlementsAdminClient.swift */; };
-		D9971C7922FD40DC0077076C /* SudoEntitlementsAdminClientConfigProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9971C7822FD40DC0077076C /* SudoEntitlementsAdminClientConfigProvider.swift */; };
-		D9971C7E22FD46650077076C /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9971C7D22FD46650077076C /* Logger.swift */; };
-		D9B5B2B62371666100392596 /* SudoEntitlementsAdminAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B5B2B52371666100392596 /* SudoEntitlementsAdminAPI.swift */; };
-		D9DB5E8A273DDB91009047B8 /* EntitledUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DB5E89273DDB91009047B8 /* EntitledUser.swift */; };
 		D9F16E6E22FD498E0055513F /* SudoEntitlementsAdminIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F16E6D22FD498E0055513F /* SudoEntitlementsAdminIntegrationTests.swift */; };
-		D9F16E7022FD498E0055513F /* SudoEntitlementsAdmin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9971C5822FD299A0077076C /* SudoEntitlementsAdmin.framework */; };
-		D9F2801A271FF0BF0058D17F /* UserEntitlements.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F28019271FF0BF0058D17F /* UserEntitlements.swift */; };
-		D9F2801C271FF1740058D17F /* UserEntitlementsConsumption.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F2801B271FF1740058D17F /* UserEntitlementsConsumption.swift */; };
+		E2AD9E422D0383AD00667F4B /* SudoEntitlementsAdmin in Frameworks */ = {isa = PBXBuildFile; productRef = E2AD9E412D0383AD00667F4B /* SudoEntitlementsAdmin */; };
+		E2AD9E442D0383B500667F4B /* SudoEntitlementsAdmin in Frameworks */ = {isa = PBXBuildFile; productRef = E2AD9E432D0383B500667F4B /* SudoEntitlementsAdmin */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,37 +26,21 @@
 			remoteGlobalIDString = D931C7B52342D22700932612;
 			remoteInfo = TestApp;
 		};
-		D9971C6322FD299A0077076C /* PBXContainerItemProxy */ = {
+		E23BC81B2D07ACEB00681874 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D9971C4F22FD299A0077076C /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = D9971C5722FD299A0077076C;
-			remoteInfo = SudoDirectoryClient;
-		};
-		D9F16E7122FD498E0055513F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D9971C4F22FD299A0077076C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D9971C5722FD299A0077076C;
-			remoteInfo = SudoDirectoryClient;
+			remoteGlobalIDString = D931C7B52342D22700932612;
+			remoteInfo = TestApp;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2A73DA1D74403F65159DA3AB /* Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminIntegrationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminIntegrationTests.release.xcconfig"; path = "Target Support Files/Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminIntegrationTests/Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminIntegrationTests.release.xcconfig"; sourceTree = "<group>"; };
-		467F59FFDE7C2B9E3F9BB20F /* Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminTests.debug.xcconfig"; path = "Target Support Files/Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminTests/Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminTests.debug.xcconfig"; sourceTree = "<group>"; };
-		46B255CF26B149985C0796F0 /* Pods_SudoEntitlementsAdmin_SudoEntitlementsAdminTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SudoEntitlementsAdmin_SudoEntitlementsAdminTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5265BBF11808B495A4929002 /* Pods_SudoEntitlementsAdmin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SudoEntitlementsAdmin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DBE10C42824D76A00434A07 /* ApplyEntitlementsSequenceItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyEntitlementsSequenceItem.swift; sourceTree = "<group>"; };
 		5DBE10C62824D82100434A07 /* UserEntitlementsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEntitlementsError.swift; sourceTree = "<group>"; };
 		5DBE10C82824E02300434A07 /* UserEntitlementsResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEntitlementsResult.swift; sourceTree = "<group>"; };
 		5DBE10CA2824E31F00434A07 /* ApplyEntitlementsSetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyEntitlementsSetItem.swift; sourceTree = "<group>"; };
 		5DBE10CC2824E36200434A07 /* ApplyEntitlementsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyEntitlementsItem.swift; sourceTree = "<group>"; };
-		5E27D4E72803C3368724C5FF /* Pods_SudoEntitlementsAdmin_SudoEntitlementsAdminIntegrationTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SudoEntitlementsAdmin_SudoEntitlementsAdminIntegrationTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		897C048FBD733A822433F15F /* Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminTests.release.xcconfig"; path = "Target Support Files/Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminTests/Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminTests.release.xcconfig"; sourceTree = "<group>"; };
-		A218D10ECC189C845BF87CDC /* Pods-SudoEntitlementsAdmin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SudoEntitlementsAdmin.release.xcconfig"; path = "Target Support Files/Pods-SudoEntitlementsAdmin/Pods-SudoEntitlementsAdmin.release.xcconfig"; sourceTree = "<group>"; };
-		B4D1D82789BF2E4CC9719167 /* Pods-SudoEntitlementsAdmin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SudoEntitlementsAdmin.debug.xcconfig"; path = "Target Support Files/Pods-SudoEntitlementsAdmin/Pods-SudoEntitlementsAdmin.debug.xcconfig"; sourceTree = "<group>"; };
-		C16A0F5126D4D8A6DDEDA4D4 /* Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminIntegrationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminIntegrationTests.debug.xcconfig"; path = "Target Support Files/Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminIntegrationTests/Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminIntegrationTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D91CAE4E2451484300DA1152 /* AWSEndpoint+RegionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AWSEndpoint+RegionType.swift"; sourceTree = "<group>"; };
 		D931C7B62342D22700932612 /* TestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D931C7B82342D22700932612 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -94,14 +55,11 @@
 		D974FC6E271FE99600BBF638 /* EntitlementsSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntitlementsSequence.swift; sourceTree = "<group>"; };
 		D974FC70271FEA3F00BBF638 /* Entitlement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entitlement.swift; sourceTree = "<group>"; };
 		D974FC72271FEC0700BBF638 /* EntitlementConsumption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntitlementConsumption.swift; sourceTree = "<group>"; };
-		D9971C5822FD299A0077076C /* SudoEntitlementsAdmin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SudoEntitlementsAdmin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9971C5B22FD299A0077076C /* SudoEntitlementsAdmin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SudoEntitlementsAdmin.h; sourceTree = "<group>"; };
 		D9971C5C22FD299A0077076C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9971C6122FD299A0077076C /* SudoEntitlementsAdminTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SudoEntitlementsAdminTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9971C6622FD299A0077076C /* SudoEntitlementsAdminTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudoEntitlementsAdminTests.swift; sourceTree = "<group>"; };
 		D9971C6822FD299A0077076C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D9971C7222FD2A510077076C /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		D9971C7322FD2A5B0077076C /* SudoEntitlementsAdmin.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = SudoEntitlementsAdmin.podspec; sourceTree = "<group>"; };
 		D9971C7622FD31690077076C /* SudoEntitlementsAdminClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudoEntitlementsAdminClient.swift; sourceTree = "<group>"; };
 		D9971C7822FD40DC0077076C /* SudoEntitlementsAdminClientConfigProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudoEntitlementsAdminClientConfigProvider.swift; sourceTree = "<group>"; };
 		D9971C7D22FD46650077076C /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -122,20 +80,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D9971C5522FD299A0077076C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9E6B750F47C3733DF303D451 /* Pods_SudoEntitlementsAdmin.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D9971C5E22FD299A0077076C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9971C6222FD299A0077076C /* SudoEntitlementsAdmin.framework in Frameworks */,
-				3F4D134691E20F4BF2CEF757 /* Pods_SudoEntitlementsAdmin_SudoEntitlementsAdminTests.framework in Frameworks */,
+				E2AD9E422D0383AD00667F4B /* SudoEntitlementsAdmin in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,33 +92,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9F16E7022FD498E0055513F /* SudoEntitlementsAdmin.framework in Frameworks */,
-				195800587A430DDC63A49DE9 /* Pods_SudoEntitlementsAdmin_SudoEntitlementsAdminIntegrationTests.framework in Frameworks */,
+				E2AD9E442D0383B500667F4B /* SudoEntitlementsAdmin in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1100CB3752E9773B07266457 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				5265BBF11808B495A4929002 /* Pods_SudoEntitlementsAdmin.framework */,
-				5E27D4E72803C3368724C5FF /* Pods_SudoEntitlementsAdmin_SudoEntitlementsAdminIntegrationTests.framework */,
-				46B255CF26B149985C0796F0 /* Pods_SudoEntitlementsAdmin_SudoEntitlementsAdminTests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		C1CFCFDA6A8EDCBA54AF85D7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				B4D1D82789BF2E4CC9719167 /* Pods-SudoEntitlementsAdmin.debug.xcconfig */,
-				A218D10ECC189C845BF87CDC /* Pods-SudoEntitlementsAdmin.release.xcconfig */,
-				C16A0F5126D4D8A6DDEDA4D4 /* Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminIntegrationTests.debug.xcconfig */,
-				2A73DA1D74403F65159DA3AB /* Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminIntegrationTests.release.xcconfig */,
-				467F59FFDE7C2B9E3F9BB20F /* Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminTests.debug.xcconfig */,
-				897C048FBD733A822433F15F /* Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -227,22 +159,19 @@
 		D9971C4E22FD299A0077076C = {
 			isa = PBXGroup;
 			children = (
-				D9971C7222FD2A510077076C /* Podfile */,
-				D9971C7322FD2A5B0077076C /* SudoEntitlementsAdmin.podspec */,
 				D9971C5A22FD299A0077076C /* SudoEntitlementsAdmin */,
 				D9971C6522FD299A0077076C /* SudoEntitlementsAdminTests */,
 				D9F16E6C22FD498E0055513F /* SudoEntitlementsAdminIntegrationTests */,
 				D931C7B72342D22700932612 /* TestApp */,
 				D9971C5922FD299A0077076C /* Products */,
 				C1CFCFDA6A8EDCBA54AF85D7 /* Pods */,
-				1100CB3752E9773B07266457 /* Frameworks */,
+				E2AD9E402D0383AD00667F4B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		D9971C5922FD299A0077076C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D9971C5822FD299A0077076C /* SudoEntitlementsAdmin.framework */,
 				D9971C6122FD299A0077076C /* SudoEntitlementsAdminTests.xctest */,
 				D9F16E6B22FD498E0055513F /* SudoEntitlementsAdminIntegrationTests.xctest */,
 				D931C7B62342D22700932612 /* TestApp.app */,
@@ -291,18 +220,14 @@
 			path = SudoEntitlementsAdminIntegrationTests;
 			sourceTree = "<group>";
 		};
-/* End PBXGroup section */
-
-/* Begin PBXHeadersBuildPhase section */
-		D9971C5322FD299A0077076C /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D9971C6922FD299A0077076C /* SudoEntitlementsAdmin.h in Headers */,
+		E2AD9E402D0383AD00667F4B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			name = Frameworks;
+			sourceTree = "<group>";
 		};
-/* End PBXHeadersBuildPhase section */
+/* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
 		D931C7B52342D22700932612 /* TestApp */ = {
@@ -323,42 +248,23 @@
 			productReference = D931C7B62342D22700932612 /* TestApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D9971C5722FD299A0077076C /* SudoEntitlementsAdmin */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D9971C6C22FD299A0077076C /* Build configuration list for PBXNativeTarget "SudoEntitlementsAdmin" */;
-			buildPhases = (
-				167D85E8AF869AB994EA256D /* [CP] Check Pods Manifest.lock */,
-				D9971C5322FD299A0077076C /* Headers */,
-				D9971C5422FD299A0077076C /* Sources */,
-				D9971C5522FD299A0077076C /* Frameworks */,
-				D9971C5622FD299A0077076C /* Resources */,
-				D9944530237A794600ACCF71 /* Lint */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = SudoEntitlementsAdmin;
-			productName = SudoDirectoryClient;
-			productReference = D9971C5822FD299A0077076C /* SudoEntitlementsAdmin.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 		D9971C6022FD299A0077076C /* SudoEntitlementsAdminTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D9971C6F22FD299A0077076C /* Build configuration list for PBXNativeTarget "SudoEntitlementsAdminTests" */;
 			buildPhases = (
-				3BD24898464172372AB5239F /* [CP] Check Pods Manifest.lock */,
 				D9971C5D22FD299A0077076C /* Sources */,
 				D9971C5E22FD299A0077076C /* Frameworks */,
 				D9971C5F22FD299A0077076C /* Resources */,
-				BA76F7CF84A0DDB93E99F73C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				D9971C6422FD299A0077076C /* PBXTargetDependency */,
+				E23BC81C2D07ACEB00681874 /* PBXTargetDependency */,
 			);
 			name = SudoEntitlementsAdminTests;
+			packageProductDependencies = (
+				E2AD9E412D0383AD00667F4B /* SudoEntitlementsAdmin */,
+			);
 			productName = SudoDirectoryClientTests;
 			productReference = D9971C6122FD299A0077076C /* SudoEntitlementsAdminTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -367,20 +273,20 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D9F16E7322FD498E0055513F /* Build configuration list for PBXNativeTarget "SudoEntitlementsAdminIntegrationTests" */;
 			buildPhases = (
-				3FD2924D6596077BD08E4B59 /* [CP] Check Pods Manifest.lock */,
 				D9F16E6722FD498E0055513F /* Sources */,
 				D9F16E6822FD498E0055513F /* Frameworks */,
 				D9F16E6922FD498E0055513F /* Resources */,
 				D931C7B12342D1C200932612 /* Copy Config */,
-				6A590DAAAB6584D2D038AFB7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				D9F16E7222FD498E0055513F /* PBXTargetDependency */,
 				D931C7C92342D22D00932612 /* PBXTargetDependency */,
 			);
 			name = SudoEntitlementsAdminIntegrationTests;
+			packageProductDependencies = (
+				E2AD9E432D0383B500667F4B /* SudoEntitlementsAdmin */,
+			);
 			productName = SudoDirectoryClientIntegrationTests;
 			productReference = D9F16E6B22FD498E0055513F /* SudoEntitlementsAdminIntegrationTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -397,12 +303,9 @@
 					D931C7B52342D22700932612 = {
 						CreatedOnToolsVersion = 10.3;
 					};
-					D9971C5722FD299A0077076C = {
-						CreatedOnToolsVersion = 10.3;
-						LastSwiftMigration = 1030;
-					};
 					D9971C6022FD299A0077076C = {
 						CreatedOnToolsVersion = 10.3;
+						TestTargetID = D931C7B52342D22700932612;
 					};
 					D9F16E6A22FD498E0055513F = {
 						CreatedOnToolsVersion = 10.3;
@@ -423,7 +326,6 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D9971C5722FD299A0077076C /* SudoEntitlementsAdmin */,
 				D9971C6022FD299A0077076C /* SudoEntitlementsAdminTests */,
 				D9F16E6A22FD498E0055513F /* SudoEntitlementsAdminIntegrationTests */,
 				D931C7B52342D22700932612 /* TestApp */,
@@ -439,13 +341,6 @@
 				D931C7C32342D22800932612 /* LaunchScreen.storyboard in Resources */,
 				D931C7C02342D22800932612 /* Assets.xcassets in Resources */,
 				D931C7BE2342D22700932612 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D9971C5622FD299A0077076C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,106 +361,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		167D85E8AF869AB994EA256D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SudoEntitlementsAdmin-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3BD24898464172372AB5239F /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3FD2924D6596077BD08E4B59 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminIntegrationTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6A590DAAAB6584D2D038AFB7 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminIntegrationTests/Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminIntegrationTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminIntegrationTests/Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminIntegrationTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminIntegrationTests/Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminIntegrationTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BA76F7CF84A0DDB93E99F73C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminTests/Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminTests/Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminTests/Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		D931C7B12342D1C200932612 /* Copy Config */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -585,25 +380,6 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\necho \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/\"\ncp -f config/* \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/\"\n";
 		};
-		D9944530237A794600ACCF71 /* Lint */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = Lint;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint > /dev/null; then\n    swiftlint --path ${PROJECT_DIR}\nelse\n    echo \"Warning: SwiftLint not installed, run 'brew install swiftlint'\"\nfi\n";
-		};
 		D9F52A9B23D7C87E00F47271 /* Copy Config */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -620,7 +396,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncp -f config/* \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/\"\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncp -f config/* \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/\" || echo \"Copy config failed. Testing may be affected\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -631,32 +407,6 @@
 			files = (
 				D931C7BB2342D22700932612 /* ViewController.swift in Sources */,
 				D931C7B92342D22700932612 /* AppDelegate.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D9971C5422FD299A0077076C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D9F2801C271FF1740058D17F /* UserEntitlementsConsumption.swift in Sources */,
-				D974FC71271FEA3F00BBF638 /* Entitlement.swift in Sources */,
-				5DBE10C52824D76B00434A07 /* ApplyEntitlementsSequenceItem.swift in Sources */,
-				5DBE10C92824E02300434A07 /* UserEntitlementsResult.swift in Sources */,
-				D974FC6F271FE99600BBF638 /* EntitlementsSequence.swift in Sources */,
-				D931C7CB2342D3D000932612 /* Data+JSON.swift in Sources */,
-				D974FC73271FEC0700BBF638 /* EntitlementConsumption.swift in Sources */,
-				D9B5B2B62371666100392596 /* SudoEntitlementsAdminAPI.swift in Sources */,
-				D9971C7E22FD46650077076C /* Logger.swift in Sources */,
-				D9F2801A271FF0BF0058D17F /* UserEntitlements.swift in Sources */,
-				D974FC6D271FE98200BBF638 /* EntitlementsSet.swift in Sources */,
-				D946445F23580EF100F4BCF8 /* Date+EpochMs.swift in Sources */,
-				5DBE10C72824D82100434A07 /* UserEntitlementsError.swift in Sources */,
-				D9971C7922FD40DC0077076C /* SudoEntitlementsAdminClientConfigProvider.swift in Sources */,
-				5DBE10CD2824E36200434A07 /* ApplyEntitlementsItem.swift in Sources */,
-				D9DB5E8A273DDB91009047B8 /* EntitledUser.swift in Sources */,
-				D91CAE4F2451484300DA1152 /* AWSEndpoint+RegionType.swift in Sources */,
-				D9971C7722FD31690077076C /* SudoEntitlementsAdminClient.swift in Sources */,
-				5DBE10CB2824E31F00434A07 /* ApplyEntitlementsSetItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -684,15 +434,10 @@
 			target = D931C7B52342D22700932612 /* TestApp */;
 			targetProxy = D931C7C82342D22D00932612 /* PBXContainerItemProxy */;
 		};
-		D9971C6422FD299A0077076C /* PBXTargetDependency */ = {
+		E23BC81C2D07ACEB00681874 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D9971C5722FD299A0077076C /* SudoEntitlementsAdmin */;
-			targetProxy = D9971C6322FD299A0077076C /* PBXContainerItemProxy */;
-		};
-		D9F16E7222FD498E0055513F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D9971C5722FD299A0077076C /* SudoEntitlementsAdmin */;
-			targetProxy = D9F16E7122FD498E0055513F /* PBXContainerItemProxy */;
+			target = D931C7B52342D22700932612 /* TestApp */;
+			targetProxy = E23BC81B2D07ACEB00681874 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -878,64 +623,8 @@
 			};
 			name = Release;
 		};
-		D9971C6D22FD299A0077076C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B4D1D82789BF2E4CC9719167 /* Pods-SudoEntitlementsAdmin.debug.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = UU2W43R8JA;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = SudoEntitlementsAdmin/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sudoplatform.sudoentitlementsadmin;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		D9971C6E22FD299A0077076C /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A218D10ECC189C845BF87CDC /* Pods-SudoEntitlementsAdmin.release.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = UU2W43R8JA;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = SudoEntitlementsAdmin/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sudoplatform.sudoentitlementsadmin;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 		D9971C7022FD299A0077076C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 467F59FFDE7C2B9E3F9BB20F /* Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminTests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UU2W43R8JA;
@@ -948,12 +637,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.sudoplatform.SudoDirectoryClientTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TestApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TestApp";
 			};
 			name = Debug;
 		};
 		D9971C7122FD299A0077076C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 897C048FBD733A822433F15F /* Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminTests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UU2W43R8JA;
@@ -966,12 +655,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.sudoplatform.SudoDirectoryClientTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TestApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TestApp";
 			};
 			name = Release;
 		};
 		D9F16E7422FD498E0055513F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C16A0F5126D4D8A6DDEDA4D4 /* Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminIntegrationTests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UU2W43R8JA;
@@ -990,7 +679,6 @@
 		};
 		D9F16E7522FD498E0055513F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2A73DA1D74403F65159DA3AB /* Pods-SudoEntitlementsAdmin-SudoEntitlementsAdminIntegrationTests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UU2W43R8JA;
@@ -1028,15 +716,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D9971C6C22FD299A0077076C /* Build configuration list for PBXNativeTarget "SudoEntitlementsAdmin" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D9971C6D22FD299A0077076C /* Debug */,
-				D9971C6E22FD299A0077076C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		D9971C6F22FD299A0077076C /* Build configuration list for PBXNativeTarget "SudoEntitlementsAdminTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1056,6 +735,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E2AD9E412D0383AD00667F4B /* SudoEntitlementsAdmin */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SudoEntitlementsAdmin;
+		};
+		E2AD9E432D0383B500667F4B /* SudoEntitlementsAdmin */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SudoEntitlementsAdmin;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D9971C4F22FD299A0077076C /* Project object */;
 }
