@@ -1,8 +1,0 @@
-query ListEntitlementDefinitions($limit: Int, $nextToken: String) {
-  listEntitlementDefinitions(limit: $limit, nextToken: $nextToken) {
-    items {
-      ...EntitlementDefinition
-    }
-    nextToken
-  }
-}

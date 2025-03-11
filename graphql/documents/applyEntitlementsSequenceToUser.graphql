@@ -1,7 +1,0 @@
-mutation ApplyEntitlementsSequenceToUser(
-  $input: ApplyEntitlementsSequenceToUserInput!
-) {
-  applyEntitlementsSequenceToUser(input: $input) {
-    ...ExternalUserEntitlements
-  }
-}

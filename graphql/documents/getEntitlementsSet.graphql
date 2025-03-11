@@ -1,5 +1,0 @@
-query GetEntitlementsSet($input: GetEntitlementsSetInput!) {
-  getEntitlementsSet(input: $input) {
-    ...EntitlementsSet
-  }
-}

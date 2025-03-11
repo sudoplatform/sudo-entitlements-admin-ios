@@ -19,6 +19,7 @@ node_modules
 yarn-error.log
 .Build/
 .build
+/Package.resolved
 
 # We generate .jazzy.yaml from .jazzy.yaml.tempalte
 .jazzy.yaml

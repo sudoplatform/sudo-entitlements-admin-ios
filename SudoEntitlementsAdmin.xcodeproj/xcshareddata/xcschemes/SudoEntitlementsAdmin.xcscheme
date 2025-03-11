@@ -43,15 +43,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       codeCoverageEnabled = "YES"
       onlyGenerateCoverageForSpecifiedTargets = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D9971C5722FD299A0077076C"
-            BuildableName = "SudoEntitlementsAdmin.framework"
-            BlueprintName = "SudoEntitlementsAdmin"
-            ReferencedContainer = "container:SudoEntitlementsAdmin.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <CodeCoverageTargets>
          <BuildableReference
             BuildableIdentifier = "primary"

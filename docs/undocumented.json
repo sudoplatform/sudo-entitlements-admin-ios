@@ -1,0 +1,789 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/New Group/Entities/ApplyEntitlementsItem.swift",
+      "line": 21,
+      "symbol": "ApplyEntitlementsItem.init(externalId:entitlements:version:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/New Group/Entities/ApplyEntitlementsSequenceItem.swift",
+      "line": 24,
+      "symbol": "ApplyEntitlementsSequenceItem.init(externalId:entitlementsSequenceName:transitionsRelativeToEpochMs:version:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/New Group/Entities/ApplyEntitlementsSetItem.swift",
+      "line": 21,
+      "symbol": "ApplyEntitlementsSetItem.init(externalId:entitlementsSetName:version:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/New Group/Entities/EntitledUser.swift",
+      "line": 14,
+      "symbol": "EntitledUser.init(externalId:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/New Group/Entities/Entitlement.swift",
+      "line": 20,
+      "symbol": "Entitlement.init(name:description:value:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/New Group/Entities/EntitlementConsumption.swift",
+      "line": 30,
+      "symbol": "EntitlementConsumption.init(name:value:available:consumed:firstConsumedAt:lastConsumedAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/New Group/Entities/EntitlementsSequence.swift",
+      "line": 19,
+      "symbol": "EntitlementsSequenceTransition.init(entitlementsSetName:duration:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/New Group/Entities/EntitlementsSequence.swift",
+      "line": 49,
+      "symbol": "EntitlementsSequence.init(createdAt:updatedAt:version:name:description:transitions:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/New Group/Entities/EntitlementsSet.swift",
+      "line": 38,
+      "symbol": "EntitlementsSet.init(createdAt:updatedAt:version:name:description:entitlements:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/New Group/Entities/SudoEntitlementsAdminClientError.swift",
+      "line": 9,
+      "symbol": "SudoEntitlementsAdminClientError",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/New Group/Entities/UserEntitlements.swift",
+      "line": 9,
+      "symbol": "AccountState",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/New Group/Entities/UserEntitlements.swift",
+      "line": 71,
+      "symbol": "UserEntitlements.init(createdAt:updatedAt:version:externalId:owner:entitlementsSetName:entitlementsSequenceName:entitlements:expendableEntitlements:transitionsRelativeTo:accountState:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/New Group/Entities/UserEntitlementsConsumption.swift",
+      "line": 20,
+      "symbol": "UserEntitlementsConsumption.init(entitlements:consumption:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/New Group/Entities/UserEntitlementsError.swift",
+      "line": 9,
+      "symbol": "UserEntitlementsError",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/New Group/Entities/UserEntitlementsResult.swift",
+      "line": 9,
+      "symbol": "UserEntitlementsResult",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 7,
+      "symbol": "GraphQLInputValue",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 10,
+      "symbol": "GraphQLVariable",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 13,
+      "symbol": "GraphQL.AddEntitlementsSequenceMutation.Data.AddEntitlementsSequence.Transition",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 14,
+      "symbol": "GraphQL.AddEntitlementsSequenceMutation.Data.AddEntitlementsSequence",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 16,
+      "symbol": "GraphQL.GetEntitlementsSequenceQuery.Data.GetEntitlementsSequence.Transition",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 17,
+      "symbol": "GraphQL.GetEntitlementsSequenceQuery.Data.GetEntitlementsSequence",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 18,
+      "symbol": "GraphQLVariable",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 19,
+      "symbol": "GraphQL.ListEntitlementsSequencesQuery.Data.ListEntitlementsSequence.Item.Transition",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 20,
+      "symbol": "GraphQL.ListEntitlementsSequencesQuery.Data.ListEntitlementsSequence.Item",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 21,
+      "symbol": "JSONEncodable",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 22,
+      "symbol": "GraphQL.RemoveEntitlementsSequenceMutation.Data.RemoveEntitlementsSequence.Transition",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 23,
+      "symbol": "GraphQL.RemoveEntitlementsSequenceMutation.Data.RemoveEntitlementsSequence",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 25,
+      "symbol": "GraphQL.SetEntitlementsSequenceMutation.Data.SetEntitlementsSequence.Transition",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 26,
+      "symbol": "GraphQL.SetEntitlementsSequenceMutation.Data.SetEntitlementsSequence",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 27,
+      "symbol": "GraphQLMap",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 30,
+      "symbol": "Dictionary.withNilValuesRemoved",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 30,
+      "symbol": "GraphQL.AddEntitlementsSetMutation.Data.AddEntitlementsSet.Entitlement",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 31,
+      "symbol": "GraphQL.AddEntitlementsSetMutation.Data.AddEntitlementsSet",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 33,
+      "symbol": "GraphQL.GetEntitlementsSetQuery.Data.GetEntitlementsSet.Entitlement",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 34,
+      "symbol": "GraphQL.GetEntitlementsSetQuery.Data.GetEntitlementsSet",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 36,
+      "symbol": "GraphQL.ListEntitlementsSetsQuery.Data.ListEntitlementsSet.Item.Entitlement",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 37,
+      "symbol": "GraphQL.ListEntitlementsSetsQuery.Data.ListEntitlementsSet.Item",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 39,
+      "symbol": "GraphQL.SetEntitlementsSetMutation.Data.SetEntitlementsSet.Entitlement",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 40,
+      "symbol": "GraphQL.SetEntitlementsSetMutation.Data.SetEntitlementsSet",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 41,
+      "symbol": "GraphQLMapConvertible",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 42,
+      "symbol": "GraphQL.RemoveEntitlementsSetMutation.Data.RemoveEntitlementsSet.Entitlement",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 43,
+      "symbol": "GraphQL.RemoveEntitlementsSetMutation.Data.RemoveEntitlementsSet",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 45,
+      "symbol": "GraphQLMapConvertible",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 47,
+      "symbol": "GraphQL.AccountStates",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 49,
+      "symbol": "GraphQL.ApplyEntitlementsSequenceToUserMutation.Data.ApplyEntitlementsSequenceToUser.Entitlement",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 50,
+      "symbol": "GraphQL.ApplyEntitlementsSequenceToUserMutation.Data.ApplyEntitlementsSequenceToUser.ExpendableEntitlement",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 51,
+      "symbol": "GraphQL.ApplyEntitlementsSequenceToUserMutation.Data.ApplyEntitlementsSequenceToUser",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 51,
+      "symbol": "GraphQLID",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 53,
+      "symbol": "APISwiftGraphQLOperation",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 53,
+      "symbol": "GraphQL.ApplyEntitlementsSequenceToUsersMutation.Data.ApplyEntitlementsSequenceToUser.AsExternalUserEntitlements.Entitlement",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 54,
+      "symbol": "GraphQL.ApplyEntitlementsSequenceToUsersMutation.Data.ApplyEntitlementsSequenceToUser.AsExternalUserEntitlements.ExpendableEntitlement",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 55,
+      "symbol": "GraphQL.ApplyEntitlementsSequenceToUsersMutation.Data.ApplyEntitlementsSequenceToUser.AsExternalUserEntitlements",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 59,
+      "symbol": "GraphQL.ApplyEntitlementsSetToUserMutation.Data.ApplyEntitlementsSetToUser.Entitlement",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 60,
+      "symbol": "GraphQL.ApplyEntitlementsSetToUserMutation.Data.ApplyEntitlementsSetToUser.ExpendableEntitlement",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 61,
+      "symbol": "GraphQL.ApplyEntitlementsSetToUserMutation.Data.ApplyEntitlementsSetToUser",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 63,
+      "symbol": "GraphQL.ApplyEntitlementsSetToUsersMutation.Data.ApplyEntitlementsSetToUser.AsExternalUserEntitlements.Entitlement",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 64,
+      "symbol": "APISwiftGraphQLOperation",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 64,
+      "symbol": "GraphQL.ApplyEntitlementsSetToUsersMutation.Data.ApplyEntitlementsSetToUser.AsExternalUserEntitlements.ExpendableEntitlement",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 65,
+      "symbol": "GraphQL.ApplyEntitlementsSetToUsersMutation.Data.ApplyEntitlementsSetToUser.AsExternalUserEntitlements",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 67,
+      "symbol": "GraphQL.ApplyEntitlementsToUserMutation.Data.ApplyEntitlementsToUser.Entitlement",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 68,
+      "symbol": "GraphQL.ApplyEntitlementsToUserMutation.Data.ApplyEntitlementsToUser.ExpendableEntitlement",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 69,
+      "symbol": "GraphQL.ApplyEntitlementsToUserMutation.Data.ApplyEntitlementsToUser",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 71,
+      "symbol": "GraphQL.ApplyEntitlementsToUsersMutation.Data.ApplyEntitlementsToUser.AsExternalUserEntitlements.Entitlement",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 72,
+      "symbol": "GraphQL.ApplyEntitlementsToUsersMutation.Data.ApplyEntitlementsToUser.AsExternalUserEntitlements.ExpendableEntitlement",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 73,
+      "symbol": "GraphQL.ApplyEntitlementsToUsersMutation.Data.ApplyEntitlementsToUser.AsExternalUserEntitlements",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 75,
+      "symbol": "GraphQL.ApplyExpendableEntitlementsToUserMutation.Data.ApplyExpendableEntitlementsToUser.Entitlement",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 76,
+      "symbol": "GraphQL.ApplyExpendableEntitlementsToUserMutation.Data.ApplyExpendableEntitlementsToUser.ExpendableEntitlement",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 77,
+      "symbol": "GraphQL.ApplyExpendableEntitlementsToUserMutation.Data.ApplyExpendableEntitlementsToUser",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 78,
+      "symbol": "GraphQLQuery",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 79,
+      "symbol": "GraphQL.GetEntitlementsForUserQuery.Data.GetEntitlementsForUser.Entitlement.Entitlement",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 80,
+      "symbol": "GraphQL.GetEntitlementsForUserQuery.Data.GetEntitlementsForUser.Entitlement.ExpendableEntitlement",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 80,
+      "symbol": "GraphQLMutation",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 81,
+      "symbol": "GraphQL.GetEntitlementsForUserQuery.Data.GetEntitlementsForUser.Entitlement",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 82,
+      "symbol": "GraphQLSubscription",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 84,
+      "symbol": "GraphQLFragment",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 88,
+      "symbol": "Snapshot",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 90,
+      "symbol": "GraphQLSelectionSet",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 97,
+      "symbol": "GraphQLSelectionSet",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 158,
+      "symbol": "GraphQLSelection",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 161,
+      "symbol": "GraphQLField",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 182,
+      "symbol": "GraphQLOutputType",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 198,
+      "symbol": "GraphQLBooleanCondition",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 210,
+      "symbol": "GraphQLTypeCondition",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 220,
+      "symbol": "GraphQLFragmentSpread",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 228,
+      "symbol": "GraphQLTypeCase",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 238,
+      "symbol": "JSONObject",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 240,
+      "symbol": "JSONDecodable",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 244,
+      "symbol": "JSONEncodable",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 248,
+      "symbol": "JSONDecodingError",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 269,
+      "symbol": "String.init(jsonValue:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 276,
+      "symbol": "String.jsonValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 282,
+      "symbol": "Int.init(jsonValue:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 289,
+      "symbol": "Int.jsonValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 295,
+      "symbol": "Float.init(jsonValue:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 302,
+      "symbol": "Float.jsonValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 308,
+      "symbol": "Double.init(jsonValue:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 315,
+      "symbol": "Double.jsonValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 321,
+      "symbol": "Bool.init(jsonValue:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 328,
+      "symbol": "Bool.jsonValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 334,
+      "symbol": "RawRepresentable.init(jsonValue:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 345,
+      "symbol": "RawRepresentable.jsonValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 351,
+      "symbol": "Optional.init(jsonValue:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 361,
+      "symbol": "Optional.jsonValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 374,
+      "symbol": "Dictionary.jsonValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 378,
+      "symbol": "Dictionary.jsonObject",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 392,
+      "symbol": "Array.jsonValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 404,
+      "symbol": "URL.init(jsonValue:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 411,
+      "symbol": "URL.jsonValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminAPI.swift",
+      "line": 422,
+      "symbol": "WhitelistDeviceInput",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminClient.swift",
+      "line": 216,
+      "symbol": "SudoEntitlementsAdminClient.applyEntitlementsSequenceToUserWithExternalId(_:entitlementsSequenceName:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminClient.swift",
+      "line": 228,
+      "symbol": "SudoEntitlementsAdminClient.applyEntitlementsSetToUserWithExternalId(_:entitlementsSetName:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh/SudoEntitlementsAdmin/SudoEntitlementsAdminClient.swift",
+      "line": 239,
+      "symbol": "SudoEntitlementsAdminClient.applyEntitlementsToUserWithExternalId(_:entitlements:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/gitlab-runner/builds/kEPM7Co-x/0/platform/entitlements/sudo-entitlements-admin-ios/sudo-entitlements-admin-ios-gh"
+}

@@ -1,8 +1,0 @@
-query ListEntitlementsSets($nextToken: String) {
-  listEntitlementsSets(nextToken: $nextToken) {
-    items {
-      ...EntitlementsSet
-    }
-    nextToken
-  }
-}

@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SudoEntitlementsAdminClient Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Protocol/SudoEntitlementsAdminClient" class="dashAnchor"></a>
+
+    <a title="SudoEntitlementsAdminClient Protocol Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          SudoEntitlementsAdmin Docs
+        </a>
+        
+      </p>
+    
+      <div class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </div>
+    
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">SudoEntitlementsAdmin Reference</a>
+      <img class="carat" src="../img/carat.png" alt=""/>
+      SudoEntitlementsAdminClient Protocol Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/DefaultSudoEntitlementsAdminClient.html">DefaultSudoEntitlementsAdminClient</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions.html#/s:Sa">Array</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions.html#/s:Sb">Bool</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions.html#/s:SD">Dictionary</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions.html#/s:Sd">Double</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions.html#/s:Sf">Float</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions.html#/s:Si">Int</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions.html#/s:Sq">Optional</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions.html#/s:SS">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions.html#/s:10Foundation3URLV">URL</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/SudoEntitlementsAdminClient.html">SudoEntitlementsAdminClient</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/ApplyEntitlementsItem.html">ApplyEntitlementsItem</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/ApplyEntitlementsSequenceItem.html">ApplyEntitlementsSequenceItem</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/ApplyEntitlementsSetItem.html">ApplyEntitlementsSetItem</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/EntitledUser.html">EntitledUser</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Entitlement.html">Entitlement</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/EntitlementConsumption.html">EntitlementConsumption</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/EntitlementsSequence.html">EntitlementsSequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/EntitlementsSequenceTransition.html">EntitlementsSequenceTransition</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/EntitlementsSet.html">EntitlementsSet</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/ListOutput.html">ListOutput</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/UserEntitlements.html">UserEntitlements</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/UserEntitlementsConsumption.html">UserEntitlementsConsumption</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content top-matter">
+            <h1>SudoEntitlementsAdminClient</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SudoEntitlementsAdminClient</span> <span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
+
+                </div>
+              </div>
+            <p>Protocol encapsulating a set of functions for Entitlements Admin API.</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP03getB11SetWithNameyAA0bF0VSgSSYaKF"></a>
+                    <a name="//apple_ref/swift/Method/getEntitlementsSetWithName(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP03getB11SetWithNameyAA0bF0VSgSSYaKF">getEntitlementsSetWithName(_:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get an entitlements set.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getEntitlementsSetWithName</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/EntitlementsSet.html">EntitlementsSet</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>name of the entitlements set to return.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The named entitlements set or nil if no entitlements set of the specified name was not found.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP04listB17SetsWithNextTokenyAA10ListOutputVyAA0B3SetVGSSSgYaKF"></a>
+                    <a name="//apple_ref/swift/Method/listEntitlementsSetsWithNextToken(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP04listB17SetsWithNextTokenyAA10ListOutputVyAA0B3SetVGSSSgYaKF">listEntitlementsSetsWithNextToken(_:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>List entitlements sets.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">listEntitlementsSetsWithNextToken</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">nextToken</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/ListOutput.html">ListOutput</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs/EntitlementsSet.html">EntitlementsSet</a></span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>nextToken</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>optional token from which to continue listing.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The paginated list of entitlements sets.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP03getB21ForUserWithExternalIdyAA0gB11ConsumptionVSgSSYaKF"></a>
+                    <a name="//apple_ref/swift/Method/getEntitlementsForUserWithExternalId(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP03getB21ForUserWithExternalIdyAA0gB11ConsumptionVSgSSYaKF">getEntitlementsForUserWithExternalId(_:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get entitlements for a user.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getEntitlementsForUserWithExternalId</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">externalId</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/UserEntitlementsConsumption.html">UserEntitlementsConsumption</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>externalId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>external IDP user ID of user to retrieve entitlements for.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The entitlements consumption for the user.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP03addB11SetWithName_11description12entitlementsAA0bF0VSS_SSSgSayAA11EntitlementVGtYaKF"></a>
+                    <a name="//apple_ref/swift/Method/addEntitlementsSetWithName(_:description:entitlements:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP03addB11SetWithName_11description12entitlementsAA0bF0VSS_SSSgSayAA11EntitlementVGtYaKF">addEntitlementsSetWithName(_:<wbr>description:<wbr>entitlements:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Add a new entitlements set.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">addEntitlementsSetWithName</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span>
+    <span class="nv">entitlements</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Entitlement.html">Entitlement</a></span><span class="p">]</span>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/EntitlementsSet.html">EntitlementsSet</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>name of the new entitlements set.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>description</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>description of the new entitlements set.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>entitlements</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>list of entitlements associated with the new entitlements set.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The newly created entitlements set.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP03setB11SetWithName_11description12entitlementsAA0bF0VSS_SSSgSayAA11EntitlementVGtYaKF"></a>
+                    <a name="//apple_ref/swift/Method/setEntitlementsSetWithName(_:description:entitlements:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP03setB11SetWithName_11description12entitlementsAA0bF0VSS_SSSgSayAA11EntitlementVGtYaKF">setEntitlementsSetWithName(_:<wbr>description:<wbr>entitlements:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Update an entitlements set.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setEntitlementsSetWithName</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span>
+    <span class="nv">entitlements</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Entitlement.html">Entitlement</a></span><span class="p">]</span>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/EntitlementsSet.html">EntitlementsSet</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>name of the entitlements set to update.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>description</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>description of the new entitlements set to update.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>entitlements</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>list of entitlements to update.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The updated entitlements set.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP06removeB11SetWithNameyAA0bF0VSgSSYaKF"></a>
+                    <a name="//apple_ref/swift/Method/removeEntitlementsSetWithName(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP06removeB11SetWithNameyAA0bF0VSgSSYaKF">removeEntitlementsSetWithName(_:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Remove an entitlements set.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">removeEntitlementsSetWithName</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/EntitlementsSet.html">EntitlementsSet</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>name of the entitlements set to remove.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The removed entitlements set.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP03getB16SequenceWithNameyAA0bF0VSgSSYaKF"></a>
+                    <a name="//apple_ref/swift/Method/getEntitlementsSequenceWithName(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP03getB16SequenceWithNameyAA0bF0VSgSSYaKF">getEntitlementsSequenceWithName(_:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get an entitlements sequence.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getEntitlementsSequenceWithName</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/EntitlementsSequence.html">EntitlementsSequence</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>name of the entitlements sequence to return.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The named entitlements sequence or nil if no entitlements sequence of the specified name was not found.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP04listB22SequencesWithNextTokenyAA10ListOutputVyAA0B8SequenceVGSSSgYaKF"></a>
+                    <a name="//apple_ref/swift/Method/listEntitlementsSequencesWithNextToken(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP04listB22SequencesWithNextTokenyAA10ListOutputVyAA0B8SequenceVGSSSgYaKF">listEntitlementsSequencesWithNextToken(_:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>List entitlements sequences.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">listEntitlementsSequencesWithNextToken</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">nextToken</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/ListOutput.html">ListOutput</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs/EntitlementsSequence.html">EntitlementsSequence</a></span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>nextToken</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>optional token from which to continue listing.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The paginated list of entitlements sequences.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP03addB16SequenceWithName_11description11transitionsAA0bF0VSS_SSSayAA0bF10TransitionVGtYaKF"></a>
+                    <a name="//apple_ref/swift/Method/addEntitlementsSequenceWithName(_:description:transitions:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP03addB16SequenceWithName_11description11transitionsAA0bF0VSS_SSSayAA0bF10TransitionVGtYaKF">addEntitlementsSequenceWithName(_:<wbr>description:<wbr>transitions:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Add a new entitlements sequence.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">addEntitlementsSequenceWithName</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">transitions</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/EntitlementsSequenceTransition.html">EntitlementsSequenceTransition</a></span><span class="p">]</span>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/EntitlementsSequence.html">EntitlementsSequence</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>name of the new entitlements sequence.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>description</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>description of the new entitlements sequence.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>transitions</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>list of entitlements sequence transitions associated with the new entitlements sequence.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The newly created entitlements sequence.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP03setB16SequenceWithName_11description11transitionsAA0bF0VSS_SSSayAA0bF10TransitionVGtYaKF"></a>
+                    <a name="//apple_ref/swift/Method/setEntitlementsSequenceWithName(_:description:transitions:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP03setB16SequenceWithName_11description11transitionsAA0bF0VSS_SSSayAA0bF10TransitionVGtYaKF">setEntitlementsSequenceWithName(_:<wbr>description:<wbr>transitions:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Update a new entitlements sequence.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setEntitlementsSequenceWithName</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">transitions</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/EntitlementsSequenceTransition.html">EntitlementsSequenceTransition</a></span><span class="p">]</span>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/EntitlementsSequence.html">EntitlementsSequence</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>name of the entitlements sequence to update.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>description</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>description of the entitlements sequence to update.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>transitions</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>list of entitlements sequence transitions to update.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The updated entitlements sequence.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP06removeB16SequenceWithNameyAA0bF0VSgSSYaKF"></a>
+                    <a name="//apple_ref/swift/Method/removeEntitlementsSequenceWithName(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP06removeB16SequenceWithNameyAA0bF0VSgSSYaKF">removeEntitlementsSequenceWithName(_:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Remove an entitlements sequence.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">removeEntitlementsSequenceWithName</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/EntitlementsSequence.html">EntitlementsSequence</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>name of the entitlements set to sequence.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The removed entitlements sequence.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP05applyB28SequenceToUserWithExternalId_012entitlementsF4Name019transitionsRelativeG7EpochMs7versionAA0hB0VSS_SSSdSgAJtYaKF"></a>
+                    <a name="//apple_ref/swift/Method/applyEntitlementsSequenceToUserWithExternalId(_:entitlementsSequenceName:transitionsRelativeToEpochMs:version:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP05applyB28SequenceToUserWithExternalId_012entitlementsF4Name019transitionsRelativeG7EpochMs7versionAA0hB0VSS_SSSdSgAJtYaKF">applyEntitlementsSequenceToUserWithExternalId(_:<wbr>entitlementsSequenceName:<wbr>transitionsRelativeToEpochMs:<wbr>version:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Apply entitlements sequence directly to a user. If a record for that user&rsquo;s entitlements sequence
+does not yet exist it will be created.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">applyEntitlementsSequenceToUserWithExternalId</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">externalId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">entitlementsSequenceName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">transitionsRelativeToEpochMs</span><span class="p">:</span> <span class="kt">Double</span><span class="p">?,</span>
+    <span class="nv">version</span><span class="p">:</span> <span class="kt">Double</span><span class="p">?</span>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/UserEntitlements.html">UserEntitlements</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>externalId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>external IDP user ID of user to apply entitlements sequence to.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>entitlementsSequenceName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>name of the entitlements sequence to apply to the user.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>transitionsRelativeToEpochMs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>time in milliseconds since epoch from when transition times should be calculated</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>version</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>if specified, version of any current entitlements that must be matched</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The resulting user entitlements.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP05applyB15SequenceToUsers5itemsSays6ResultOyAA04UserB0VAA0abcD5ErrorOGGSayAA05ApplybF4ItemVG_tYaKF"></a>
+                    <a name="//apple_ref/swift/Method/applyEntitlementsSequenceToUsers(items:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP05applyB15SequenceToUsers5itemsSays6ResultOyAA04UserB0VAA0abcD5ErrorOGGSayAA05ApplybF4ItemVG_tYaKF">applyEntitlementsSequenceToUsers(items:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Apply entitlements sequence to users. If a record for that user&rsquo;s entitlements sequence
+does not yet exist it will be created. Equivalent to calling applyEntitlementsSequenceToUserWithExternalId
+multiple times.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">applyEntitlementsSequenceToUsers</span><span class="p">(</span>
+    <span class="nv">items</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/ApplyEntitlementsSequenceItem.html">ApplyEntitlementsSequenceItem</a></span><span class="p">]</span>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">UserEntitlementsResult</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>items</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Array of entitlements sequence application items</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The resulting user entitlements.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP05applyB23SetToUserWithExternalId_012entitlementsF4Name7versionAA0hB0VSS_SSSdSgtYaKF"></a>
+                    <a name="//apple_ref/swift/Method/applyEntitlementsSetToUserWithExternalId(_:entitlementsSetName:version:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP05applyB23SetToUserWithExternalId_012entitlementsF4Name7versionAA0hB0VSS_SSSdSgtYaKF">applyEntitlementsSetToUserWithExternalId(_:<wbr>entitlementsSetName:<wbr>version:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Apply entitlements set  directly to a user. If a record for that user&rsquo;s entitlements set does not
+yet exist it will be created.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">applyEntitlementsSetToUserWithExternalId</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">externalId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">entitlementsSetName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">version</span><span class="p">:</span> <span class="kt">Double</span><span class="p">?</span>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/UserEntitlements.html">UserEntitlements</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>externalId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>external IDP user ID of user to apply entitlements set to.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>entitlementsSetName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>name of the entitlements set to apply to the user.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>version</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>if specified, version of any current entitlements that must be matched</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The resulting user entitlements.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP05applyB10SetToUsers5itemsSays6ResultOyAA04UserB0VAA0abcD5ErrorOGGSayAA05ApplybF4ItemVG_tYaKF"></a>
+                    <a name="//apple_ref/swift/Method/applyEntitlementsSetToUsers(items:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP05applyB10SetToUsers5itemsSays6ResultOyAA04UserB0VAA0abcD5ErrorOGGSayAA05ApplybF4ItemVG_tYaKF">applyEntitlementsSetToUsers(items:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Apply entitlements set to users. If a record for that user&rsquo;s entitlements set
+does not yet exist it will be created. Equivalent to calling applyEntitlementsSetToUserWithExternalId
+multiple times.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">applyEntitlementsSetToUsers</span><span class="p">(</span>
+    <span class="nv">items</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/ApplyEntitlementsSetItem.html">ApplyEntitlementsSetItem</a></span><span class="p">]</span>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">UserEntitlementsResult</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>items</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Array of entitlements set application items</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The resulting user entitlements.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP05applyB20ToUserWithExternalId_12entitlements7versionAA0gB0VSS_SayAA11EntitlementVGSdSgtYaKF"></a>
+                    <a name="//apple_ref/swift/Method/applyEntitlementsToUserWithExternalId(_:entitlements:version:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP05applyB20ToUserWithExternalId_12entitlements7versionAA0gB0VSS_SayAA11EntitlementVGSdSgtYaKF">applyEntitlementsToUserWithExternalId(_:<wbr>entitlements:<wbr>version:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Apply entitlements  directly to a user. If a record for that user&rsquo;s entitlements does not yet
+exist it will be created.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">applyEntitlementsToUserWithExternalId</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">externalId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">entitlements</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Entitlement.html">Entitlement</a></span><span class="p">],</span>
+    <span class="nv">version</span><span class="p">:</span> <span class="kt">Double</span><span class="p">?</span>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/UserEntitlements.html">UserEntitlements</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>externalId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>external IDP user ID of user to apply entitlements to.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>entitlements</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>list of the entitlements to apply to the user.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>version</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>if specified, version of any current entitlements that must be matched</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The resulting user entitlements.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP05applyB7ToUsers5itemsSays6ResultOyAA04UserB0VAA0abcD5ErrorOGGSayAA05ApplyB4ItemVG_tYaKF"></a>
+                    <a name="//apple_ref/swift/Method/applyEntitlementsToUsers(items:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP05applyB7ToUsers5itemsSays6ResultOyAA04UserB0VAA0abcD5ErrorOGGSayAA05ApplyB4ItemVG_tYaKF">applyEntitlementsToUsers(items:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Apply entitlements to users. If a record for that user&rsquo;s entitlements
+does not yet exist it will be created. Equivalent to calling applyEntitlementsToUserWithExternalId
+multiple times.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">applyEntitlementsToUsers</span><span class="p">(</span>
+    <span class="nv">items</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/ApplyEntitlementsItem.html">ApplyEntitlementsItem</a></span><span class="p">]</span>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">UserEntitlementsResult</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>items</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Array of entitlements application items</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The resulting user entitlements.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP015applyExpendableB20ToUserWithExternalId_010expendableB007requestK0AA0hB0VSS_SayAA11EntitlementVGSStYaKF"></a>
+                    <a name="//apple_ref/swift/Method/applyExpendableEntitlementsToUserWithExternalId(_:expendableEntitlements:requestId:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP015applyExpendableB20ToUserWithExternalId_010expendableB007requestK0AA0hB0VSS_SayAA11EntitlementVGSStYaKF">applyExpendableEntitlementsToUserWithExternalId(_:<wbr>expendableEntitlements:<wbr>requestId:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Apply an expendable entitlements delta to a user. If a record for the user&rsquo;s entitlements does
+not yet exist a NoEntitlementsForUserError is thrown. Call an applyEntitlements*
+method to assign entitlements before calling this method.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">applyExpendableEntitlementsToUserWithExternalId</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">externalId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">expendableEntitlements</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Entitlement.html">Entitlement</a></span><span class="p">],</span>
+    <span class="nv">requestId</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/UserEntitlements.html">UserEntitlements</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>externalId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>external IDP user ID of user to apply entitlements to.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>expendableEntitlements</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the expendable entitlements delta to apply to the user</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>requestId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Request of this delta. Repetition of requests for the same external ID with the same requestId are idempotent</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The resulting user entitlements.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:21SudoEntitlementsAdmin0abC6ClientP32removeEntitledUserWithExternalIdyAA0fG0VSgSSYaKF"></a>
+                    <a name="//apple_ref/swift/Method/removeEntitledUserWithExternalId(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:21SudoEntitlementsAdmin0abC6ClientP32removeEntitledUserWithExternalIdyAA0fG0VSgSSYaKF">removeEntitledUserWithExternalId(_:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Removes entitlements and consumption records of the specified user.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">removeEntitledUserWithExternalId</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">externalId</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/EntitledUser.html">EntitledUser</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>externalId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>external IDP user ID of user to remove.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The removed user information.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2025 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2025-03-11)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+    </section>
+  </body>
+</html>

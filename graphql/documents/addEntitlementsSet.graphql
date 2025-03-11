@@ -1,5 +1,0 @@
-mutation AddEntitlementsSet($input: AddEntitlementsSetInput!) {
-  addEntitlementsSet(input: $input) {
-    ...EntitlementsSet
-  }
-}

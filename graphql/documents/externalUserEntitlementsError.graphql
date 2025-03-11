@@ -1,3 +1,0 @@
-fragment ExternalUserEntitlementsError on ExternalUserEntitlementsError {
-  error
-}

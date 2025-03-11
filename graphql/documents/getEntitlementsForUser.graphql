@@ -1,5 +1,0 @@
-query GetEntitlementsForUser($input: GetEntitlementsForUserInput!) {
-  getEntitlementsForUser(input: $input) {
-    ...ExternalEntitlementsConsumption
-  }
-}

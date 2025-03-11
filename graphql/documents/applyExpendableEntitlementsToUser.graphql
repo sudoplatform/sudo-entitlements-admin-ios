@@ -1,5 +1,0 @@
-mutation ApplyExpendableEntitlementsToUser($input: ApplyExpendableEntitlementsToUserInput!) {
-  applyExpendableEntitlementsToUser(input: $input) {
-    ...ExternalUserEntitlements
-  }
-}
